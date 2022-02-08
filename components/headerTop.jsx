@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import { useEffect,useState } from 'react';
+import React,{ useEffect,useState } from 'react';
+import { withRouter } from 'next/router';
 import Link from "next/link";
+import githubObj  from '../public/githubConfig'
+import api from "../pages/api/api";
 
 const HeaderBox = styled('header')`
   .h50Top{
@@ -34,9 +37,13 @@ const RhtBox = styled('span')`
   }
 `
 
-export default function HeaderTop() {
+function HeaderTop({router}) {
 
-    const [showTop,setShowTop] = useState(false)
+
+    const [showTop,setShowTop] = useState(false);
+    const [url,setUrl] = useState('');
+    const [asToken,setAsToken] = useState('');
+    const [info,setInfo] = useState(null);
 
     const handleScroll = () => {
         let scrollY = window.scrollY;
@@ -49,19 +56,43 @@ export default function HeaderTop() {
 
     useEffect(()=>{
         window.addEventListener("scroll",handleScroll)
+
+        const {clientID,authorizeUri,redirectUri} = githubObj;
+        setUrl(`${authorizeUri}?client_id=${clientID}&redirect_uri=${redirectUri}`)
+
     },[])
+
+    useEffect(()=>{
+        if(!router.query.code) return;
+
+        const getAT = async () =>{
+            const accessToken =await api.GetAccessToken(router.query.code)
+            if(!accessToken) return;
+            setAsToken(accessToken)
+        }
+        getAT()
+    },[router.query])
+
+    useEffect(()=>{
+        if(!asToken) return;
+        const getIn = async() =>{
+            const info =await api.getInfo(asToken)
+            setInfo(info)
+        }
+        getIn()
+    },[asToken])
     return <HeaderBox>
         <div className={ showTop ? "fixed top-0 w-full  bg-white z-30 transition-all ease duration-150 drop-shadow-md" :"fixed top-0 w-full  bg-white z-30 transition-all ease duration-150"}>
-            <a href="/nftdrop">
-                <div className="flex flex-row items-center justify-between w-full h-10 px-4 font-semibold text-sm border-b border-gray-500 border-opacity-10 bg-gray-100">
-                    <div className="w-5"></div>
-                    <p className="hidden sm:block">On Launching A Viral NFT Drop →</p>
-                    <p className="sm:hidden">On Launching A Viral NFT Drop →</p>
-                    <button>
-                        <img src="/assets/images/close.svg" alt="" width="24"/>
-                    </button>
-                </div>
-            </a>
+            {/*<a href="/nftdrop">*/}
+            {/*    <div className="flex flex-row items-center justify-between w-full h-10 px-4 font-semibold text-sm border-b border-gray-500 border-opacity-10 bg-gray-100">*/}
+            {/*        <div className="w-5"></div>*/}
+            {/*        <p className="hidden sm:block">On Launching A Viral NFT Drop →</p>*/}
+            {/*        <p className="sm:hidden">On Launching A Viral NFT Drop →</p>*/}
+            {/*        <button>*/}
+            {/*            <img src="/assets/images/close.svg" alt="" width="24"/>*/}
+            {/*        </button>*/}
+            {/*    </div>*/}
+            {/*</a>*/}
             <div className="flex gap-4 xl:gap-6 justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full h-20">
                 <div className="flex justify-start items-center gap-4 xl:gap-6 w-full">
                     <Link href="/">
@@ -92,14 +123,26 @@ export default function HeaderTop() {
                     <Link href="/add">
                         <a className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Add a DAO</a>
                     </Link>
+                    {
+                        info == null &&<div>
+                            <Link href={url}>
+                                <a id="login" className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Login </a>
+                            </Link>
 
-                    <a href="/detail">
-                        <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
-                            <RhtBox>
-                                <img src="/assets/images/demo/demo1.png"/>
-                            </RhtBox>
+                        </div>
+                    }
+                    {
+                        info!= null &&<a href="/detail">
+                            <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
+                                <RhtBox>
+                                    <img src={info?.avatar_url}/>
+                                </RhtBox>
+                            </div>
+                        </a>
+                    }
+
+
                     </div>
-                </a></div>
                 <div className="lg:hidden mt-1">
                     <div>
                         <button type="button">
@@ -111,3 +154,4 @@ export default function HeaderTop() {
         </div>
     </HeaderBox>
 }
+export default withRouter(HeaderTop);
