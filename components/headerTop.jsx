@@ -76,7 +76,7 @@ function HeaderTop({router}) {
     useEffect(()=>{
         if(!asToken) return;
         const getIn = async() =>{
-            const info =await api.getInfo(asToken)
+            const info = await api.getInfo(asToken)
             setInfo(info)
         }
         getIn()
