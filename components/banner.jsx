@@ -31,6 +31,10 @@ const SpanBox = styled('span')`
 
 
 export default function Banner() {
+
+    const handleInput = (e) =>{
+        console.log(e.target.value)
+    }
     return <BannerBox>
         <div className="relative h-150">
             <SpanBox>
@@ -42,7 +46,7 @@ export default function Banner() {
                     <div className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg bg-white h50" >
                         <div className="flex space-between w-full items-center">
                             <div className="flex flex-auto items-center">
-                                <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs by name, emoji, slogan..." autoComplete="off" value="" /></div>
+                                <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs by name, emoji, slogan..." autoComplete="off" value="" onChange={e=>handleInput(e)}/></div>
                             <button className="hover:rotate-180 transition-all ease duration-200 hidden"></button>
                         </div>
                     </div>

@@ -1,6 +1,28 @@
+import { Octokit } from '@octokit/rest';
+import {useDAO} from "../../pages/api/connect";
+
 export default function AddContent() {
+
+    const {  state } = useDAO();
+    const { accessToken } = state;
+
+
+    const handleSubmit = async () =>{
+        console.log("===handleSubmit====")
+        const octokit = new Octokit({
+            auth: accessToken,
+        });
+        const listdata = await octokit.rest.issues.create({
+            owner: "wendychaung",
+            repo: "test-issue",
+            title: "description login issue",
+            labels: ["daopark"],
+            body: "test description wendychaung "
+        });
+        console.log("===22====",listdata)
+    }
     return  <div className="sm:mx-24 mx-5 my-24 space-y-6">
-        <form className="bg-white shadow p-5 sm:rounded-lg sm:p-10">
+        <div className="bg-white shadow p-5 sm:rounded-lg sm:p-10">
             <div className="lg:grid lg:grid-cols-3 lg:gap-6">
                 <div className="lg:col-span-1">
                     <h3 className="font-cal text-4xl text-gray-900">DAO Profile</h3>
@@ -142,11 +164,11 @@ export default function AddContent() {
                 </div>
             </div>
             <div className="mt-10 flex justify-end">
-                <button type="submit" disabled=""
+                <button type="submit" disabled="" onClick={handleSubmit}
                         className="bg-gray-300 cursor-not-allowed font-cal ml-3 inline-flex tracking-wider justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-md text-white focus:outline-none transition-all ease duration-150">
                     Submit
                 </button>
             </div>
-        </form>
+        </div>
     </div>
 }

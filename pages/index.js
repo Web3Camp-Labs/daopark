@@ -7,8 +7,8 @@ export default function Home() {
 
 
     return (<div className="w-full my-30">
-               <Banner></Banner>
-               <Homelist></Homelist>
+               <Banner />
+               <Homelist />
            </div>
     )
 }

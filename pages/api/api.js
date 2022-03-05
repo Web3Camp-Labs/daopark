@@ -1,10 +1,12 @@
 import axios from 'axios';
 
+const ip = "192.168.0.100:8888"
+
 const GetAccessToken = async(requestToken) => {
 
     const accessToken = await axios({
         method: 'get',
-        url: `http://127.0.0.1:8888/getAtoken/${requestToken}`,
+        url: `http://${ip}/getAtoken/${requestToken}`,
         headers: {
             accept: 'application/json',
         }
@@ -16,7 +18,7 @@ const getInfo = async(accessToken) => {
 
     const info = await axios({
         method: 'get',
-        url: `http://127.0.0.1:8888/getInfo/${accessToken}`,
+        url: `http://${ip}/getInfo/${accessToken}`,
         headers: {
             accept: 'application/json',
         }

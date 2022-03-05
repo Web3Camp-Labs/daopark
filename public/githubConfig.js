@@ -1,7 +1,7 @@
-const clientID = '8b058019ca38ddf2b110';
-const clientSecret = '8249b90e7800d7eb38db608eec8cbc2540b50d23';
+const clientID = 'Iv1.4259f896f0540b5a';
+const clientSecret = 'c76aa7d7bf649184d53e99afa75b59963f01852c';
 const authorizeUri = 'https://github.com/login/oauth/authorize';
-const redirectUri = 'http://localhost:3000';
+const redirectUri = 'http://192.168.0.100:3000';
 
 
 

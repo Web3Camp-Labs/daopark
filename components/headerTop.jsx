@@ -4,6 +4,7 @@ import { withRouter } from 'next/router';
 import Link from "next/link";
 import githubObj  from '../public/githubConfig'
 import api from "../pages/api/api";
+import {useDAO} from "../pages/api/connect";
 
 const HeaderBox = styled('header')`
   .h50Top{
@@ -38,10 +39,10 @@ const RhtBox = styled('span')`
 `
 
 function HeaderTop({router}) {
-
+    const {  dispatch, state } = useDAO();
 
     const [showTop,setShowTop] = useState(false);
-    const [url,setUrl] = useState('');
+    const [url,setUrl] = useState('/');
     const [asToken,setAsToken] = useState('');
     const [info,setInfo] = useState(null);
 
@@ -56,10 +57,8 @@ function HeaderTop({router}) {
 
     useEffect(()=>{
         window.addEventListener("scroll",handleScroll)
-
         const {clientID,authorizeUri,redirectUri} = githubObj;
         setUrl(`${authorizeUri}?client_id=${clientID}&redirect_uri=${redirectUri}`)
-
     },[])
 
     useEffect(()=>{
@@ -69,6 +68,7 @@ function HeaderTop({router}) {
             const accessToken =await api.GetAccessToken(router.query.code)
             if(!accessToken) return;
             setAsToken(accessToken)
+            dispatch({type: 'SET_ACCESS_TOKEN',payload:accessToken});
         }
         getAT()
     },[router.query])
@@ -78,6 +78,7 @@ function HeaderTop({router}) {
         const getIn = async() =>{
             const info = await api.getInfo(asToken)
             setInfo(info)
+            dispatch({type: 'SET_INFO',payload:info});
         }
         getIn()
     },[asToken])

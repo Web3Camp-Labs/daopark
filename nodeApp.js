@@ -3,12 +3,12 @@ const app = express()
 var  cors = require( 'cors' );
 const port = 8888;
 const axios = require('axios');
-
+const { Octokit } = require("@octokit/rest");
 // process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 
-const clientID = '8b058019ca38ddf2b110';
-const clientSecret = '8249b90e7800d7eb38db608eec8cbc2540b50d23';
+const clientID = 'Iv1.4259f896f0540b5a';
+const clientSecret = 'c76aa7d7bf649184d53e99afa75b59963f01852c';
 
 app.use(cors());
 
@@ -25,15 +25,21 @@ app.get('/getAtoken/:code', async function (req, res) {
         headers: {
             accept: 'application/json'
         }
-    });
+    }).then((dataResult)=>{
+        console.log("=============",dataResult.data.access_token)
+        res.send(dataResult.data.access_token);
+    }).catch((error)=>{
+        console.error("=======error======",error)
+        // res.send(error);
+    })
 
-    console.log("===accessToke222n=====",tokenResponse.data.access_token)
-    res.send(tokenResponse.data.access_token);
+console.log("===tokenResponse",tokenResponse)
+
 });
 
 app.get('/getInfo/:accessToken', async function (req, res) {
     var params = req.params;
-    console.log("==accessToken======",params.accessToken)
+
     const result = await axios({
         method: 'get',
         url: `https://api.github.com/user`,

@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { Octokit } from '@octokit/rest';
 
 import Link from "next/link";
+import {useEffect} from "react";
+import {useDAO} from "../pages/api/connect";
 
 const SpanBoxli = styled('span')`
   box-sizing: border-box; 
@@ -42,13 +45,37 @@ position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: no
 }
 `
 export default function Homelist() {
+
+    const {  state } = useDAO();
+    const { accessToken } = state;
+
+    useEffect(()=>{
+        console.log("===============")
+
+        const octokit = new Octokit({
+            auth: accessToken,
+        });
+
+        const getList = async () =>{
+           const list =  await octokit.rest.issues.listForRepo({
+                owner: "wendychaung",
+                repo: "test-issue",
+               mentioned:'wendychaung',
+               // labels:"daopark"
+            });
+           console.log("===list====",list)
+        }
+        getList()
+    },[])
+
+
     return  <div className="max-w-screen-2xl mx-auto">
         <h2 className="font-cal text-4xl mt-32 pb-5 mx-10">Popular DAOs</h2>
         <div className="grid grid-cols-1 gap-8 m-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
             <Link href="/dao/developer"><a className="!no-underline" >
                 <div className="hidden sm:block rounded-2xl border-2 border-gray-100 overflow-hidden shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
                     <SpanBoxli>
-                        <span></span>
+                        <span />
                         <img alt="Developer DAO" sizes="100vw" src="/assets/images/demo/demo2.png" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" />
                     </SpanBoxli>
                     <div className="py-6 px-5 h-36">
@@ -73,7 +100,7 @@ export default function Homelist() {
             <Link href="/dao/2"><a className="!no-underline" >
                 <div className="hidden sm:block rounded-2xl border-2 border-gray-100 overflow-hidden shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
                     <SpanBoxli>
-                        <span></span>
+                        <span />
                         <img alt="Developer DAO" sizes="100vw" src="/assets/images/demo/demo3.png" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" />
                     </SpanBoxli>
                     <div className="py-6 px-5 h-36">
@@ -96,7 +123,7 @@ export default function Homelist() {
                 </div>
             </a></Link>
             {
-                [...Array(30)].map((item,index)=>(<Link href="/dao/developer"><a key={index} className="!no-underline" >
+                [...Array(30)].map((item,index)=>(<Link href="/dao/developer" key={index}><a className="!no-underline" >
                     <div className="hidden sm:block rounded-2xl border-2 border-gray-100 overflow-hidden shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
                         <SpanBoxli>
                             <span></span>
