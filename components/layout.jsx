@@ -8,13 +8,12 @@ const Maincontent = styled('main')`
   
 `
 
-
 export default function Layout({children}) {
 
     return<div>
-            <HeaderTop></HeaderTop>
+            <HeaderTop />
             <Maincontent>{ children }</Maincontent>
-            <FooterBtm></FooterBtm>
+            <FooterBtm />
         </div>
 
 }

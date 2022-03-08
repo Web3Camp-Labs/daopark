@@ -31,7 +31,7 @@ export default function Dao() {
                 <div className="w-full max-w-screen-2xl mx-auto">
                     <DaoBannerFull />
                     <DaoDetail />
-                    <Daolist />
+                    <DaoList />
                 </div>
             </div>
         }

@@ -14,9 +14,7 @@ const HeaderBox = styled('header')`
 const RhtBox = styled('span')`
   box-sizing: border-box; 
   display: block; 
-  overflow: hidden; 
-  width: initial; 
-  height: initial; 
+  overflow: hidden;
   background: none;
   opacity: 1; 
   border: 0; 
@@ -103,12 +101,14 @@ function HeaderTop({router}) {
     },[asToken]);
 
     useEffect(()=>{
-        if(accessToken ==null || info ==null) return;
+        if(accessToken ==null) return;
         setAsToken(accessToken)
+    },[accessToken])
+
+    useEffect(()=>{
+        if( info ==null) return;
         setInfoData(info)
-
-    },[accessToken, info])
-
+    },[info])
     const handleInput = (e) =>{
         console.log(e.target.value)
     }
