@@ -38,6 +38,12 @@ const RhtBox = styled('span')`
   }
 `
 
+const Logo = styled.span`
+  font-size: 2rem;
+  font-family: "CalSans-SemiBold";
+  padding-top: 20px;
+`
+
 function HeaderTop({router}) {
     const {  dispatch, state } = useDAO();
 
@@ -45,6 +51,8 @@ function HeaderTop({router}) {
     const [url,setUrl] = useState('/');
     const [asToken,setAsToken] = useState('');
     const [info,setInfo] = useState(null);
+
+    // const myinfo = window.sessionStorage.getItem("info");
 
     const handleScroll = () => {
         let scrollY = window.scrollY;
@@ -56,6 +64,7 @@ function HeaderTop({router}) {
     }
 
     useEffect(()=>{
+        // console.log("=====myinfo=====",myinfo)
         window.addEventListener("scroll",handleScroll)
         const {clientID,authorizeUri,redirectUri} = githubObj;
         setUrl(`${authorizeUri}?client_id=${clientID}&redirect_uri=${redirectUri}`)
@@ -75,13 +84,19 @@ function HeaderTop({router}) {
 
     useEffect(()=>{
         if(!asToken) return;
+
         const getIn = async() =>{
             const info = await api.getInfo(asToken)
             setInfo(info)
             dispatch({type: 'SET_INFO',payload:info});
+            sessionStorage.setItem("info",JSON.stringify(info))
         }
         getIn()
     },[asToken])
+
+    const handleInput = (e) =>{
+        console.log(e.target.value)
+    }
     return <HeaderBox>
         <div className={ showTop ? "fixed top-0 w-full  bg-white z-30 transition-all ease duration-150 drop-shadow-md" :"fixed top-0 w-full  bg-white z-30 transition-all ease duration-150"}>
             {/*<a href="/nftdrop">*/}
@@ -97,7 +112,7 @@ function HeaderTop({router}) {
             <div className="flex gap-4 xl:gap-6 justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full h-20">
                 <div className="flex justify-start items-center gap-4 xl:gap-6 w-full">
                     <Link href="/">
-                        <a><img src="/assets/images/logo.svg" alt="" /></a>
+                        <Logo>DAO PARK</Logo>
                     </Link>
                     {
                         showTop && <div className="relative flex-auto">
@@ -108,7 +123,7 @@ function HeaderTop({router}) {
 
                                         <input
                                             className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 bg-gray-100 focus:bg-white transition ease duration-150"
-                                            placeholder="Search DAOs by name, emoji, slogan..." autoComplete="off" value="" />
+                                            placeholder="Search DAOs by name, emoji, slogan..." autoComplete="off" value="" onChange={e=>handleInput(e)}/>
                                     </div>
                                     <button className="hover:rotate-180 transition-all ease duration-200 hidden">
 
@@ -133,7 +148,7 @@ function HeaderTop({router}) {
                         </div>
                     }
                     {
-                        info!= null &&<a href="/detail">
+                        info!= null &&<a href="/mine">
                             <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
                                 <RhtBox>
                                     <img src={info?.avatar_url}/>

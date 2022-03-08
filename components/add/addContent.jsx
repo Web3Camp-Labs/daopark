@@ -8,17 +8,22 @@ export default function AddContent() {
 
 
     const handleSubmit = async () =>{
-        console.log("===handleSubmit====")
+        console.log("=========",accessToken)
         const octokit = new Octokit({
             auth: accessToken,
         });
         const listdata = await octokit.rest.issues.create({
-            owner: "wendychaung",
+            owner: "Web3-Camp",
             repo: "test-issue",
-            title: "description login issue",
+            title: "name:description login issue",
             labels: ["daopark"],
-            body: "test description wendychaung "
+            body: "name: Tracking issue\n" +
+                "about: Use this template for tracking new features.\n" +
+                "title: \"[DATE]: [FEATURE NAME]\"\n" +
+                "labels: tracking issue, needs triage\n" +
+                "assignees: octocat"
         });
+
         console.log("===22====",listdata)
     }
     return  <div className="sm:mx-24 mx-5 my-24 space-y-6">

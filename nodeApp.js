@@ -7,8 +7,8 @@ const { Octokit } = require("@octokit/rest");
 // process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 
-const clientID = 'Iv1.4259f896f0540b5a';
-const clientSecret = 'c76aa7d7bf649184d53e99afa75b59963f01852c';
+const clientID = 'Iv1.94a72acba60a8147';
+const clientSecret = '4476e0059dcdc514675c658bf7ba16703ef25734';
 
 app.use(cors());
 
