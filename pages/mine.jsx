@@ -25,8 +25,6 @@ const PicBox = styled.span`
   }
 `
 
-
-
 export default function Mine(){
     return <Divbox>
         <div className="w-full my-30">

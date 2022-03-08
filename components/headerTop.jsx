@@ -34,7 +34,7 @@ const RhtBox = styled('span')`
     display: block; 
     width: 100%; 
     height: 100%;
-    bject-fit: cover;
+    object-fit: cover;
   }
 `
 
@@ -46,13 +46,13 @@ const Logo = styled.span`
 
 function HeaderTop({router}) {
     const {  dispatch, state } = useDAO();
-
+    const { accessToken, info } = state;
     const [showTop,setShowTop] = useState(false);
     const [url,setUrl] = useState('/');
     const [asToken,setAsToken] = useState('');
-    const [info,setInfo] = useState(null);
+    const [infoData,setInfoData] = useState(null);
 
-    // const myinfo = window.sessionStorage.getItem("info");
+
 
     const handleScroll = () => {
         let scrollY = window.scrollY;
@@ -64,7 +64,15 @@ function HeaderTop({router}) {
     }
 
     useEffect(()=>{
-        // console.log("=====myinfo=====",myinfo)
+        const myinfo = sessionStorage.getItem("info");
+        const accessTokenInfo = sessionStorage.getItem("asToken");
+        if(myinfo && accessTokenInfo){
+            const LoginInfo = JSON.parse(myinfo);
+            console.log("=====LoginInfo=====",LoginInfo)
+            dispatch({type: 'SET_INFO',payload:LoginInfo});
+            dispatch({type: 'SET_ACCESS_TOKEN',payload:accessTokenInfo});
+        }
+
         window.addEventListener("scroll",handleScroll)
         const {clientID,authorizeUri,redirectUri} = githubObj;
         setUrl(`${authorizeUri}?client_id=${clientID}&redirect_uri=${redirectUri}`)
@@ -76,7 +84,6 @@ function HeaderTop({router}) {
         const getAT = async () =>{
             const accessToken =await api.GetAccessToken(router.query.code)
             if(!accessToken) return;
-            setAsToken(accessToken)
             dispatch({type: 'SET_ACCESS_TOKEN',payload:accessToken});
         }
         getAT()
@@ -86,13 +93,21 @@ function HeaderTop({router}) {
         if(!asToken) return;
 
         const getIn = async() =>{
-            const info = await api.getInfo(asToken)
-            setInfo(info)
-            dispatch({type: 'SET_INFO',payload:info});
-            sessionStorage.setItem("info",JSON.stringify(info))
+            const infoD = await api.getInfo(asToken)
+            // setInfoData(infoD)
+            dispatch({type: 'SET_INFO',payload:infoD});
+            sessionStorage.setItem("info",JSON.stringify(infoD))
+            sessionStorage.setItem("asToken",asToken)
         }
         getIn()
-    },[asToken])
+    },[asToken]);
+
+    useEffect(()=>{
+        if(accessToken ==null || info ==null) return;
+        setAsToken(accessToken)
+        setInfoData(info)
+
+    },[accessToken, info])
 
     const handleInput = (e) =>{
         console.log(e.target.value)
@@ -140,7 +155,7 @@ function HeaderTop({router}) {
                         <a className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Add a DAO</a>
                     </Link>
                     {
-                        info == null &&<div>
+                        infoData == null &&<div>
                             <Link href={url}>
                                 <a id="login" className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Login </a>
                             </Link>
@@ -148,10 +163,10 @@ function HeaderTop({router}) {
                         </div>
                     }
                     {
-                        info!= null &&<a href="/mine">
+                        infoData!= null &&<a href="/mine">
                             <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
                                 <RhtBox>
-                                    <img src={info?.avatar_url}/>
+                                    <img src={infoData?.avatar_url}/>
                                 </RhtBox>
                             </div>
                         </a>

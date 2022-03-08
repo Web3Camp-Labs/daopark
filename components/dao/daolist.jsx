@@ -10,18 +10,18 @@ const SpanBoxli = styled('span')`
   height: initial; 
   background: none; 
   opacity: 1; 
-  border: 0px; 
-  margin: 0px; 
-  padding: 0px; 
+  border: 0; 
+  margin: 0; 
+  padding: 0; 
   position: relative;
   span{
-  box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 80% 0px 0px;
+  box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0; margin: 0; padding: 80% 0 0;
   }
   img{
       position: absolute; 
-      inset: 0px; 
+      inset: 0; 
       box-sizing: border-box; 
-      padding: 0px; 
+      padding: 0; 
       border: none; 
       margin: auto; 
       display: block; 
@@ -41,13 +41,13 @@ img{
 position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;
 }
 `
-export default function Daolist() {
+export default function DaoList() {
     return  <div className="w-full max-w-screen-2xl mx-auto">
         <div className="my-24 mx-10">
             <h2 className="font-cal tracking-wide text-4xl pb-5">People who joined this DAO also joined</h2>
             <div className="grid grid-cols-1 gap-8 m-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
                 {
-                    [...Array(8)].map((item,index)=>(<Link href="/dao/developer"><a key={index} className="!no-underline" >
+                    [...Array(8)].map((item,index)=>(<Link href="/dao/developer" key={index}><a className="!no-underline" >
                         <div className="hidden sm:block rounded-2xl border-2 border-gray-100 overflow-hidden shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
                             <SpanBoxli>
                                 <span></span>
@@ -73,8 +73,6 @@ export default function Daolist() {
                         </div>
                     </a></Link>))
                 }
-
-
             </div>
         </div>
 

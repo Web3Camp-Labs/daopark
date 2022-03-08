@@ -5,7 +5,7 @@ import styled from "styled-components";
 import TopFix from "../../../components/dao/topfix";
 import DaoBanner from "../../../components/dao/daoBanner";
 import DaoMain from "../../../components/dao/daoMain";
-import Daolist from "../../../components/dao/daolist";
+import DaoList from "../../../components/dao/daolist";
 import DaoBannerFull from "../../../components/dao/daoBannerFull";
 import DaoDetail from "../../../components/dao/daoDetail";
 
@@ -23,7 +23,7 @@ export default function Dao() {
                 <TopFix />
                 <DaoBanner />
                 <DaoMain />
-                <Daolist />
+                <DaoList />
             </div>
         }
         {
