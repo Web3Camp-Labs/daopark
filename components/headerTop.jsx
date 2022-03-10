@@ -66,7 +66,6 @@ function HeaderTop({router}) {
         const accessTokenInfo = sessionStorage.getItem("asToken");
         if(myinfo && accessTokenInfo){
             const LoginInfo = JSON.parse(myinfo);
-            console.log("=====LoginInfo=====",LoginInfo)
             dispatch({type: 'SET_INFO',payload:LoginInfo});
             dispatch({type: 'SET_ACCESS_TOKEN',payload:accessTokenInfo});
         }

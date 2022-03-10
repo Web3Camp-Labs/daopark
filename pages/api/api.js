@@ -11,7 +11,6 @@ const GetAccessToken = async(requestToken) => {
             accept: 'application/json',
         }
     });
-     console.log("=====result==",accessToken.data)
     return accessToken.data;
 }
 const getInfo = async(accessToken) => {
@@ -23,7 +22,6 @@ const getInfo = async(accessToken) => {
             accept: 'application/json',
         }
     });
-     console.log("=====result==",info.data)
     return info.data;
 }
 

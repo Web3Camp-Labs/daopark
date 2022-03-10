@@ -1,6 +1,5 @@
 module.exports = {
     accessToken: null,
-    info:null
-
-
+    info:null,
+    search:null
 };

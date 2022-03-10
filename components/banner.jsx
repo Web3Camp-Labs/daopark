@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import {useState} from "react";
+import {useDAO} from "../pages/api/connect";
 
 const BannerBox = styled('div')`
   .h50{
@@ -31,10 +33,19 @@ const SpanBox = styled('span')`
 
 
 export default function Banner() {
+    const {  dispatch, state } = useDAO();
+    const [keywords,setKeywords] = useState('');
 
     const handleInput = (e) =>{
-        console.log(e.target.value)
+        setKeywords(e.target.value)
     }
+    const submitFunc = (e) =>{
+        if(e.keyCode === 13){
+            dispatch({type: 'SET_SEARCH',payload:keywords});
+        }
+
+    }
+
     return <BannerBox>
         <div className="relative h-150">
             <SpanBox>
@@ -46,7 +57,7 @@ export default function Banner() {
                     <div className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg bg-white h50" >
                         <div className="flex space-between w-full items-center">
                             <div className="flex flex-auto items-center">
-                                <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs by name, emoji, slogan..." autoComplete="off" value="" onChange={e=>handleInput(e)}/></div>
+                                <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs by name, slogan..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
                             <button className="hover:rotate-180 transition-all ease duration-200 hidden"></button>
                         </div>
                     </div>

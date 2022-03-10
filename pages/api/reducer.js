@@ -6,7 +6,8 @@ const reducer = (state, action) => {
         case 'SET_INFO':
             return { ...state, info: action.payload };
 
-
+        case 'SET_SEARCH':
+            return { ...state, search: action.payload };
 
         default:
             throw new Error(`Unknown type: ${action.type}`);
