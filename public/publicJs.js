@@ -35,6 +35,14 @@ const ToJSON =(str)=>{
         email
     }
 }
+
+
+const formatStr = (obj,type)=>{
+    if(obj == null || !obj[type]) return;
+    const str = obj[type].trim()
+    return str.split(": ")[1];
+}
 export default {
-    ToJSON
+    ToJSON,
+    formatStr
 }

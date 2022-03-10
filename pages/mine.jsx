@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Layout from "../components/layout";
+import {useDAO} from "./api/connect";
 
 const Divbox = styled.div`
     .bgLinear{
@@ -26,13 +27,15 @@ const PicBox = styled.span`
 `
 
 export default function Mine(){
+    const {  state } = useDAO();
+    const { info } = state;
     return <Divbox>
         <div className="w-full my-30">
             <div className="flex relative justify-center origin-bottom h-96 max-w-screen-2xl md:w-5/6 w-full mx-auto">
                 <div className="w-full h-full md:rounded-3xl bgLinear" />
                 <div className="absolute w-48 h-48 -bottom-20 border-8 border-white rounded-full overflow-hidden">
                 <ImgBox>
-                    <img src="https://daocentral.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1478585075508064257%2FwXXA4i-1.jpg&w=1920&q=75"
+                    <img src={info.avatar_url}
                    className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"
                  />
                 </ImgBox>

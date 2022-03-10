@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import PublicJs from "../../public/publicJs";
+import {useEffect, useState} from "react";
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -9,24 +11,33 @@ const SpanBox = styled('span')`
 `
 
 
-export default function DaoDetail() {
+export default function DaoDetail(props) {
+    const {  body } = props;
+    const [ obj, setObj ] = useState(null);
+    const { formatStr,ToJSON } = PublicJs;
+
+
+    useEffect(()=>{
+        if(!body)return;
+        let objFormat = ToJSON(body);
+        setObj(objFormat)
+    },[body])
+
     return <div
         className="my-24 sm:mx-10 flex flex-col items-center lg:flex-row lg:space-x-12 space-x-0 lg:space-y-0 space-y-12">
-        <div className="mx-10 flex-auto space-y-5"><h2 className="font-cal text-5xl tracking-wide pb-5">What is Olympus
-            DAO?</h2>
-            <p className="text-lg text-gray-600">Olympus is building a community-owned decentralized financial
-                infrastructure to bring more stability and transparency for the world.</p></div>
+        <div className="mx-10 flex-auto space-y-5"><h2 className="font-cal text-5xl tracking-wide pb-5">What is {formatStr(obj,'name')}?</h2>
+            <p className="text-lg text-gray-600">{formatStr(obj,'values')}</p></div>
         <div
             className="sm:rounded-xl sm:shadow-xl border border-gray-200 sm:border-gray-100 bg-gray xl:w-2/5 lg:w-1/2 w-full py-10">
             <div className="mx-10">
                 <div className="mb-10 grid grid-flow-col auto-cols-auto gap-3 h-10">
-                    <a href="https://twitter.com/OlympusDAO" target="_blank" className="col-span-1 text-white bg-black rounded-lg flex justify-center items-center">
+                    <a href={`https://twitter.com/${formatStr(obj,'twitter')}`} target="_blank" rel="noreferrer" className="col-span-1 text-white bg-black rounded-lg flex justify-center items-center">
                         <img src="/assets/images/twitterwhite.svg" alt=""/>
                     </a>
-                    <a href="https://discord.com/invite/olympusdao" target="_blank" className="col-span-1 bg-black rounded-lg flex justify-center items-center">
+                    <a href={`https://discord.com/invite/${formatStr(obj,'discord')}`}  rel="noreferrer" target="_blank" className="col-span-1 bg-black rounded-lg flex justify-center items-center">
                         <img src="/assets/images/discordwhite.svg" alt=""/>
                     </a>
-                    <a href="https://www.olympusdao.finance" target="_blank" className="col-span-1 bg-black rounded-lg flex justify-center items-center">
+                    <a href={`https://${formatStr(obj,'website')}`} target="_blank"  rel="noreferrer"  className="col-span-1 bg-black rounded-lg flex justify-center items-center">
                         <img src="/assets/images/linkwhite.svg" alt=""/>
                     </a>
                 </div>

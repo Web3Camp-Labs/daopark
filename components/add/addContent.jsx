@@ -4,6 +4,8 @@ import {useState} from "react";
 import githubObj  from '../../public/githubConfig'
 import Modal from "../modal";
 import styled from "styled-components";
+import TipsModal from '../tipsModal';
+import  Router from "next/router";
 
 const ImgBox = styled.div`
   width: 15rem;
@@ -39,6 +41,7 @@ export default function AddContent() {
     const [ cover, setCover] = useState('');
     const [ imgTit, setImgTit] = useState('');
     const [ showBox, setShowBox ] = useState(false);
+    const [ showSuccess, setShowSuccess ] = useState(false);
     const [ twitter, setTwitter] = useState('');
     const [ discord, setDiscord] = useState('');
     const [ mirror, setMirror] = useState('');
@@ -75,8 +78,13 @@ export default function AddContent() {
             labels: ["daopark"],
             body: bodyStr
         });
-
-        console.log("===22====",listdata)
+        if(listdata.status === 201){
+            setShowSuccess(true)
+            setTimeout(()=>{
+                setShowSuccess(false)
+                Router.push("/")
+            },3000)
+        }
     }
 
     const handleInput = (e,type) =>{
@@ -152,6 +160,7 @@ export default function AddContent() {
         return !(daoName.length && slug.length && tagline.length && mission.length && values.length && emoji.length && tokenSymbol.length && tokenAddress.length && logo.length && cover.length && twitter.length && discord.length && mirror.length && website.length && email.length)
     }
     return  <div className="sm:mx-24 mx-5 my-24 space-y-6">
+        <TipsModal show={showSuccess}/>
         <Modal close={closeImageBox} title={imgTit} show={showBox} handleImg={handleImg}/>
         <div className="bg-white shadow p-5 sm:rounded-lg sm:p-10">
             <div className="lg:grid lg:grid-cols-3 lg:gap-6">

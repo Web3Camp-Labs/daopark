@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@-webkit-keyframes dgLeft{0%{top:-100%}100%{top:0%}}
+@-webkit-keyframes dgLeft{0%{top:-100%}100%{top:0%}}
+@-webkit-keyframes dgRight{0%{left:-100%}100%{left:0%}}
+@-webkit-keyframes dgRight{0%{left:-100%}100%{left:0%}}
+
 @font-face {
     font-family: "CalSans-SemiBold";
     src: url('./CalSans-SemiBold.woff2');

@@ -26,15 +26,10 @@ app.get('/getAtoken/:code', async function (req, res) {
             accept: 'application/json'
         }
     }).then((dataResult)=>{
-        console.log("=============",dataResult.data.access_token)
         res.send(dataResult.data.access_token);
     }).catch((error)=>{
-        console.error("=======error======",error)
-        // res.send(error);
+        res.send(error);
     })
-
-console.log("===tokenResponse",tokenResponse)
-
 });
 
 app.get('/getInfo/:accessToken', async function (req, res) {
