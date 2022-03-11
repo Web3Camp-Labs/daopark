@@ -36,9 +36,7 @@ const Success = styled.div`
     height:4px;
     bottom:55%;
   }
-
 `
-
 export default function DaoDetail(props) {
     const {  body } = props;
     const [ obj, setObj ] = useState(null);
@@ -105,10 +103,6 @@ export default function DaoDetail(props) {
 
                         </CopyToClipboard>
                     }
-
-
-
-
                 </div>
             </div>
             <div className="border border-gray-200 w-full my-10"></div>

@@ -42,8 +42,8 @@ export default function Banner() {
     const submitFunc = (e) =>{
         if(e.keyCode === 13){
             dispatch({type: 'SET_SEARCH',payload:keywords});
+            setKeywords('')
         }
-
     }
 
     return <BannerBox>
@@ -58,7 +58,6 @@ export default function Banner() {
                         <div className="flex space-between w-full items-center">
                             <div className="flex flex-auto items-center">
                                 <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs by name, slogan..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
-                            <button className="hover:rotate-180 transition-all ease duration-200 hidden"></button>
                         </div>
                     </div>
                 </div>

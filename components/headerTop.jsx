@@ -49,8 +49,7 @@ function HeaderTop({router}) {
     const [url,setUrl] = useState('/');
     const [asToken,setAsToken] = useState('');
     const [infoData,setInfoData] = useState(null);
-
-
+    const [keywords,setKeywords] = useState('');
 
     const handleScroll = () => {
         let scrollY = window.scrollY;
@@ -108,8 +107,16 @@ function HeaderTop({router}) {
         if( info ==null) return;
         setInfoData(info)
     },[info])
+
     const handleInput = (e) =>{
-        console.log(e.target.value)
+        setKeywords(e.target.value)
+    }
+
+    const submitFunc = (e) =>{
+        if(e.keyCode === 13){
+            dispatch({type: 'SET_SEARCH',payload:keywords});
+            setKeywords('')
+        }
     }
     return <HeaderBox>
         <div className={ showTop ? "fixed top-0 w-full  bg-white z-30 transition-all ease duration-150 drop-shadow-md" :"fixed top-0 w-full  bg-white z-30 transition-all ease duration-150"}>
@@ -131,17 +138,13 @@ function HeaderTop({router}) {
                     {
                         showTop && <div className="relative flex-auto">
                             <div
-                                className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg -mt-6 focus-within:bg-white bg-gray-100">
+                                className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg -mt-6 bg-gray-100">
                                 <div className="flex space-between w-full items-center">
                                     <div className="flex flex-auto items-center">
-
                                         <input
-                                            className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 bg-gray-100 focus:bg-white transition ease duration-150"
-                                            placeholder="Search DAOs by name, emoji, slogan..." autoComplete="off" value="" onChange={e=>handleInput(e)}/>
+                                            className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 bg-gray-100  transition ease duration-150"
+                                            placeholder="Search DAOs by name, emoji, slogan..." autoComplete="off" value={keywords}  onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/>
                                     </div>
-                                    <button className="hover:rotate-180 transition-all ease duration-200 hidden">
-
-                                    </button>
                                 </div>
                             </div>
                         </div>

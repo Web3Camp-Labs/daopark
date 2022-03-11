@@ -22,7 +22,6 @@ export default function HomeList() {
     const {  state } = useDAO();
     const { accessToken, search } = state;
     const [ list,setList ] = useState([])
-    const octokit = new Octokit({});
 
     useEffect(()=>{
         const getList = async () =>{
@@ -36,15 +35,11 @@ export default function HomeList() {
     useEffect(()=>{
         if( search == null ) return;
         // setList([]);
+        const listJson = sessionStorage.getItem('list');
+        const listArr = JSON.parse(listJson);
         const GetPrList = async() =>{
-            // const listPr = await octokit.rest.search.issuesAndPullRequests({
-            //     owner: "Web3-Camp",
-            //     repo: "test-issue",
-            //     q:`${search}+repo:Web3-Camp/test-issue+in:body+is:pr`,
-            // });
-            // setList(listPr?.data?.items)
-            // console.log("========search=GetPrList=====",listPr.data.items)
-
+           const arr = listArr.filter(item=> item.Name.indexOf(search)>-1 || item.Mission.indexOf(search)>-1 || item.Slug.indexOf(search)>-1 || item.Tagline.indexOf(search)>-1 || item.Values.indexOf(search)>-1)
+            setList(arr)
         }
         GetPrList();
 
