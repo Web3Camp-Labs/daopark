@@ -68,8 +68,8 @@ export default function Mine(){
                             <h1 className="font-cal tracking-wide text-2xl sm:text-3xl truncate">{info?.name}</h1>
                             <p className="text-gray-700 font-medium text-lg sm:text-xl my-2 truncate pt-8">{info?.bio}</p>
                             <Follow>
-                                <div className="text-gray-700"><span className="text-2xl">{info?.followers}</span> followers</div>
-                                <div className="text-gray-700"><span className="text-2xl">{info?.following}</span>following</div>
+                                <div className="text-gray-700"><span className="text-2xl">{info?.followers}</span>  followers</div>
+                                <div className="text-gray-700"><span className="text-2xl">{info?.following}</span> following</div>
                             </Follow>
 
                         </div>

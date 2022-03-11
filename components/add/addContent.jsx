@@ -1,11 +1,13 @@
 import { Octokit } from '@octokit/rest';
 import {useDAO} from "../../pages/api/connect";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import githubObj  from '../../public/githubConfig'
 import Modal from "../modal";
 import styled from "styled-components";
 import TipsModal from '../tipsModal';
 import  Router from "next/router";
+import { useDebounce } from 'use-debounce';
+import api from "../../pages/api/api";
 
 const ImgBox = styled.div`
   width: 15rem;
@@ -24,19 +26,29 @@ const CoverBox = styled.div`
   }
 `
 
+
+
 export default function AddContent() {
 
     const {  state } = useDAO();
     const { accessToken } = state;
 
     const [ daoName, setDaoName ] = useState('');
+
     const [ slug, setSlug ] = useState('');
+    const [slugValue] = useDebounce(slug, 1000);
+    const [slugTip, setSlugTips] = useState(false);
+
     const [ tagline, setTagline ] = useState('');
     const [ mission, setMission ] = useState('');
     const [ values, setValues ] = useState('');
     const [ emoji, setEmoji ] = useState('');
     const [ tokenSymbol, setTokenSymbol ] = useState('');
+
     const [ tokenAddress, setTokenAddress ] = useState('');
+    const [addressValue] = useDebounce(tokenAddress, 1000);
+    const [addressTip, setAddressTips] = useState(false);
+
     const [ logo, setLogo] = useState('');
     const [ cover, setCover] = useState('');
     const [ imgTit, setImgTit] = useState('');
@@ -86,6 +98,7 @@ export default function AddContent() {
         }
     }
 
+
     const handleInput = (e,type) =>{
         const { value } = e.target;
         switch(type){
@@ -93,7 +106,7 @@ export default function AddContent() {
                 setDaoName(value);
                 break;
             case 'slug':
-                setSlug(value);
+                setSlug(value)
                 break;
             case 'tagline':
                 setTagline(value);
@@ -153,11 +166,33 @@ export default function AddContent() {
             setCover(obj)
         }
     }
+    useEffect(()=>{
+        if(!slugValue) return;
+        const SearchSlug = async () =>{
+            const listInfo = await api.getListInfo();
+            const listArr = listInfo.filter(item=>item.Slug === slugValue);
+            setSlugTips(!!listArr.length)
+        }
+        SearchSlug()
+    },[slugValue])
+
+    useEffect(()=>{
+        if(!addressValue) return;
+        const SearchAddress = async () =>{
+            const listInfo = await api.getListInfo();
+            const listArr = listInfo.filter(item=>item.TokenContractAddress === addressValue);
+            setAddressTips(!!listArr.length)
+        }
+        SearchAddress()
+    },[addressValue])
+
+
 
     const ReturnDisabled = () =>{
-
         return !(daoName.length && slug.length && tagline.length && mission.length && values.length && emoji.length && tokenSymbol.length && tokenAddress.length && logo.length && cover.length && twitter.length && discord.length && mirror.length && website.length && email.length)
     }
+
+
     return  <div className="sm:mx-24 mx-5 my-24 space-y-6">
         <TipsModal show={showSuccess}/>
         <Modal close={closeImageBox} title={imgTit} show={showBox} handleImg={handleImg}/>
@@ -185,8 +220,14 @@ export default function AddContent() {
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Slug *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">{githubObj.baseUrl}/dao/</span>
-                                <input type="text" name="slug" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder="awesome" value={slug} onChange={e=>handleInput(e,'slug')}/></div>
+                                <input type="text" name="slug" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400"
+                                        placeholder="awesome" value={slug} onChange={e=>handleInput(e,'slug')}/></div>
+                            {
+                                slugTip && <p className="pt-1 text-left text-red-500"><b>{githubObj.baseUrl}/dao/{slugValue}</b> is not available. Please choose a different slug.</p>
+                            }
+
                         </div>
+
                     </div>
                     <div>
                         <label className="font-cal block text-xl font-medium text-gray-700 tracking-wide">Tagline *</label>
@@ -228,7 +269,11 @@ export default function AddContent() {
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Contract Address *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <input type="text" name="tokenAddress" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder="0x500c5c9fe70e5820ec829354620f1c070224917d" value={tokenAddress} onChange={e=>handleInput(e,'tokenAddress')}/>
+
                             </div>
+                            {
+                                addressTip && <p className="pt-1 text-left text-red-500"><b>{addressValue}</b> is not available. Please choose a different token contract address.</p>
+                            }
                         </div>
                     </div>
                     <div>
