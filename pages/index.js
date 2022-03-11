@@ -1,14 +1,14 @@
 import Layout from "../components/layout";
 import Banner from "../components/banner";
 
-import Homelist from "../components/homelist";
+import HomeList from "../components/homelist";
 
 export default function Home() {
 
 
     return (<div className="w-full my-30">
                <Banner />
-               <Homelist />
+               <HomeList />
            </div>
     )
 }

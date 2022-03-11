@@ -22,14 +22,10 @@ export default function Dao() {
     useEffect(()=>{
         const octokit = new Octokit({});
         const getDetail = async () =>{
-
-           const detail = await octokit.rest.issues.get({
-                owner: "Web3-Camp",
-                repo: "test-issue",
-                issue_number: id
-            });
-            setDetailInfo(detail.data)
-            console.log("==detail.data=====",detail.data)
+            const list = sessionStorage.getItem('list');
+            const ListArr = JSON.parse(list);
+            const detail = ListArr.filter(item=>item.Slug === id);
+            setDetailInfo(detail)
         }
         getDetail()
     },[id])
@@ -46,8 +42,8 @@ export default function Dao() {
         {
             id !== 'developer' &&<div className="w-full my-30" >
                 <div className="w-full max-w-screen-2xl mx-auto">
-                    <DaoBannerFull title={detailInfo?.title} body={detailInfo?.body}/>
-                    <DaoDetail  body={detailInfo?.body}/>
+                    <DaoBannerFull body={detailInfo}/>
+                    <DaoDetail  body={detailInfo}/>
                     <DaoList />
                 </div>
             </div>

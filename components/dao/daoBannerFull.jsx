@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PublicJs from "../../public/publicJs";
 import {useEffect, useState} from "react";
 
 const SpanBox = styled('span')`
@@ -16,32 +15,30 @@ const Box = styled('div')`
 `
 
 export default function DaoBannerFull(props) {
-    const { title, body } = props;
+    const {  body } = props;
     const [ obj, setObj ] = useState(null);
-    const { formatStr,ToJSON } = PublicJs;
 
 
     useEffect(()=>{
         if(!body)return;
-        let objFormat = ToJSON(body);
-        setObj(objFormat)
+        setObj(body[0])
     },[body])
 
 
     return <Box>
         <div className="my-20 relative group h-150">
             <SpanBox>
-                <img alt="Olympus DAO" src={formatStr(obj,'cover')} decoding="async" data-nimg="fill"
+                <img alt="Olympus DAO" src={obj?.CoverPhoto} decoding="async" data-nimg="fill"
                      className="group-hover:scale-105 group-hover:duration-300 duration-700 ease-in-out grayscale-0 blur-0 scale-100"
                      sizes="100vw"
                 />
             </SpanBox>
             <div className="absolute bottom-0 md:px-20 px-10 md:py-12 py-6 w-full bg-black bg-opacity-50 blur30">
                 <div className="flex justify-end">
-                    <p className="font-cal tracking-wide text-lg bg-white drop-shadow-lg border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max md:-mt-16 md:mb-5 -mt-12">{formatStr(obj,'emoji')}</p>
+                    <p className="font-cal tracking-wide text-lg bg-white drop-shadow-lg border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max md:-mt-16 md:mb-5 -mt-12">{obj?.Emoji}</p>
                 </div>
-                <h1 className="font-cal text-4xl text-white md:text-5xl lg:text-6xl mb-5 tracking-wide">{title}</h1>
-                <p className="text-gray-200 italic md:text-xl text-md leading-8">{formatStr(obj,'tagline')} &nbsp;{formatStr(obj,'symbol')}</p></div>
+                <h1 className="font-cal text-4xl text-white md:text-5xl lg:text-6xl mb-5 tracking-wide">{obj?.Name}</h1>
+                <p className="text-gray-200 italic md:text-xl text-md leading-8">{obj?.Tagline} &nbsp;{obj?.TokenSymbol}</p></div>
         </div>
     </Box>
 }

@@ -25,7 +25,19 @@ const getInfo = async(accessToken) => {
     return info.data;
 }
 
+const getListInfo = async () =>{
+    const infoList = await axios({
+        method: 'get',
+        url: `https://raw.githubusercontent.com/Web3-Camp/test-issue/main/dao.json`,
+        headers: {
+            accept: 'application/json',
+        }
+    });
+    return infoList.data;
+}
+
 export default {
     GetAccessToken,
-    getInfo
+    getInfo,
+    getListInfo
 };
