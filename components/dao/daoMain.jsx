@@ -4,6 +4,9 @@ import { useState } from 'react';
 import Main01 from "./main_01";
 import Main02 from "./main_02";
 import Tweets from "./tweets";
+import aboutus from "../../public/aboutus.json";
+import githubObj from "../../public/githubConfig";
+import Contributors from "./contributors";
 
 const Box = styled('div')`
 
@@ -38,76 +41,46 @@ export default function DaoMain() {
         <div className="w-full max-w-screen-2xl mx-auto">
             <div className="mt-24 mx-10 md:text-left text-center">
                 <div className="flex md:justify-start justify-center items-center space-x-3">
-                    <h1 className="font-cal text-3xl sm:text-5xl tracking-wide">Developer DAO </h1>
+                    <h1 className="font-cal text-3xl sm:text-5xl tracking-wide">{aboutus?.Name}</h1>
                     <div className="flex justify-center items-center rounded-full w-8 h-8">
                         <img src="/assets/images/passd.svg" alt="" />
                     </div>
                 </div>
-                <p className="text-base sm:text-lg mt-5">Accelerating the Education and Impact of a new wave of Web3 Builders.</p>
+                <p className="text-base sm:text-lg mt-5">{aboutus?.Tagline}</p>
                 <div className="flex md:justify-start justify-center items-center space-x-3 mt-3">
-                    <a href="https://twitter.com/developer_dao" target="_blank" className="font-cal tracking-wide text-white bg-[#1da1f2] rounded-full flex justify-center items-center space-x-2 px-4 py-2">
+                    <a href={`https://twitter.com/${aboutus?.Twitter}`} target="_blank" className="font-cal tracking-wide text-white bg-[#1da1f2] rounded-full flex justify-center items-center space-x-2 px-4 py-2" rel="noreferrer">
                         <img src="/assets/images/twitterWhite.svg" alt=""/>
-                        <p className="hidden lg:block">@developer_dao</p>
+                        <p className="hidden lg:block">@{aboutus?.Twitter}</p>
                     </a>
-                    <a href="https://discord.com/invite/devdao" target="_blank" className="font-cal tracking-wide text-white bg-[#4A66F7] rounded-full flex justify-center items-center space-x-2 px-4 py-2">
+                    <a href={`https://discord.com/invite/${aboutus?.Discord}`} target="_blank" className="font-cal tracking-wide text-white bg-[#4A66F7] rounded-full flex justify-center items-center space-x-2 px-4 py-2" rel="noreferrer">
                         <img src="/assets/images/discordWhite.svg" alt=""/>
-                        <p className="hidden lg:block">@ devdao</p>
+                        <p className="hidden lg:block">@ {aboutus?.Discord}</p>
                     </a>
-                    <a href="https://developerdao.com" target="_blank" className="font-cal tracking-wide text-white bg-black rounded-full flex justify-center items-center space-x-2 px-4 py-2">
+                    <a href={`https://${aboutus?.Website}`} target="_blank" className="font-cal tracking-wide text-white bg-black rounded-full flex justify-center items-center space-x-2 px-4 py-2" rel="noreferrer">
                         <img src="/assets/images/globalWhite.svg" alt=""/>
-                        <p className="hidden lg:block">developerdao.com</p>
+                        <p className="hidden lg:block">Website</p>
                     </a>
                     <button className="font-cal tracking-wide text-black border-2 border-black rounded-full flex justify-center items-center space-x-2 px-4 py-2 min-w-max">
                         <img src="/assets/images/link.svg" alt=""/>
-                        <p className="hidden lg:block">daocentr.al/ developer</p>
+                        <p className="hidden lg:block"> {githubObj.baseUrl.split('//')[1]}/{aboutus?.Slug}</p>
                     </button>
                 </div>
                 <div className="md:hidden flex flex-col justify-center items-center mt-8 pt-8 border-t border-gray-300">
                     <button className="font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black bg-black text-white hover:bg-white hover:text-black transition-all ease duration-150">Join</button>
                     <div className="flex justify-center items-center mt-3 -space-x-2">
-                        <a href="/BayBayLucky">
-                            <div className="relative shadow-lg inline-block w-8 h-8 border-2 border-white rounded-full overflow-hidden">
-                                <SpanBox>
-                                    <span></span>
-                                    <img alt=""
-                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                         decoding="async" data-nimg="responsive"
-                                         className="duration-700 ease-in-out grayscale blur-2xl scale-110"
-                                    />
-                                </SpanBox>
-                            </div>
-                        </a>
-                        <a href="/gilcreque">
-                            <div className="relative shadow-lg inline-block w-8 h-8 border-2 border-white rounded-full overflow-hidden">
-                                <SpanBox>
-                                    <span></span>
-                                    <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
-                                </SpanBox></div>
-                        </a>
-                        <a href="/BigBang_Trading">
-                            <div className="relative shadow-lg inline-block w-8 h-8 border-2 border-white rounded-full overflow-hidden">
-                                <SpanBox>
-                                    <span></span>
-                                    <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
-                                </SpanBox>
-                            </div>
-                        </a>
-                        <a href="/mdzunic">
-                            <div className="relative shadow-lg inline-block w-8 h-8 border-2 border-white rounded-full overflow-hidden">
-                                <SpanBox>
-                                    <span></span>
-                                    <img alt="smartbee.eth" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
-                                </SpanBox>
-                            </div>
-                        </a>
-                        <a href="/MantisClone">
-                            <div className="relative shadow-lg inline-block w-8 h-8 border-2 border-white rounded-full overflow-hidden">
-                                <SpanBox>
-                                    <span></span>
-                                    <img alt="MantisClone" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
-                                </SpanBox>
-                            </div>
-                        </a>
+                        {
+                            [...Array(3)].map((item,index)=>(<a href="/BayBayLucky" key={index}>
+                                <div className="relative shadow-lg inline-block w-8 h-8 border-2 border-white rounded-full overflow-hidden">
+                                    <SpanBox>
+                                        <span />
+                                        <img alt=""
+                                             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                             className="duration-700 ease-in-out grayscale blur-2xl scale-110"
+                                        />
+                                    </SpanBox>
+                                </div>
+                            </a>))
+                        }
                         <button className="text-sm pl-4 whitespace-nowrap">+ 609 others</button>
                     </div>
                 </div>
@@ -133,7 +106,7 @@ export default function DaoMain() {
                         current === 0 && <Main01 />
                     }
                     {
-                        current === 1 && <Main02 title="Contributors" />
+                        current === 1 && <Contributors />
                     }
                     {
                         current === 2 && <Main02 title="Experiences" />

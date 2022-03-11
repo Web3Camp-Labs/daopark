@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {useEffect, useState} from "react";
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -7,14 +8,21 @@ const SpanBox = styled('span')`
   }
 `
 
-export default function TopFix() {
+export default function TopFix(props) {
+    const { body } = props;
+    const [ obj, setObj ] = useState(null);
+
+    useEffect(()=>{
+        if(!body)return;
+        setObj(body[0])
+    },[body])
+
     return<div className="fixed w-full top-0 z-20 hidden lg:flex justify-between items-center bg-white border-t h-20 border-gray-200 transition-all ease duration-200">
         <div className="flex justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full">
             <div className="flex justify-between items-center space-x-2">
                 <div className="relative w-14 h-14 border-3 border-white rounded-full overflow-hidden">
                     <SpanBox>
-                        <img src="/assets/images/demo/avatar.jpg" decoding="async" data-nimg="fill"
-                             className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
+                        <img src="/assets/images/demo/avatar.jpg" className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
                     </SpanBox>
                 </div>
                 <h1 className="font-cal text-2xl tracking-wide">Developer DAO </h1>
@@ -23,12 +31,12 @@ export default function TopFix() {
                 </div>
             </div>
             <div className="flex justify-between items-center space-x-2">
-                <a className="bg-gray-100 rounded-lg font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer">overview</a>
-                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/contributors">contributors</a>
-                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/experiences">experiences</a>
-                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/opportunities">opportunities</a>
-                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/tweets">tweets</a>
-                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/news">news</a>
+                <a className="bg-gray-100 rounded-lg font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer" rel="noreferrer">overview</a>
+                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/contributors" rel="noreferrer">contributors</a>
+                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/experiences" rel="noreferrer">experiences</a>
+                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/opportunities" rel="noreferrer">opportunities</a>
+                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/tweets" rel="noreferrer">tweets</a>
+                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/news" rel="noreferrer">news</a>
             </div>
             <div>
                 <button className=" font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black bg-black text-white hover:bg-white hover:text-black transition-all ease duration-150">Join

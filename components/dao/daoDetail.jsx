@@ -86,7 +86,7 @@ export default function DaoDetail(props) {
                     </div>
                     <div
                         className="flex items-center flex-auto lg:flex-initial w-80 truncate px-5 text-lg font-cal tracking-wide">
-                        {githubObj.baseUrl.split('http://')[1]}/{obj?.Slug}
+                        {githubObj.baseUrl.split('//')[1]}/{obj?.Slug}
                     </div>
                     {
                         show &&<button className="flex items-center justify-center w-28 m-1 text-xl rounded-md font-cal tracking-wide bg-black text-white hover:bg-gray-900 transition-all ease duration-150 relative cursor-not-allowed">

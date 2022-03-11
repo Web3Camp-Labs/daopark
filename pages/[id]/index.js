@@ -29,7 +29,7 @@ export default function Dao() {
     return <div>
         {
             id === aboutus.Slug &&<div className="w-full my-30" >
-                <TopFix />
+                <TopFix  />
                 <DaoBanner />
                 <DaoMain />
                 <DaoList len={8} title="People who joined this DAO also joined" />
