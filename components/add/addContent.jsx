@@ -51,23 +51,40 @@ export default function AddContent() {
 
     const handleSubmit = async () =>{
         console.log("=====handleSubmit=")
-        const bodyStr = `Dao Name: ${daoName}
-                     Slug: ${slug}
-                     Tagline: ${tagline}
-                     Mission: ${mission}
-                     Values: ${values}
-                     Emoji: ${emoji}
-                     Token Symbol: ${tokenSymbol}
-                     Token Contract Address: ${tokenAddress}
-                     Logo: ${logo}
-                     Cover photo: ${cover}
-                     Twitter: ${twitter}
-                     Discord: ${discord}
-                     Mirror: ${mirror}
-                     Website: ${website}
-                     Email: ${email}
-        `;
-        console.log("=====body",bodyStr)
+        // const bodyStr = `Dao Name: ${daoName}
+        //              Slug: ${slug}
+        //              Tagline: ${tagline}
+        //              Mission: ${mission}
+        //              Values: ${values}
+        //              Emoji: ${emoji}
+        //              Token Symbol: ${tokenSymbol}
+        //              Token Contract Address: ${tokenAddress}
+        //              Logo: ${logo}
+        //              Cover photo: ${cover}
+        //              Twitter: ${twitter}
+        //              Discord: ${discord}
+        //              Mirror: ${mirror}
+        //              Website: ${website}
+        //              Email: ${email}
+        // `;
+
+        const bodyStr ={
+            Name: daoName,
+            Slug: slug,
+            Tagline: tagline,
+            Mission: mission,
+            Values: values,
+            Emoji: emoji,
+            TokenSymbol: tokenSymbol,
+            TokenContractAddress: tokenAddress,
+            Logo: logo,
+            CoverPhoto: cover,
+            Twitter: twitter,
+            Discord: discord,
+            Mirror: mirror,
+            Website: website,
+            Email: email
+        };
         const octokit = new Octokit({
             auth: accessToken,
         });
@@ -76,7 +93,7 @@ export default function AddContent() {
             repo: "test-issue",
             title: daoName,
             labels: ["daopark"],
-            body: bodyStr
+            body: JSON.stringify(bodyStr,null,2)
         });
         if(listdata.status === 201){
             setShowSuccess(true)
