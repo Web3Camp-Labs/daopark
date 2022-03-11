@@ -7,6 +7,12 @@ const Divbox = styled.div`
         background-color: rgb(217, 175, 217); 
         background-image: linear-gradient(0deg, rgb(217, 175, 217) 0%, rgb(151, 217, 225) 100%);
     }
+  @media (max-width: 1000px) {
+    .mlr0{
+      margin: 0!important ;
+      padding: 0 1rem;
+    }
+  }
 `
 
 const ImgBox = styled.span`
@@ -69,7 +75,7 @@ export default function Mine(){
                         </div>
                     </div>
                 </div>
-                <div className="lg:col-span-5 lg:mx-auto mx-5 w-full">
+                <div className="lg:col-span-5 lg:mx-auto mx-5 w-full mlr0">
                     <div className="flex space-x-10 mb-5 border-b border-gray-500">
                         <button className="flex items-center pb-4 border-b-2 border-black"><h2
                             className="text-xl font-medium">Joined</h2>
