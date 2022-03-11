@@ -8,6 +8,7 @@ import TipsModal from '../tipsModal';
 import  Router from "next/router";
 import { useDebounce } from 'use-debounce';
 import api from "../../pages/api/api";
+import GithubConfig from "../../public/githubConfig";
 
 const ImgBox = styled.div`
   width: 15rem;
@@ -32,6 +33,7 @@ export default function AddContent() {
 
     const {  state } = useDAO();
     const { accessToken } = state;
+    const { owner,repo } = GithubConfig;
 
     const [ daoName, setDaoName ] = useState('');
 
@@ -83,8 +85,8 @@ export default function AddContent() {
             auth: accessToken,
         });
         const listdata = await octokit.rest.issues.create({
-            owner: "Web3-Camp",
-            repo: "test-issue",
+            owner,
+            repo,
             title: daoName,
             labels: ["daopark"],
             body: JSON.stringify(bodyStr,null,2)

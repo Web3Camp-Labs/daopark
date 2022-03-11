@@ -7,7 +7,6 @@ import DaoList from "../../components/dao/daolist";
 import DaoBannerFull from "../../components/dao/daoBannerFull";
 import DaoDetail from "../../components/dao/daoDetail";
 import {useEffect, useState} from "react";
-import {Octokit} from "@octokit/rest";
 import aboutus from "../../public/aboutus.json";
 
 
@@ -16,7 +15,6 @@ export default function Dao() {
     const {id} = router.query;
     const [detailInfo, setDetailInfo ] = useState();
     useEffect(()=>{
-        const octokit = new Octokit({});
         const getDetail = async () =>{
             const list = sessionStorage.getItem('list');
             const ListArr = JSON.parse(list);

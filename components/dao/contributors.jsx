@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {Octokit} from "@octokit/rest";
 import Router from "next/router";
+import GithubConfig from "../../public/githubConfig";
 
 const Box = styled.div`
     .boxBg{
@@ -24,17 +25,17 @@ const SpanBox = styled('span')`
 export default function Contributors(props) {
 
     const [ list, setList ] = useState([]);
+    const { owner,repo } = GithubConfig;
 
     useEffect(()=>{
         const getContributors = async () =>{
             const octokit = new Octokit({});
 
             const listdata = await octokit.rest.repos.listContributors({
-                owner: "Web3-Camp",
-                repo: "test-issue",
+                owner,
+                repo,
             });
             setList(listdata.data)
-         console.log("======listdata======",listdata.data)
         }
         getContributors()
     },[])

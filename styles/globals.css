@@ -3866,3 +3866,6 @@ select {
         width: 1536px
     }
 }
+.min-h-50{
+    min-height: 41vh;
+}
