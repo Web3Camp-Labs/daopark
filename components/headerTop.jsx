@@ -5,6 +5,7 @@ import Link from "next/link";
 import githubObj  from '../public/githubConfig'
 import api from "../pages/api/api";
 import {useDAO} from "../pages/api/connect";
+import Router from "next/router";
 
 const HeaderBox = styled('header')`
   .h50Top{
@@ -115,7 +116,8 @@ function HeaderTop({router}) {
     const submitFunc = (e) =>{
         if(e.keyCode === 13){
             dispatch({type: 'SET_SEARCH',payload:keywords});
-            setKeywords('')
+            // setKeywords('')
+            Router.push("/")
         }
     }
     return <HeaderBox>

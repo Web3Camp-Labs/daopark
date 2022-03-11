@@ -34,12 +34,10 @@ export default function HomeList() {
 
     useEffect(()=>{
         if( search == null ) return;
-        // setList([]);
-        const listJson = sessionStorage.getItem('list');
-        const listArr = JSON.parse(listJson);
         const GetPrList = async() =>{
-           const arr = listArr.filter(item=> item.Name.indexOf(search)>-1 || item.Mission.indexOf(search)>-1 || item.Slug.indexOf(search)>-1 || item.Tagline.indexOf(search)>-1 || item.Values.indexOf(search)>-1)
-            setList(arr)
+            const listInfo = await api.getListInfo();
+           const arr = listInfo.filter(item=> item.Name.indexOf(search)>-1 || item.Mission.indexOf(search)>-1 || item.Slug.indexOf(search)>-1 || item.Tagline.indexOf(search)>-1 || item.Values.indexOf(search)>-1)
+            setList([...arr])
         }
         GetPrList();
 
@@ -54,7 +52,6 @@ export default function HomeList() {
                     !!list.length && list.map((item,index)=> <ItemDao item={item} key={item.DAOIndex}/>
                     )
                 }
-
             </div>
         </div>
     </Box>
