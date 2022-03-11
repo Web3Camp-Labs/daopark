@@ -31,7 +31,7 @@ export default function Dao() {
                 <TopFix />
                 <DaoBanner />
                 <DaoMain />
-                <DaoList />
+                <DaoList len={8} title="People who joined this DAO also joined" />
             </div>
         }
         {
@@ -39,7 +39,7 @@ export default function Dao() {
                 <div className="w-full max-w-screen-2xl mx-auto">
                     <DaoBannerFull body={detailInfo}/>
                     <DaoDetail  body={detailInfo}/>
-                    <DaoList />
+                    <DaoList len={8} title="People who joined this DAO also joined"/>
                 </div>
             </div>
         }

@@ -20,7 +20,7 @@ export default function AddBanner() {
         <div className="flex flex-col-reverse lg:flex-row sm:mx-24 mx-10 lg:space-x-12 space-x-0 lg:space-y-0 space-y-12 space-y-reverse">
             <div className="mt-auto">
                 <a className="bg-gray-100 text-black px-5 py-2 rounded-full max-w-max hover:bg-gray-200 transition-all ease duration-150"
-                href="/blog/what-is-a-dao">What is a DAO?</a>
+                href="/introduction">What is a DAO?</a>
                 <h1 className="font-cal text-6xl sm:text-7xl md:text-8xl my-5">Add a DAO</h1>
                 <p className="text-gray-800 text-lg w-80 sm:w-96">Have a DAO that you&#x27;d like to add? Fill out
                     the form below and we will get it added to the database.</p>
@@ -28,7 +28,7 @@ export default function AddBanner() {
             <div className="flex-auto clipBox">
                 <SpanBox>
                     <span></span>
-                    <img alt="DAO Gif" src="/assets/images/dao.gif" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
+                    <img alt="DAO Gif" src="/assets/images/dao.gif" className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
                 </SpanBox>
             </div>
         </div>
