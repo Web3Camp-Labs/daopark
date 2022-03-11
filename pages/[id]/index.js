@@ -1,13 +1,14 @@
 import {useRouter} from "next/router";
-import Layout from "../../../components/layout";
-import TopFix from "../../../components/dao/topfix";
-import DaoBanner from "../../../components/dao/daoBanner";
-import DaoMain from "../../../components/dao/daoMain";
-import DaoList from "../../../components/dao/daolist";
-import DaoBannerFull from "../../../components/dao/daoBannerFull";
-import DaoDetail from "../../../components/dao/daoDetail";
+import Layout from "../../components/layout";
+import TopFix from "../../components/dao/topfix";
+import DaoBanner from "../../components/dao/daoBanner";
+import DaoMain from "../../components/dao/daoMain";
+import DaoList from "../../components/dao/daolist";
+import DaoBannerFull from "../../components/dao/daoBannerFull";
+import DaoDetail from "../../components/dao/daoDetail";
 import {useEffect, useState} from "react";
 import {Octokit} from "@octokit/rest";
+import aboutus from "../../public/aboutus.json";
 
 
 export default function Dao() {
@@ -27,7 +28,7 @@ export default function Dao() {
 
     return <div>
         {
-            id === 'developer' &&<div className="w-full my-30" >
+            id === aboutus.Slug &&<div className="w-full my-30" >
                 <TopFix />
                 <DaoBanner />
                 <DaoMain />
@@ -35,7 +36,7 @@ export default function Dao() {
             </div>
         }
         {
-            id !== 'developer' &&<div className="w-full my-30" >
+            id !== aboutus.Slug &&<div className="w-full my-30" >
                 <div className="w-full max-w-screen-2xl mx-auto">
                     <DaoBannerFull body={detailInfo}/>
                     <DaoDetail  body={detailInfo}/>

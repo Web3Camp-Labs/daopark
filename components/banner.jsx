@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useState} from "react";
 import {useDAO} from "../pages/api/connect";
+import aboutus from "../public/aboutus.json";
 
 const BannerBox = styled('div')`
   .h50{
@@ -49,7 +50,7 @@ export default function Banner() {
     return <BannerBox>
         <div className="relative h-150">
             <SpanBox>
-                <img alt="Developer DAO" sizes="100vw" src="/assets/images/banner.png" decoding="async" data-nimg="fill" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"/>
+                <img alt="" src="/assets/images/banner.png" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"/>
             </SpanBox>
             <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full bg-black bg-opacity-30">
                 <h1 className="text-white -mt-10 mr-auto ml-10 sm:mx-auto w-3/4 sm:w-auto text-5xl font-cal tracking-wider">Find and learn about DAOs</h1>
@@ -63,9 +64,9 @@ export default function Banner() {
                 </div>
             </div>
             <div className="absolute bottom-0 px-10 sm:px-20 py-5 flex justify-between items-center w-full">
-                <a className="text-gray-400 text-base sm:text-lg hover:text-gray-300 transition-all ease duration-150" href="/dao/developer">Developer DAO – <i>Accelerating the Education and Impact of a new wave of Web3 Builders.</i>
+                <a className="text-gray-400 text-base sm:text-lg hover:text-gray-300 transition-all ease duration-150" href={aboutus.Slug}>{aboutus.Name} – <i>{aboutus.Tagline}</i>
                 </a>
-                <a className="text-lg font-cal tracking-wide whitespace-nowrap bg-white border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max hover:scale-105 transition-all ease duration-150" href="/dao/developer">(🧱, 🚀)
+                <a className="text-lg font-cal tracking-wide whitespace-nowrap bg-white border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max hover:scale-105 transition-all ease duration-150" href={aboutus.Slug}>{aboutus.Emoji}
                 </a>
             </div>
         </div>

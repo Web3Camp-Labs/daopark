@@ -1,11 +1,8 @@
-import { Octokit } from '@octokit/rest';
-
 import {useEffect, useState} from "react";
 import {useDAO} from "../pages/api/connect";
 import ItemDao from "./item";
 import api from "../pages/api/api";
 import styled from "styled-components";
-
 const Box = styled.div`
   @media (max-width: 1000px) {
    .m-10{
@@ -16,7 +13,6 @@ const Box = styled.div`
    }
   }
 `
-
 export default function HomeList() {
 
     const {  state } = useDAO();
@@ -40,9 +36,7 @@ export default function HomeList() {
             setList([...arr])
         }
         GetPrList();
-
     },[search])
-
 
     return <Box>
         <div className="max-w-screen-2xl mx-auto">
@@ -55,5 +49,4 @@ export default function HomeList() {
             </div>
         </div>
     </Box>
-
 }

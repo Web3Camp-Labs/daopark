@@ -145,7 +145,7 @@ function HeaderTop({router}) {
                                     <div className="flex flex-auto items-center">
                                         <input
                                             className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 bg-gray-100  transition ease duration-150"
-                                            placeholder="Search DAOs by name, emoji, slogan..." autoComplete="off" value={keywords}  onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/>
+                                            placeholder="Search DAOs by name, slogan..." autoComplete="off" value={keywords}  onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/>
                                     </div>
                                 </div>
                             </div>

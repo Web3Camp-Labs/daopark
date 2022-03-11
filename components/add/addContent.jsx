@@ -50,24 +50,6 @@ export default function AddContent() {
 
 
     const handleSubmit = async () =>{
-        console.log("=====handleSubmit=")
-        // const bodyStr = `Dao Name: ${daoName}
-        //              Slug: ${slug}
-        //              Tagline: ${tagline}
-        //              Mission: ${mission}
-        //              Values: ${values}
-        //              Emoji: ${emoji}
-        //              Token Symbol: ${tokenSymbol}
-        //              Token Contract Address: ${tokenAddress}
-        //              Logo: ${logo}
-        //              Cover photo: ${cover}
-        //              Twitter: ${twitter}
-        //              Discord: ${discord}
-        //              Mirror: ${mirror}
-        //              Website: ${website}
-        //              Email: ${email}
-        // `;
-
         const bodyStr ={
             Name: daoName,
             Slug: slug,
@@ -184,7 +166,7 @@ export default function AddContent() {
                 <div className="lg:col-span-1">
                     <h3 className="font-cal text-4xl text-gray-900">DAO Profile</h3>
                     <p className="mt-5 text-lg text-gray-800">This information will be displayed publicly on your DAO&#x27;s page.
-                        <a className="underline text-gray-700 hover:text-black ml-1" href="/dao/developer">See example.</a>
+                        {/*<a className="underline text-gray-700 hover:text-black ml-1" href="/dao/developer">See example.</a>*/}
                     </p>
                     <p className="mt-5 text-lg text-gray-800">* marks required fields.</p>
                 </div>
@@ -263,7 +245,7 @@ export default function AddContent() {
                                     <p className="pl-1 text-md">
                                         <span className="text-black">Click here</span> to fill image url
                                     </p>
-                                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB (recommended size: 400px x 400px)</p>
+                                    <p className="text-xs text-gray-500">PNG, JPG, GIF  (recommended size: 400px x 400px)</p>
                                 </div>
                            }
                         </button>
@@ -280,7 +262,7 @@ export default function AddContent() {
                                     <p className="pl-1 text-md">
                                         <span className="text-black">Click here</span> to upload a file
                                     </p>
-                                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB (recommended size: 1200px x 630px)</p>
+                                    <p className="text-xs text-gray-500">PNG, JPG, GIF up (recommended size: 1200px x 630px)</p>
                                 </div>
                             }
 
@@ -334,7 +316,6 @@ export default function AddContent() {
                 </div>
             </div>
 
-            {/*border-black bg-black text-white hover:bg-white hover:text-black font-cal ml-3 inline-flex tracking-wider justify-center items-center w-28 h-12 border-2 shadow-sm text-lg rounded-md transition-all ease duration-150*/}
             <div className="mt-10 flex justify-end">
                 <button type="submit" disabled={ReturnDisabled()} onClick={()=>handleSubmit()}
                         className={ReturnDisabled()?"bg-gray-300 cursor-not-allowed font-cal inline-flex tracking-wider justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-md text-white focus:outline-none transition-all ease duration-150":"border-black bg-black text-white hover:bg-white hover:text-black font-cal inline-flex tracking-wider justify-center items-center w-28 h-12 border-2 shadow-sm text-lg rounded-md transition-all ease duration-150"} >

@@ -25,17 +25,24 @@ const PicBox = styled.span`
     position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;
   }
 `
+const Follow = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  div:first-child{
+    margin-right: 20px;
+  }
+`;
 
 export default function Mine(){
     const {  state } = useDAO();
     const { info } = state;
     return <Divbox>
         <div className="w-full my-30">
-            <div className="flex relative justify-center origin-bottom h-96 max-w-screen-2xl md:w-5/6 w-full mx-auto">
+            <div className="flex relative justify-center origin-bottom h-96 max-w-screen-2xl w-full mx-auto">
                 <div className="w-full h-full md:rounded-3xl bgLinear" />
                 <div className="absolute w-48 h-48 -bottom-20 border-8 border-white rounded-full overflow-hidden">
                 <ImgBox>
-                    <img src={info.avatar_url}
+                    <img src={info?.avatar_url}
                    className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"
                  />
                 </ImgBox>
@@ -46,15 +53,20 @@ export default function Mine(){
                 <div className="lg:col-span-2 grid auto-rows-max">
                     <div className="lg:rounded-xl lg:shadow-xl border-t border-b lg:border border-gray-200 bg-white grid">
                         <div className="py-3 bg-gradient-to-r from-black via-gray-800 to-black text-center lg:rounded-t-xl">
-                            <p className="text-white font-mono text-2xl tracking-widest">#04939</p></div>
+                            <p className="text-white font-mono text-2xl tracking-widest">{info?.login}</p></div>
                         <div className="flex justify-end pt-5 pr-6">
-                            <a href="https://twitter.com/srdothunter"
-                               target="_blank">
-                                <img src="/assets/images/twitter.svg" alt=""/>
+                            <a href={info?.html_url} target="_blank" rel="noreferrer">
+                                <img src="/assets/images/icons8-github.svg" alt=""/>
                             </a></div>
-                        <div className="px-6 pb-10 min-w-0"><h1
-                            className="font-cal tracking-wide text-2xl sm:text-3xl truncate">srdothunter</h1><p
-                            className="text-gray-700 font-medium text-lg sm:text-xl my-2 truncate">@srdothunter</p></div>
+                        <div className="px-6 pb-10 min-w-0">
+                            <h1 className="font-cal tracking-wide text-2xl sm:text-3xl truncate">{info?.name}</h1>
+                            <p className="text-gray-700 font-medium text-lg sm:text-xl my-2 truncate pt-8">{info?.bio}</p>
+                            <Follow>
+                                <div className="text-gray-700"><span className="text-2xl">{info?.followers}</span> followers</div>
+                                <div className="text-gray-700"><span className="text-2xl">{info?.following}</span>following</div>
+                            </Follow>
+
+                        </div>
                     </div>
                 </div>
                 <div className="lg:col-span-5 lg:mx-auto mx-5 w-full">
