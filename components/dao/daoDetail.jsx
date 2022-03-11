@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import githubObj  from '../../public/githubConfig'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -9,21 +10,64 @@ const SpanBox = styled('span')`
 
   }
 `
+const Success = styled.div`
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  left:50%;
+  top:50%;
+  margin:-10px 0 0 -50px;
+  -webkit-transform:rotate(-45deg);
+  transform:rotate(-45deg);
+  overflow:hidden;
 
+  &:before,&:after{
+    content:"";
+    position:absolute;
+    background:#fff;
+  }
+  &:before{
+    width:4px;
+    height:20px;
+    left:50%;
+  }
+  &:after{
+    width:35px;
+    height:4px;
+    bottom:55%;
+  }
+
+`
 
 export default function DaoDetail(props) {
     const {  body } = props;
     const [ obj, setObj ] = useState(null);
+    const [ show, setShow ] = useState(false);
 
     useEffect(()=>{
         if(!body)return;
         setObj(body[0])
     },[body])
 
-    return <div
-        className="my-24 sm:mx-10 flex flex-col items-center lg:flex-row lg:space-x-12 space-x-0 lg:space-y-0 space-y-12">
+    const Tips = () =>{
+        setShow(true);
+        setTimeout(()=>{
+            setShow(false);
+        },1500)
+    }
+
+    return <div className="my-24 sm:mx-10 flex flex-col lg:flex-row lg:space-x-12 space-x-0 lg:space-y-0 space-y-12">
+
         <div className="mx-10 flex-auto space-y-5"><h2 className="font-cal text-5xl tracking-wide pb-5">What is {obj?.Name}?</h2>
-            <p className="text-lg text-gray-600">{obj?.Values}</p></div>
+            <div className="pb-10">
+                <h2 className="font-cal text-3xl tracking-wide pb-5">Our Values</h2>
+               <p className="text-lg text-gray-600">{obj?.Values}</p>
+            </div>
+            <div className="mb-12">
+                <h2 className="font-cal text-3xl tracking-wide pb-5">Our Mission</h2>
+                <p className="text-lg text-gray-600">{obj?.Mission}</p>
+            </div>
+        </div>
         <div
             className="sm:rounded-xl sm:shadow-xl border border-gray-200 sm:border-gray-100 bg-gray xl:w-2/5 lg:w-1/2 w-full py-10">
             <div className="mx-10">
@@ -46,10 +90,25 @@ export default function DaoDetail(props) {
                         className="flex items-center flex-auto lg:flex-initial w-80 truncate px-5 text-lg font-cal tracking-wide">
                         {githubObj.baseUrl.split('http://')[1]}/{obj?.Slug}
                     </div>
-                    <button
-                        className="flex items-center justify-center w-28 m-1 text-xl rounded-md font-cal tracking-wide bg-black text-white hover:bg-gray-900 transition-all ease duration-150">
-                        Copy
-                    </button>
+                    {
+                        show &&<button className="flex items-center justify-center w-28 m-1 text-xl rounded-md font-cal tracking-wide bg-black text-white hover:bg-gray-900 transition-all ease duration-150 relative cursor-not-allowed">
+                            <Success/>
+                        </button>
+                    }
+                    {
+                        !show &&<CopyToClipboard text={`${githubObj.baseUrl}/${obj?.Slug}`}
+                                                 onCopy={() => Tips()}>
+                            <button
+                                className="flex items-center justify-center w-28 m-1 text-xl rounded-md font-cal tracking-wide bg-black text-white hover:bg-gray-900 transition-all ease duration-150">
+                                Copy
+                            </button>
+
+                        </CopyToClipboard>
+                    }
+
+
+
+
                 </div>
             </div>
             <div className="border border-gray-200 w-full my-10"></div>
@@ -59,7 +118,7 @@ export default function DaoDetail(props) {
                         <a href="/BayBayLucky" key={index}>
                             <div className="relative shadow-lg inline-block w-12 h-12 border-2 border-white rounded-full overflow-hidden">
                                 <SpanBox>
-                                    <span></span>
+                                    <span />
                                     <img alt=""
                                          src="/assets/images/demo/avatar.jpg"
                                          decoding="async" data-nimg="responsive"

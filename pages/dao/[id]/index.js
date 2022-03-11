@@ -1,7 +1,5 @@
 import {useRouter} from "next/router";
 import Layout from "../../../components/layout";
-import styled from "styled-components";
-
 import TopFix from "../../../components/dao/topfix";
 import DaoBanner from "../../../components/dao/daoBanner";
 import DaoMain from "../../../components/dao/daoMain";
@@ -11,9 +9,6 @@ import DaoDetail from "../../../components/dao/daoDetail";
 import {useEffect, useState} from "react";
 import {Octokit} from "@octokit/rest";
 
-const DetailBox = styled('div')`
-
-`
 
 export default function Dao() {
     const router = useRouter();
@@ -30,7 +25,7 @@ export default function Dao() {
         getDetail()
     },[id])
 
-    return <DetailBox>
+    return <div>
         {
             id === 'developer' &&<div className="w-full my-30" >
                 <TopFix />
@@ -49,7 +44,7 @@ export default function Dao() {
             </div>
         }
 
-    </DetailBox>
+    </div>
 }
 Dao.getLayout = function getLayout(page) {
     return (
