@@ -5,6 +5,8 @@ const baseUrl = 'http://192.168.0.100:3000';
 const owner = 'Web3-Camp';
 const repo = 'test-issue';
 
+const TwitterName = 'srdothunter9527'
+
 
 
 export default {
@@ -13,5 +15,6 @@ export default {
     redirectUri,
     baseUrl,
     owner,
-    repo
+    repo,
+    TwitterName
 }

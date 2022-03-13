@@ -36,8 +36,32 @@ const getListInfo = async () =>{
     return infoList.data;
 }
 
+const getTwitterID = async (userName) =>{
+    const Twitter = await axios({
+        method: 'get',
+        url: `http://${ip}/getTwitterID/${userName}`,
+        headers: {
+            accept: 'application/json'
+        }
+    });
+    return Twitter.data;
+}
+const getTwitterList = async (id) =>{
+    const Twitter = await axios({
+        method: 'get',
+        url: `http://${ip}/getTwitterList/${id}`,
+        headers: {
+            accept: 'application/json'
+        }
+    });
+    console.log("=====Twitter======",Twitter)
+    return Twitter.data;
+}
+
 export default {
     GetAccessToken,
     getInfo,
-    getListInfo
+    getListInfo,
+    getTwitterID,
+    getTwitterList
 };

@@ -6,9 +6,16 @@ const axios = require('axios');
 const { Octokit } = require("@octokit/rest");
 // process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-
+// github config
 const clientID = 'Iv1.94a72acba60a8147';
 const clientSecret = '4476e0059dcdc514675c658bf7ba16703ef25734';
+// github config
+
+
+// twitter Config
+const BearerToken = 'AAAAAAAAAAAAAAAAAAAAAP%2B8aAEAAAAA%2F%2Fh0vJX2TZupA7H7JLxh9m0nekc%3DfI6lFb8RyMD2w1TR0DhNYgIwPRdT0RS0HvOXN3NWeOnFdmZ7gs'
+// twitter Config
+
 
 app.use(cors());
 
@@ -47,6 +54,37 @@ app.get('/getInfo/:accessToken', async function (req, res) {
 
     res.send(result.data);
 });
+
+
+app.get('/getTwitterID/:userName', async function (req, res) {
+    var params = req.params;
+    console.log("=====",params.userName)
+    const result = await axios({
+        method: 'get',
+        url: `https://api.twitter.com/2/users/by?usernames=${params.userName}`,
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${BearerToken}`
+        }
+    });
+    res.send(result.data);
+})
+
+app.get('/getTwitterList/:id', async function (req, res) {
+    var params = req.params;
+    console.log("==params.id===",params.id)
+    const result = await axios({
+        method: 'get',
+        url: `https://api.twitter.com/2/users/${params.id}/tweets?tweet.fields=author_id,created_at,conversation_id,entities&expansions=attachments.media_keys,author_id&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text&max_results=10&user.fields=name,username,profile_image_url`,
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${BearerToken}`
+        }
+    });
+
+    console.log("===getTwitterList====",result.data)
+    res.send(result.data);
+})
 
 
 app.listen(port, () => {
