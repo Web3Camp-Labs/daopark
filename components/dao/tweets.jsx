@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {useEffect,useState} from "react";
 import api from "../../pages/api/api";
 import githubConfig from "../../public/githubConfig";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -15,10 +16,8 @@ const SpanBox = styled('span')`
 // `
 
 const ImgBox = styled.span`
-  box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;
-  span{
-    box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;
-  }
+  box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;display: flex;
+  justify-content: center;
   .img1{
     display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;
   }
@@ -32,6 +31,7 @@ export default function Tweets() {
     const [ list ,setList ] = useState([]);
     const [ mediaList,setMediaList ] = useState([]);
     const [ userList,setUserList ] = useState([]);
+    const [ showCopy,setShowCopy ] = useState(false);
 
     useEffect(()=>{
         const getTwitter = async() =>{
@@ -43,7 +43,6 @@ export default function Tweets() {
             const { media, users} = includes;
             setMediaList(media);
             setUserList(users);
-            console.log("=======listArr====",listArr)
         }
         getTwitter();
     },[]);
@@ -65,6 +64,18 @@ export default function Tweets() {
             return text
         }
 
+    }
+    const formatImg = (url)=>{
+        const img = mediaList.filter(obj=>obj.media_key === url);
+        return img[0]?.url;
+
+    }
+
+    const copyTweet = () =>{
+        setShowCopy(true);
+        setTimeout(()=>{
+            setShowCopy(false);
+        },2000)
     }
 
     return <div className="bg-white md:rounded-lg w-full p-8 mb-12">
@@ -89,55 +100,69 @@ export default function Tweets() {
                 <div className="mt-4 mb-2 leading-normal whitespace-pre-wrap text-lg !text-gray-700 dark:!text-gray-300">
                     {formatText(item.text,item)}
                 </div>
-                <div className="rounded-2xl overflow-hidden border border-gray-200 drop-shadow-sm mb-5">
-                    <ImgBox >
-                        <span>
-                            <img alt="" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%272048%27%20height=%271000%27/%3e" className="img1"/>
-                        </span>
-                        <img alt="" src="/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fnews_img%2F1501624224569516035%2FlTq_dKiN%3Fformat%3Dpng%26name%3Dorig&amp;w=3840&amp;q=75"
-                    className="hover:brightness-90 transition-all ease-in-out duration-150 duration-700 ease-in-out grayscale-0 blur-0 scale-100 img2"/>
-                    </ImgBox>
+                {
+                    !!item.attachments && item.attachments.media_keys.map(imgUrl=>(<div className="rounded-2xl overflow-hidden border border-gray-200 drop-shadow-sm mb-5" key={imgUrl}>
+                        <ImgBox >
 
-                </div>
+                            <img alt="" src={formatImg(imgUrl)}
+                                 className="hover:brightness-90 transition-all ease-in-out duration-150 duration-700 ease-in-out grayscale-0 blur-0 scale-100 img1"/>
+                        </ImgBox>
+                    </div>))
+                }
                 <a className="block mt-3 mb-4 !text-gray-500 text-base hover:!underline !no-underline"
                    href={`https://twitter.com/${formatUser(item.author_id)?.username}/status/${item.conversation_id}`} target="_blank"
                    rel="noopener noreferrer">
-                    <time title={item.created_at} dateTime={item.created_at}>{formateDate(item.created_at)}
+                    <time title={item.created_at}>{formateDate(item.created_at)}
                     </time>
                 </a>
                 <div
                     className="border-t border-gray-300 pt-1 flex space-x-2 md:space-x-6 text-base !text-gray-700 dark:!text-gray-300 mt-2">
                     <a className="flex items-center !text-gray-500 group transition !no-underline space-x-1"
-                       href="https://twitter.com/intent/like?tweet_id=1486426204022317060" target="_blank"
+                       href={`https://twitter.com/intent/like?tweet_id=${item.conversation_id}`} target="_blank"
                        rel="noopener noreferrer">
                         <div
                             className="group-hover:!text-red-600 rounded-full w-10 h-10 group-hover:bg-red-100 flex items-center justify-center">
                             <img src="/assets/images/heart.svg" alt=""/>
                         </div>
-                        <span className="group-hover:!text-red-600 group-hover:!underline">235</span></a><a
+                        <span className="group-hover:!text-red-600 group-hover:!underline">{item?.public_metrics.like_count}</span></a><a
                     className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1"
-                    href="https://twitter.com/intent/retweet?tweet_id=1486426204022317060" target="_blank"
+                    href={`https://twitter.com/intent/retweet?tweet_id=${item.conversation_id}`} target="_blank"
                     rel="noopener noreferrer">
                     <div
                         className="group-hover:!text-purple-600 rounded-full w-10 h-10 group-hover:bg-purple-100 flex items-center justify-center">
                         <img src="/assets/images/refresh.svg" alt=""/>
                     </div>
-                    <span className="group-hover:!text-purple-600 group-hover:!underline">6</span></a><a
+                    <span className="group-hover:!text-purple-600 group-hover:!underline">{item?.public_metrics.retweet_count}</span></a><a
                     className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1"
-                    href="https://twitter.com/intent/tweet?in_reply_to=1486426204022317060" target="_blank"
+                    href={`https://twitter.com/intent/tweet?in_reply_to=${item.conversation_id}`} target="_blank"
                     rel="noopener noreferrer">
                     <div
                         className="group-hover:!text-[#1da1f2] rounded-full w-10 h-10 group-hover:bg-blue-100 flex items-center justify-center">
                         <img src="/assets/images/chat.svg" alt=""/>
                     </div>
-                    <span className="group-hover:!text-[#1da1f2] group-hover:!underline">33</span></a>
-                    <button className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1">
-                        <div
-                            className="group-hover:!text-green-600 rounded-full w-10 h-10 group-hover:bg-green-100 flex items-center justify-center">
-                            <img src="/assets/images/link2.svg" alt=""/>
-                        </div>
-                        <span className="group-hover:!text-green-600 group-hover:!underline sm:block hidden">Copy link to Tweet</span>
-                    </button>
+                    <span className="group-hover:!text-[#1da1f2] group-hover:!underline">{item?.public_metrics.reply_count}</span></a>
+                    {
+                        !showCopy&&<button className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1">
+                            <div
+                                className="group-hover:!text-green-600 rounded-full w-10 h-10 group-hover:bg-green-100 flex items-center justify-center">
+                                <img src="/assets/images/link2.svg" alt=""/>
+                            </div>
+                            <CopyToClipboard text={`https://twitter.com/${formatUser(item.author_id)?.username}/status/${item.conversation_id}`}
+                                             onCopy={() => copyTweet()}>
+                                <span className="group-hover:!text-green-600 group-hover:!underline sm:block hidden" >Copy link to Tweet</span>
+                            </CopyToClipboard>
+                        </button>
+                    }
+                    {
+                        showCopy &&<button className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1">
+                            <div
+                                className="group-hover:!text-green-600 rounded-full w-10 h-10 group-hover:bg-green-100 flex items-center justify-center">
+                                <img src="/assets/images/right.svg" alt=""/>
+                            </div>
+                            <span className="group-hover:!text-green-600 group-hover:!underline sm:block hidden" >Copied</span>
+                        </button>
+                    }
+
                 </div>
             </div>))
         }

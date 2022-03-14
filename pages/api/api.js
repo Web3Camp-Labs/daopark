@@ -54,7 +54,6 @@ const getTwitterList = async (id) =>{
             accept: 'application/json'
         }
     });
-    console.log("=====Twitter======",Twitter)
     return Twitter.data;
 }
 

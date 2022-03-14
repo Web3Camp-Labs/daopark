@@ -75,7 +75,7 @@ app.get('/getTwitterList/:id', async function (req, res) {
     console.log("==params.id===",params.id)
     const result = await axios({
         method: 'get',
-        url: `https://api.twitter.com/2/users/${params.id}/tweets?tweet.fields=author_id,created_at,conversation_id,entities&expansions=attachments.media_keys,author_id&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text&max_results=10&user.fields=name,username,profile_image_url`,
+        url: `https://api.twitter.com/2/users/${params.id}/tweets?tweet.fields=public_metrics,author_id,created_at,conversation_id,entities&expansions=attachments.media_keys,author_id&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text&user.fields=name,username,profile_image_url&max_results=10`,
         headers: {
             accept: 'application/json',
             Authorization: `Bearer ${BearerToken}`
