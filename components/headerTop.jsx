@@ -45,6 +45,7 @@ const Logo = styled.span`
 
 function HeaderTop({router}) {
     const {  dispatch, state } = useDAO();
+
     const { accessToken, info } = state;
     const [showTop,setShowTop] = useState(false);
     const [url,setUrl] = useState('/');
@@ -120,8 +121,9 @@ function HeaderTop({router}) {
             Router.push("/")
         }
     }
+
     return <HeaderBox>
-        <div className={ showTop ? "fixed top-0 w-full  bg-white z-30 transition-all ease duration-150 drop-shadow-md" :"fixed top-0 w-full  bg-white z-30 transition-all ease duration-150"}>
+        <div className={ showTop ? `fixed top-0 w-full  bg-white z-30 transition-all ease duration-150 drop-shadow-md` :"fixed top-0 w-full  bg-white z-30 transition-all ease duration-150"}>
             {/*<a href="/nftdrop">*/}
             {/*    <div className="flex flex-row items-center justify-between w-full h-10 px-4 font-semibold text-sm border-b border-gray-500 border-opacity-10 bg-gray-100">*/}
             {/*        <div className="w-5"></div>*/}

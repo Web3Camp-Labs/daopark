@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {useEffect,useState} from "react";
 import api from "../../pages/api/api";
-import githubConfig from "../../public/githubConfig";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const SpanBox = styled('span')`
@@ -26,19 +25,30 @@ const ImgBox = styled.span`
   }
 `
 
-export default function Tweets() {
+export default function Tweets(props) {
 
     const [ list ,setList ] = useState([]);
     const [ mediaList,setMediaList ] = useState([]);
     const [ userList,setUserList ] = useState([]);
-    const [ showCopy,setShowCopy ] = useState(false);
+    const [ showCopy,setShowCopy ] = useState([]);
+    const { body } = props;
+    const [ obj, setObj ] = useState(null);
 
     useEffect(()=>{
+        if(!body)return;
+        setObj(body)
+
         const getTwitter = async() =>{
-            const twitterID = await api.getTwitterID(githubConfig.TwitterName);
-            console.log("==twitterID===",twitterID)
+            const twitterID = await api.getTwitterID(body.Twitter);
+
+            if(!twitterID.data)return;
             const listArr = await api.getTwitterList(twitterID.data[0].id)
             const { data, includes} = listArr;
+            let arr = [];
+            for (let i = 0; i < data.length; i++) {
+                arr[i] = false;
+            }
+            setShowCopy([...arr])
             setList(data)
             const { media, users} = includes;
             setMediaList(media);
@@ -51,7 +61,7 @@ export default function Tweets() {
         const userArr = userList.filter(item=>item.id === userid);
         return userArr[0];
     }
-    const formateDate = (date)=>{
+    const formatDate = (date)=>{
         const dateStr = new Date(date).toLocaleDateString();
         const timeStr = new Date(date).toLocaleTimeString();
         return `${timeStr} - ${dateStr}`
@@ -71,17 +81,34 @@ export default function Tweets() {
 
     }
 
-    const copyTweet = () =>{
-        setShowCopy(true);
+    const copyTweet = (index) =>{
+        let arr = [...showCopy];
+        arr[index] = true;
+        setShowCopy([...arr]);
         setTimeout(()=>{
-            setShowCopy(false);
+            let arrF = [...showCopy];
+            arrF[index] = false;
+            setShowCopy([...arrF]);
+
         },2000)
     }
 
     return <div className="bg-white md:rounded-lg w-full p-8 mb-12">
         <h2 className="font-cal text-3xl">Latest Tweets</h2>
         {
-            list.map((item)=>(<div className="undefined tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white px-8 pt-6 pb-2 my-4 w-full" key={item.id}>
+            !list.length &&   <div className="flex flex-col items-center justify-center">
+                <div className="my-8 flex flex-col justify-center items-center">
+                    <ImgBox>
+                    <span>
+                        <img alt="" src="/assets/images/empty-state.png" />
+                        </span>
+                    </ImgBox>
+                    <p className="font-cal text-gray-600 text-2xl">No News Yet.</p>
+                </div>
+            </div>
+        }
+        {
+            !!list.length && list.map((item,index)=>(<div className="undefined tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white px-8 pt-6 pb-2 my-4 w-full" key={item.id}>
                 <div className="flex items-center">
                     <a className="flex h-12 w-12 rounded-full overflow-hidden relative" href="https://twitter.com/FWBtweets" target="_blank" rel="noopener noreferrer">
                         <SpanBox>
@@ -112,7 +139,7 @@ export default function Tweets() {
                 <a className="block mt-3 mb-4 !text-gray-500 text-base hover:!underline !no-underline"
                    href={`https://twitter.com/${formatUser(item.author_id)?.username}/status/${item.conversation_id}`} target="_blank"
                    rel="noopener noreferrer">
-                    <time title={item.created_at}>{formateDate(item.created_at)}
+                    <time title={item.created_at}>{formatDate(item.created_at)}
                     </time>
                 </a>
                 <div
@@ -142,19 +169,19 @@ export default function Tweets() {
                     </div>
                     <span className="group-hover:!text-[#1da1f2] group-hover:!underline">{item?.public_metrics.reply_count}</span></a>
                     {
-                        !showCopy&&<button className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1">
+                        !showCopy[index]&&<button className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1">
                             <div
                                 className="group-hover:!text-green-600 rounded-full w-10 h-10 group-hover:bg-green-100 flex items-center justify-center">
                                 <img src="/assets/images/link2.svg" alt=""/>
                             </div>
                             <CopyToClipboard text={`https://twitter.com/${formatUser(item.author_id)?.username}/status/${item.conversation_id}`}
-                                             onCopy={() => copyTweet()}>
+                                             onCopy={() => copyTweet(index)}>
                                 <span className="group-hover:!text-green-600 group-hover:!underline sm:block hidden" >Copy link to Tweet</span>
                             </CopyToClipboard>
                         </button>
                     }
                     {
-                        showCopy &&<button className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1">
+                        showCopy[index] &&<button className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1">
                             <div
                                 className="group-hover:!text-green-600 rounded-full w-10 h-10 group-hover:bg-green-100 flex items-center justify-center">
                                 <img src="/assets/images/right.svg" alt=""/>

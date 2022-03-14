@@ -9,6 +9,7 @@ import  Router from "next/router";
 import { useDebounce } from 'use-debounce';
 import api from "../../pages/api/api";
 import GithubConfig from "../../public/githubConfig";
+import aboutus from "../../public/aboutus.json";
 
 const ImgBox = styled.div`
   width: 15rem;
@@ -33,7 +34,6 @@ export default function AddContent() {
 
     const {  state } = useDAO();
     const { accessToken } = state;
-    const { owner,repo } = GithubConfig;
 
     const [ daoName, setDaoName ] = useState('');
 
@@ -46,6 +46,7 @@ export default function AddContent() {
     const [ values, setValues ] = useState('');
     const [ emoji, setEmoji ] = useState('');
     const [ tokenSymbol, setTokenSymbol ] = useState('');
+    const [ github, setGithub ] = useState('');
 
     const [ tokenAddress, setTokenAddress ] = useState('');
     const [addressValue] = useDebounce(tokenAddress, 1000);
@@ -67,6 +68,7 @@ export default function AddContent() {
         const bodyStr ={
             Name: daoName,
             Slug: slug,
+            Github: github,
             Tagline: tagline,
             Mission: mission,
             Values: values,
@@ -85,8 +87,8 @@ export default function AddContent() {
             auth: accessToken,
         });
         const listdata = await octokit.rest.issues.create({
-            owner,
-            repo,
+            owner: aboutus[0].Github.split("/")[0],
+            repo: aboutus[0].Github.split("/")[1],
             title: daoName,
             labels: ["daopark"],
             body: JSON.stringify(bodyStr,null,2)
@@ -149,6 +151,9 @@ export default function AddContent() {
             case 'email':
                 setEmail(value);
                 break;
+            case 'Github':
+                setGithub(value);
+                break;
             default:break;
         }
     }
@@ -203,7 +208,7 @@ export default function AddContent() {
                 <div className="lg:col-span-1">
                     <h3 className="font-cal text-4xl text-gray-900">DAO Profile</h3>
                     <p className="mt-5 text-lg text-gray-800">This information will be displayed publicly on your DAO&#x27;s page.
-                        {/*<a className="underline text-gray-700 hover:text-black ml-1" href="/dao/developer">See example.</a>*/}
+                        <a className="underline text-gray-700 hover:text-black ml-1" href={`/dao/${aboutus[0].Slug}`}>See example.</a>
                     </p>
                     <p className="mt-5 text-lg text-gray-800">* marks required fields.</p>
                 </div>
@@ -212,7 +217,7 @@ export default function AddContent() {
                         <div className="col-span-3 sm:col-span-2">
                             <label className="font-cal block text-xl font-medium text-gray-700 tracking-wide">Name *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" maxLength="40" name="daoName" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder="Awesome DAO" value={daoName} onChange={e=>handleInput(e,'daoName')}/>
+                                <input type="text" maxLength="40" name="daoName" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder={aboutus[0].Name} value={daoName} onChange={e=>handleInput(e,'daoName')}/>
                             </div>
                             <div className="flex justify-end">{daoName.length}/40</div>
                         </div>
@@ -223,13 +228,12 @@ export default function AddContent() {
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">{githubObj.baseUrl}/dao/</span>
                                 <input type="text" name="slug" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400"
-                                        placeholder="awesome" value={slug} onChange={e=>handleInput(e,'slug')}/></div>
+                                        placeholder={aboutus[0].Slug} value={slug} onChange={e=>handleInput(e,'slug')}/></div>
                             {
                                 slugTip && <p className="pt-1 text-left text-red-500"><b>{githubObj.baseUrl}/dao/{slugValue}</b> is not available. Please choose a different slug.</p>
                             }
 
                         </div>
-
                     </div>
                     <div>
                         <label className="font-cal block text-xl font-medium text-gray-700 tracking-wide">Tagline *</label>
@@ -256,13 +260,13 @@ export default function AddContent() {
                         <div className="col-span-1">
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Emoji *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="emoji" className="font-cal focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder="(💥 , 💥 )" value={emoji} onChange={e=>handleInput(e,'emoji')}/>
+                                <input type="text" name="emoji" className="font-cal focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder={aboutus[0].Emoji} value={emoji} onChange={e=>handleInput(e,'emoji')}/>
                             </div>
                         </div>
                         <div className="col-span-1">
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Symbol *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="tokenSymbol" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder="$DAO" value={tokenSymbol} onChange={e=>handleInput(e,'tokenSymbol')}/>
+                                <input type="text" name="tokenSymbol" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder={aboutus[0].TokenSymbol} value={tokenSymbol} onChange={e=>handleInput(e,'tokenSymbol')}/>
                             </div>
                         </div>
                     </div>
@@ -270,7 +274,7 @@ export default function AddContent() {
                         <div className="col-span-3">
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Contract Address *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="tokenAddress" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder="0x500c5c9fe70e5820ec829354620f1c070224917d" value={tokenAddress} onChange={e=>handleInput(e,'tokenAddress')}/>
+                                <input type="text" name="tokenAddress" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder={aboutus[0].TokenContractAddress} value={tokenAddress} onChange={e=>handleInput(e,'tokenAddress')}/>
 
                             </div>
                             {
@@ -321,7 +325,7 @@ export default function AddContent() {
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">@</span>
                                 <input type="text" name="twitter" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide"
-                                placeholder="DAOPARK" value={twitter} onChange={e=>handleInput(e,'twitter')}/>
+                                placeholder={aboutus[0].Twitter} value={twitter} onChange={e=>handleInput(e,'twitter')}/>
                             </div>
                         </div>
                     </div>
@@ -330,15 +334,26 @@ export default function AddContent() {
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Discord</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">discord.gg/</span>
-                                <input type="text" name="discord" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder="p2jdESeVfy" value={discord} onChange={e=>handleInput(e,'discord')}/>
+                                <input type="text" name="discord" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder={aboutus[0].Discord} value={discord} onChange={e=>handleInput(e,'discord')}/>
                             </div>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-6">
+                        <div className="col-span-3 sm:col-span-2">
+                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Github *</label>
+                            <div className="mt-1 flex rounded-md shadow-sm">
+                                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">https://github.com/</span>
+                                <input type="text" name="slug" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400"
+                                       placeholder={aboutus[0].Github} value={github} onChange={e=>handleInput(e,'Github')}/></div>
+
+
                         </div>
                     </div>
                     <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-3 sm:col-span-2">
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Mirror</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="mirror" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-l-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder="daopark" value={mirror} onChange={e=>handleInput(e,'mirror')}/>
+                                <input type="text" name="mirror" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-l-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder={aboutus[0].Mirror} value={mirror} onChange={e=>handleInput(e,'mirror')}/>
                                 <span className="inline-flex items-center px-8 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-800 text-lg" >.mirror.xyz</span>
                             </div>
                         </div>
@@ -348,7 +363,7 @@ export default function AddContent() {
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Website *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">https://</span>
-                                <input type="text" name="website" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder="daopark.com" value={website} onChange={e=>handleInput(e,'website')}/>
+                                <input type="text" name="website" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder={aboutus[0].Website} value={website} onChange={e=>handleInput(e,'website')}/>
                             </div>
                         </div>
                     </div>
@@ -356,7 +371,7 @@ export default function AddContent() {
                         <div className="col-span-3 sm:col-span-2">
                             <label className="font-cal block text-xl font-medium text-gray-700 tracking-wide">Email (to get notified when your DAO is listed) *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
-                                <input type="email" name="email" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder="steven@daocentral.com" value={email} onChange={e=>handleInput(e,'email')}/>
+                                <input type="email" name="email" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder={aboutus[0].Email} value={email} onChange={e=>handleInput(e,'email')}/>
                             </div>
                         </div>
                     </div>

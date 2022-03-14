@@ -53,7 +53,7 @@ export default function ItemDao(props){
     },[item])
 
     // `/dao/${formatStr('slug')}`
-    return <Link href={`/${obj?.Slug}`}><div className="!no-underline" >
+    return <Link href={`/dao/${obj?.Slug}`}><div className="!no-underline" >
             <div className="hidden sm:block rounded-2xl border-2 border-gray-100 overflow-hidden shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
                 <SpanBoxli>
                     <span />

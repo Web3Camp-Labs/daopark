@@ -33,6 +33,7 @@ const getListInfo = async () =>{
             accept: 'application/json',
         }
     });
+    infoList.data.reverse();
     return infoList.data;
 }
 
