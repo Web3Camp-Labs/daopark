@@ -72,7 +72,7 @@ export default function DaoMain(props) {
                         <p className="hidden lg:block">Website</p>
                     </a>
                     {
-                        !showCopy &&<CopyToClipboard text={`${githubObj.baseUrl.split('//')[1]}/dao/${obj?.Slug}`}
+                        !showCopy &&<CopyToClipboard text={`${githubObj.baseUrl}/dao/${obj?.Slug}`}
                                                     onCopy={() => copyLink()}>
                             <button className="font-cal tracking-wide text-black border-2 border-black rounded-full flex justify-center items-center space-x-2 px-4 py-2 min-w-max">
                                 <img src="/assets/images/link.svg" alt=""/>
@@ -86,7 +86,6 @@ export default function DaoMain(props) {
                             <p className="hidden lg:block">Copied to Clipboard</p>
                         </button>
                     }
-
 
                 </div>
                 <div className="md:hidden flex flex-col justify-center items-center mt-8 pt-8 border-t border-gray-300">

@@ -5,7 +5,7 @@ import DaoBanner from "../../../components/dao/daoBanner";
 import DaoMain from "../../../components/dao/daoMain";
 import DaoList from "../../../components/dao/daolist";
 import {useEffect, useState} from "react";
-import aboutus from "../../../public/aboutus.json";
+import aboutUs from "../../../public/aboutus.json";
 
 
 export default function Dao() {
@@ -24,13 +24,13 @@ export default function Dao() {
 
     return <div>
         <div className="w-full my-30" >
-            {/*<TopFix  body={id === aboutus.Slug?aboutus:detailInfo}/>*/}
-            <DaoBanner body={id === aboutus[0].Slug?aboutus:detailInfo}/>
-            <DaoMain body={id === aboutus[0].Slug?aboutus:detailInfo} />
+            {/*<TopFix  body={id === aboutUs.Slug?aboutUs:detailInfo}/>*/}
+            <DaoBanner body={id === aboutUs[0].Slug?aboutUs:detailInfo}/>
+            <DaoMain body={id === aboutUs[0].Slug?aboutUs:detailInfo} />
             <DaoList len={8} title="People who joined this DAO also joined" />
         </div>
         {/*{*/}
-        {/*    id === aboutus.Slug &&<div className="w-full my-30" >*/}
+        {/*    id === aboutUs.Slug &&<div className="w-full my-30" >*/}
         {/*        <TopFix  />*/}
         {/*        <DaoBanner />*/}
         {/*        <DaoMain />*/}
@@ -38,7 +38,7 @@ export default function Dao() {
         {/*    </div>*/}
         {/*}*/}
         {/*{*/}
-        {/*    id !== aboutus.Slug &&<div className="w-full my-30" >*/}
+        {/*    id !== aboutUs.Slug &&<div className="w-full my-30" >*/}
         {/*        <div className="w-full max-w-screen-2xl mx-auto">*/}
         {/*            <DaoBannerFull body={detailInfo}/>*/}
         {/*            <DaoDetail  body={detailInfo}/>*/}
