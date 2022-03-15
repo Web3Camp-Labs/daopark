@@ -24,6 +24,17 @@ const getInfo = async(accessToken) => {
     });
     return info.data;
 }
+const getUserInfo = async(accessToken,user) => {
+
+    const info = await axios({
+        method: 'get',
+        url: `http://${ip}/getUserInfo/${accessToken}/${user}`,
+        headers: {
+            accept: 'application/json',
+        }
+    });
+    return info.data;
+}
 
 const getListInfo = async () =>{
     const infoList = await axios({
@@ -61,6 +72,7 @@ const getTwitterList = async (id) =>{
 export default {
     GetAccessToken,
     getInfo,
+    getUserInfo,
     getListInfo,
     getTwitterID,
     getTwitterList

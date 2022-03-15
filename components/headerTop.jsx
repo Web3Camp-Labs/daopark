@@ -169,13 +169,13 @@ function HeaderTop({router}) {
                         </div>
                     }
                     {
-                        infoData!= null &&<a href="/mine">
+                        infoData!= null &&<Link href={`/${infoData.login}`}>
                             <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
                                 <RhtBox>
                                     <img src={infoData?.avatar_url}/>
                                 </RhtBox>
                             </div>
-                        </a>
+                        </Link>
                     }
 
 

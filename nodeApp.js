@@ -55,6 +55,21 @@ app.get('/getInfo/:accessToken', async function (req, res) {
     res.send(result.data);
 });
 
+app.get('/getUserInfo/:accessToken/:username', async function (req, res) {
+    const params = req.params;
+    const { accessToken, username } = params;
+
+    const result = await axios({
+        method: 'get',
+        url: `https://api.github.com/users/${username}`,
+        headers: {
+            accept: 'application/json',
+            Authorization: `token ${accessToken}`
+        }
+    });
+    res.send(result.data);
+});
+
 
 app.get('/getTwitterID/:userName', async function (req, res) {
     var params = req.params;

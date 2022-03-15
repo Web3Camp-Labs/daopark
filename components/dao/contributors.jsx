@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {Octokit} from "@octokit/rest";
-import Router from "next/router";
-import GithubConfig from "../../public/githubConfig";
 
 const Box = styled.div`
     .boxBg{

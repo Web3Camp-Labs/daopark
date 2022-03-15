@@ -8,7 +8,6 @@ import TipsModal from '../tipsModal';
 import  Router from "next/router";
 import { useDebounce } from 'use-debounce';
 import api from "../../pages/api/api";
-import GithubConfig from "../../public/githubConfig";
 import aboutus from "../../public/aboutus.json";
 
 const ImgBox = styled.div`
