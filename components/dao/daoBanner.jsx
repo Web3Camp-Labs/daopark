@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
+import Link from 'next/link'
 
 const BannerBox = styled('div')`
 
@@ -37,14 +38,14 @@ export default function DaoBanner(props) {
                     className="hidden absolute -bottom-20 right-10 md:flex justify-center items-center space-x-5 mx-10">
                     <div className="flex justify-center items-center -space-x-2">
                         {
-                            [...Array(3)].map((item,index)=>(<a href="/BayBayLucky" key={`user_${index}`}>
+                            [...Array(3)].map((item,index)=>(<Link href="/xrdavies" key={`user_${index}`}>
                                 <div className="relative shadow-lg inline-block w-10 h-10 border-2 border-white rounded-full overflow-hidden">
                                     <SpanBox>
-                                        <span></span>
+                                        <span />
                                         <img alt="" src="/assets/images/demo/avatar.jpg" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale blur-2xl scale-110" />
                                     </SpanBox>
                                 </div>
-                            </a>))
+                            </Link>))
                         }
                         <button className="pl-4 whitespace-nowrap">+others</button>
                     </div>

@@ -6,6 +6,7 @@ import Main02 from "./main_02";
 import Tweets from "./tweets";
 import githubObj from "../../public/githubConfig";
 import Contributors from "./contributors";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -28,7 +29,7 @@ const SpanBox2 = styled('span')`
 export default function DaoMain(props) {
     const [current, setCurrent] = useState(0);
     const [list] = useState(['overview','contributors','news'])
-
+    const [ showCopy,setShowCopy ] = useState(false);
     const { body } = props;
     const [ obj, setObj ] = useState(null);
 
@@ -39,6 +40,12 @@ export default function DaoMain(props) {
 
     const handleSelect = (num) =>{
         setCurrent(num)
+    }
+    const copyLink = () =>{
+        setShowCopy(true);
+        setTimeout(()=>{
+            setShowCopy(false);
+        },2000)
     }
 
     return <div>
@@ -64,10 +71,23 @@ export default function DaoMain(props) {
                         <img src="/assets/images/globalWhite.svg" alt=""/>
                         <p className="hidden lg:block">Website</p>
                     </a>
-                    <button className="font-cal tracking-wide text-black border-2 border-black rounded-full flex justify-center items-center space-x-2 px-4 py-2 min-w-max">
-                        <img src="/assets/images/link.svg" alt=""/>
-                        <p className="hidden lg:block"> {githubObj.baseUrl.split('//')[1]}/dao/{obj?.Slug}</p>
-                    </button>
+                    {
+                        !showCopy &&<CopyToClipboard text={`${githubObj.baseUrl.split('//')[1]}/dao/${obj?.Slug}`}
+                                                    onCopy={() => copyLink()}>
+                            <button className="font-cal tracking-wide text-black border-2 border-black rounded-full flex justify-center items-center space-x-2 px-4 py-2 min-w-max">
+                                <img src="/assets/images/link.svg" alt=""/>
+                                <p className="hidden lg:block"> {githubObj.baseUrl.split('//')[1]}/dao/{obj?.Slug}</p>
+                            </button>
+                        </CopyToClipboard>
+                    }
+                    {
+                        showCopy &&<button className="font-cal tracking-wide text-black border-2 border-black rounded-full flex justify-center items-center space-x-2 px-4 py-2 min-w-max">
+                            <img src="/assets/images/right.svg" alt=""/>
+                            <p className="hidden lg:block">Copied to Clipboard</p>
+                        </button>
+                    }
+
+
                 </div>
                 <div className="md:hidden flex flex-col justify-center items-center mt-8 pt-8 border-t border-gray-300">
                     <button className="font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black bg-black text-white hover:bg-white hover:text-black transition-all ease duration-150">Join</button>
