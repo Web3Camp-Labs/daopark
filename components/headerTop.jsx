@@ -8,8 +8,14 @@ import {useDAO} from "../pages/api/connect";
 import Router from "next/router";
 
 const HeaderBox = styled('header')`
+  position: relative;
   .h50Top{
   height: 50px; transition: all 0.1s ease 0s;
+  }
+  .navBox{
+    position: absolute;
+    top: 6.5rem;
+    right: 1rem;
   }
 `
 const RhtBox = styled('span')`
@@ -41,6 +47,16 @@ const Logo = styled.span`
   font-size: 2rem;
   font-family: "CalSans-SemiBold";
   padding-top: 20px;
+`
+
+const SpanBox = styled.div`
+  box-sizing: border-box; display: block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;
+  span{
+    box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 100% 0px 0px;
+  }
+  img{
+    position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;
+  }
 `
 
 function HeaderTop({router}) {
@@ -186,6 +202,43 @@ function HeaderTop({router}) {
                             <img src="/assets/images/column.svg" alt="" width="32"/>
                         </button>
                     </div>
+                </div>
+                <div className="rounded-lg shadow-xl border border-gray-100 p-3 bg-white navBox hidden">
+
+                    <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150"
+                       href="/">
+                        <div className="flex items-center space-x-5">
+                            <div className="relative shadow-2xl inline-block w-10 h-10 rounded-full overflow-hidden">
+                                <SpanBox>
+                                    <span />
+                                    <img alt="" src="/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1478585075508064257%2FwXXA4i-1.jpg&amp;w=3840&amp;q=75"
+                               />
+                                </SpanBox>
+                            </div>
+                            <div>
+                                <p className="font-cal text-lg -mb-1">srdothunter</p>
+                                <p className="font-cal text-base text-gray-500">@srdothunter</p>
+                            </div>
+                            <img src="/assets/images/arrow.svg" alt=""/>
+                        </div>
+
+                    </Link>
+                    <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add">
+                    <div className="flex items-center space-x-5">
+                        <img src="/assets/images/add.svg" alt=""/>
+                        <p className="font-cal text-lg">Add a DAO</p>
+                        <img src="/assets/images/arrow.svg" alt=""/>
+                    </div>
+                </Link>
+
+
+                    {/*<button*/}
+                    {/*    className="flex justify-between items-center px-5 py-3 w-full rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150">*/}
+                    {/*    <div className="flex items-center space-x-5">*/}
+
+                    {/*        <p className="font-cal text-lg">Logout</p></div>*/}
+
+                    {/*</button>*/}
                 </div>
             </div>
         </div>

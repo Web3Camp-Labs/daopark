@@ -1,12 +1,13 @@
 import axios from 'axios';
+import githubConfig from "../../public/githubConfig";
 
-const ip = "192.168.0.100:8888"
+const { backEnd } = githubConfig;
 
 const GetAccessToken = async(requestToken) => {
 
     const accessToken = await axios({
         method: 'get',
-        url: `http://${ip}/getAtoken/${requestToken}`,
+        url: `${backEnd}/getAtoken/${requestToken}`,
         headers: {
             accept: 'application/json',
         }
@@ -17,7 +18,7 @@ const getInfo = async(accessToken) => {
 
     const info = await axios({
         method: 'get',
-        url: `http://${ip}/getInfo/${accessToken}`,
+        url: `${backEnd}/getInfo/${accessToken}`,
         headers: {
             accept: 'application/json',
         }
@@ -28,7 +29,7 @@ const getUserInfo = async(accessToken,user) => {
 
     const info = await axios({
         method: 'get',
-        url: `http://${ip}/getUserInfo/${accessToken}/${user}`,
+        url: `${backEnd}/getUserInfo/${accessToken}/${user}`,
         headers: {
             accept: 'application/json',
         }
@@ -61,7 +62,7 @@ const getTwitterID = async (userName) =>{
 const getTwitterList = async (id) =>{
     const Twitter = await axios({
         method: 'get',
-        url: `http://${ip}/getTwitterList/${id}`,
+        url: `${backEnd}/getTwitterList/${id}`,
         headers: {
             accept: 'application/json'
         }

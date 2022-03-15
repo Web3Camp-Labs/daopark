@@ -6,7 +6,7 @@ import HomeList from "../components/homelist";
 export default function Home() {
 
 
-    return (<div className="w-full my-30">
+    return (<div className="w-full my-24">
                <Banner />
                <HomeList />
            </div>

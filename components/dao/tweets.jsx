@@ -3,6 +3,14 @@ import {useEffect,useState} from "react";
 import api from "../../pages/api/api";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
+const Box = styled.div`
+  .boxBgMiddle{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+`
+
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
   img{
@@ -33,6 +41,7 @@ export default function Tweets(props) {
     const [ showCopy,setShowCopy ] = useState([]);
     const { body } = props;
     const [ obj, setObj ] = useState(null);
+    const [ showLoading,SetShowLoading] = useState(true);
 
     useEffect(()=>{
         if(!body)return;
@@ -42,6 +51,7 @@ export default function Tweets(props) {
             const twitterID = await api.getTwitterID(body.Twitter);
 
             if(!twitterID.data)return;
+            SetShowLoading(true);
             const listArr = await api.getTwitterList(twitterID.data[0].id)
             const { data, includes} = listArr;
             let arr = [];
@@ -53,6 +63,7 @@ export default function Tweets(props) {
             const { media, users} = includes;
             setMediaList(media);
             setUserList(users);
+            SetShowLoading(false);
         }
         getTwitter();
     },[]);
@@ -93,10 +104,15 @@ export default function Tweets(props) {
         },2000)
     }
 
-    return <div className="bg-white md:rounded-lg w-full p-8 mb-12">
+    return <Box><div className="bg-white md:rounded-lg w-full p-8 mb-12">
         <h2 className="font-cal text-3xl">Latest Tweets</h2>
         {
-            !list.length &&   <div className="flex flex-col items-center justify-center">
+            showLoading&&<div className="boxBgMiddle">
+                <div className="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin noTop" />
+            </div>
+        }
+        {
+            !showLoading&&!list.length &&   <div className="flex flex-col items-center justify-center">
                 <div className="my-8 flex flex-col justify-center items-center">
                     <ImgBox>
                     <span>
@@ -108,7 +124,7 @@ export default function Tweets(props) {
             </div>
         }
         {
-            !!list.length && list.map((item,index)=>(<div className="undefined tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white px-8 pt-6 pb-2 my-4 w-full" key={item.id}>
+            !showLoading&&!!list.length && list.map((item,index)=>(<div className="undefined tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white px-8 pt-6 pb-2 my-4 w-full" key={item.id}>
                 <div className="flex items-center">
                     <a className="flex h-12 w-12 rounded-full overflow-hidden relative" href="https://twitter.com/FWBtweets" target="_blank" rel="noopener noreferrer">
                         <SpanBox>
@@ -197,5 +213,5 @@ export default function Tweets(props) {
 
 
     </div>
-
+    </Box>
 }
