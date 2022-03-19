@@ -112,9 +112,8 @@ export default function Mine(){
                                 <div className="rounded-t-2xl overflow-hidden">
                                     <PicBox>
                                         <span />
-                                        <img alt="Developer DAO" sizes="100vw"
+                                        <img alt=""
                                              src="https://daocentral.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdaojones%2Fimage%2Fupload%2Fv1637755736%2FCleanShot_2021-11-24_at_04.08.33_pxl0kp.png&w=1920&q=75"
-                                    decoding="async" data-nimg="responsive"
                                     className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"/>
                                 </PicBox>
                                 </div>
@@ -131,10 +130,8 @@ export default function Mine(){
                                 className="sm:hidden overflow-hidden rounded-xl flex items-center md:h-48 h-36 border-2 border-gray-100 focus:border-black active:border-black bg-white transition-all ease duration-200">
                                 <div className="w-2/5 relative h-full">
                                     <ImgBox><img
-                                    alt="Developer DAO" sizes="100vw"
-
+                                    alt=""
                                     src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdaojones%2Fimage%2Fupload%2Fv1637755736%2FCleanShot_2021-11-24_at_04.08.33_pxl0kp.png&amp;w=3840&amp;q=75"
-                                    decoding="async" data-nimg="fill"
                                     className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" /></ImgBox>
                                 </div>
                                 <div className="py-6 px-5 w-3/5 relative"><h3

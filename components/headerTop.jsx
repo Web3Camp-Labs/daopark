@@ -108,6 +108,9 @@ function HeaderTop({router}) {
         window.addEventListener("scroll",handleScroll)
         const {clientID,authorizeUri,redirectUri} = githubObj;
         setUrl(`${authorizeUri}?client_id=${clientID}&redirect_uri=${redirectUri}`)
+        document.addEventListener('click',(e)=>{
+            setShowNav(false)
+        })
     },[])
 
     // useEffect(()=>{
@@ -159,7 +162,8 @@ function HeaderTop({router}) {
             Router.push("/")
         }
     }
-    const handleNav = () =>{
+    const handleNav = (e) =>{
+        e.nativeEvent.stopImmediatePropagation();
         setShowNav(!showNav)
     }
 
@@ -219,14 +223,12 @@ function HeaderTop({router}) {
                     }
                     {
                         infoData!= null && <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
-                                <RhtBox onClick={()=>handleNav()}>
+                                <RhtBox onClick={(e)=>handleNav(e)}>
                                     <img src={infoData?.avatar_url}/>
                                 </RhtBox>
                             </div>
 
                     }
-
-
                     </div>
                 {/*<div className="lg:hidden mt-1">*/}
                 {/*    <div>*/}

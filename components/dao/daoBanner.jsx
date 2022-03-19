@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
-import Link from 'next/link'
 import {useDAO} from "../../pages/api/connect";
+import Users from "./users";
 
 const BannerBox = styled('div')`
 
@@ -39,19 +39,7 @@ export default function DaoBanner(props) {
                 </div>
                 <div
                     className="hidden absolute -bottom-20 right-10 md:flex justify-center items-center space-x-5 mx-10">
-                    <div className="flex justify-center items-center -space-x-2">
-                        {
-                            [...Array(3)].map((item,index)=>(<Link href="/xrdavies" key={`user_${index}`}>
-                                <div className="relative shadow-lg inline-block w-10 h-10 border-2 border-white rounded-full overflow-hidden">
-                                    <SpanBox>
-                                        <span />
-                                        <img alt="" src="/assets/images/demo/avatar.jpg" decoding="async" data-nimg="responsive" className="duration-700 ease-in-out grayscale blur-2xl scale-110" />
-                                    </SpanBox>
-                                </div>
-                            </Link>))
-                        }
-                        <button className="pl-4 whitespace-nowrap">+others</button>
-                    </div>
+                    <Users />
                     {
                         info != null && accessToken != null &&<button className=" font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black
                                      bg-black text-white hover:bg-white hover:text-black
