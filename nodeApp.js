@@ -3,7 +3,6 @@ const app = express()
 var  cors = require( 'cors' );
 const port = 8888;
 const axios = require('axios');
-const { Octokit } = require("@octokit/rest");
 // process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 // github config
@@ -20,10 +19,10 @@ const BearerToken = 'AAAAAAAAAAAAAAAAAAAAAP%2B8aAEAAAAA%2F%2Fh0vJX2TZupA7H7JLxh9
 app.use(cors());
 
 
-app.get('/getAtoken/:code', async function (req, res) {
+app.get('/getAtoken/:code', function (req, res) {
     var params = req.params;
     console.log("===params.code====",params.code)
-    const tokenResponse = await axios({
+     axios({
         method: 'post',
         url: 'https://github.com/login/oauth/access_token?' +
             `client_id=${clientID}&` +
@@ -33,77 +32,90 @@ app.get('/getAtoken/:code', async function (req, res) {
             accept: 'application/json'
         }
     }).then((dataResult)=>{
+        console.log("=====dataResult.data==",dataResult.data)
         res.send(dataResult.data.access_token);
     }).catch((error)=>{
-        res.send(error);
+        res.status(500).send(error);
     })
 });
 
-app.get('/getInfo/:accessToken', async function (req, res) {
+app.get('/getInfo/:accessToken', function (req, res) {
     var params = req.params;
 
-    const result = await axios({
+    axios({
         method: 'get',
         url: `https://api.github.com/user`,
         headers: {
             accept: 'application/json',
             Authorization: `token ${params.accessToken}`
         }
+    }).then((dataResult)=>{
+        res.send(dataResult.data);
+    }).catch((error)=>{
+        res.status(500).send(error);
     });
-    console.log(result.data);
-
-    res.send(result.data);
 });
 
-app.get('/getUserInfo/:accessToken/:username', async function (req, res) {
+app.get('/getUserInfo/:accessToken/:username', function (req, res) {
     const params = req.params;
     const { accessToken, username } = params;
 
-    const result = await axios({
+    axios({
         method: 'get',
         url: `https://api.github.com/users/${username}`,
         headers: {
             accept: 'application/json',
             Authorization: `token ${accessToken}`
         }
+    }).then((dataResult)=>{
+        res.send(dataResult.data);
+    }).catch((error)=>{
+        res.status(500).send(error);
     });
-    res.send(result.data);
+    // res.send(result.data);
 });
 
 
-app.get('/getTwitterID/:userName', async function (req, res) {
+app.get('/getTwitterID/:userName', function (req, res) {
     var params = req.params;
     console.log("=====",params.userName)
-    const result = await axios({
+    axios({
         method: 'get',
         url: `https://api.twitter.com/2/users/by?usernames=${params.userName}`,
         headers: {
             accept: 'application/json',
             Authorization: `Bearer ${BearerToken}`
         }
+    }).then((dataResult)=>{
+        res.send(dataResult.data);
+    }).catch((error)=>{
+        res.status(500).send(error);
     });
-    res.send(result.data);
 })
 
-app.get('/getTwitterList/:id', async function (req, res) {
+app.get('/getTwitterList/:id', function (req, res) {
     var params = req.params;
     console.log("==params.id===",params.id)
-    const result = await axios({
+    axios({
         method: 'get',
         url: `https://api.twitter.com/2/users/${params.id}/tweets?tweet.fields=public_metrics,author_id,created_at,conversation_id,entities&expansions=attachments.media_keys,author_id&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text&user.fields=name,username,profile_image_url&max_results=10`,
         headers: {
             accept: 'application/json',
             Authorization: `Bearer ${BearerToken}`
         }
+    }).then((dataResult)=>{
+        res.send(dataResult.data);
+    }).catch((error)=>{
+        res.status(500).send(error);
     });
-
-    console.log("===getTwitterList====",result.data)
-    res.send(result.data);
+    //
+    // console.log("===getTwitterList====",result.data)
+    // res.send(result.data);
 })
 
 
 app.listen(port, () => {
     console.log(`Example app listening on http://127.0.0.1:8888`)
-    })
+})
 
 

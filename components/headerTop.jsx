@@ -17,6 +17,23 @@ const HeaderBox = styled('header')`
     top: 6.5rem;
     right: 1rem;
   }
+  .w100Bg{
+    margin-bottom: 1rem;
+  }
+  .lft{
+    display: flex;
+    img{
+      margin-right: 1rem;
+    }
+  }
+  .logout{
+    padding: 0;
+    width: 100%;
+    display: flex;
+    .justify-between{
+      width: 100%;
+    }
+  }
 `
 const RhtBox = styled('span')`
   box-sizing: border-box; 
@@ -64,6 +81,7 @@ function HeaderTop({router}) {
 
     const { accessToken, info } = state;
     const [showTop,setShowTop] = useState(false);
+    const [showNav,setShowNav] = useState(false);
     const [url,setUrl] = useState('/');
     const [asToken,setAsToken] = useState('');
     const [infoData,setInfoData] = useState(null);
@@ -91,6 +109,10 @@ function HeaderTop({router}) {
         const {clientID,authorizeUri,redirectUri} = githubObj;
         setUrl(`${authorizeUri}?client_id=${clientID}&redirect_uri=${redirectUri}`)
     },[])
+
+    // useEffect(()=>{
+    //     setShowNav(false)
+    // },[router.pathname])
 
     useEffect(()=>{
         if(!router.query.code) return;
@@ -133,9 +155,20 @@ function HeaderTop({router}) {
     const submitFunc = (e) =>{
         if(e.keyCode === 13){
             dispatch({type: 'SET_SEARCH',payload:keywords});
-            // setKeywords('')
+            // setKeywords('')\
             Router.push("/")
         }
+    }
+    const handleNav = () =>{
+        setShowNav(!showNav)
+    }
+
+    const handleLogout = async() =>{
+        dispatch({type: 'SET_INFO',payload:null});
+        sessionStorage.removeItem("info")
+        sessionStorage.removeItem("asToken")
+        Router.push("/")
+        window.location.reload()
     }
 
     return <HeaderBox>
@@ -172,10 +205,10 @@ function HeaderTop({router}) {
 
 
                 </div>
-                <div className="hidden lg:flex gap-4 xl:gap-6 justify-between items-center">
-                    <Link href="/add">
-                        <a className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Add a DAO</a>
-                    </Link>
+                <div className=" lg:flex gap-4 xl:gap-6 justify-between items-center">
+                    {/*<Link href="/add">*/}
+                    {/*    <a className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Add a DAO</a>*/}
+                    {/*</Link>*/}
                     {
                         infoData == null &&<div>
                             <Link href={url}>
@@ -185,61 +218,66 @@ function HeaderTop({router}) {
                         </div>
                     }
                     {
-                        infoData!= null &&<Link href={`/${infoData.login}`}>
-                            <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
-                                <RhtBox>
+                        infoData!= null && <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
+                                <RhtBox onClick={()=>handleNav()}>
                                     <img src={infoData?.avatar_url}/>
                                 </RhtBox>
                             </div>
-                        </Link>
+
                     }
 
 
                     </div>
-                <div className="lg:hidden mt-1">
-                    <div>
-                        <button type="button">
-                            <img src="/assets/images/column.svg" alt="" width="32"/>
-                        </button>
-                    </div>
-                </div>
-                <div className="rounded-lg shadow-xl border border-gray-100 p-3 bg-white navBox hidden">
+                {/*<div className="lg:hidden mt-1">*/}
+                {/*    <div>*/}
+                {/*        <button type="button">*/}
+                {/*            <img src="/assets/images/column.svg" alt="" width="32"/>*/}
+                {/*        </button>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {
 
-                    <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150"
-                       href="/">
-                        <div className="flex items-center space-x-5">
-                            <div className="relative shadow-2xl inline-block w-10 h-10 rounded-full overflow-hidden">
-                                <SpanBox>
-                                    <span />
-                                    <img alt="" src="/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1478585075508064257%2FwXXA4i-1.jpg&amp;w=3840&amp;q=75"
-                               />
-                                </SpanBox>
+                    showNav && <div className="rounded-lg shadow-xl border border-gray-100 p-3 bg-white navBox ">
+
+                        <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150"
+                              href={`/${infoData?.login}`}>
+                            <div className="flex items-center space-x-5 w100Bg">
+                                <div className="relative shadow-2xl inline-block w-10 h-10 rounded-full overflow-hidden">
+                                    <SpanBox>
+                                        <span />
+                                        <img src={infoData?.avatar_url}/>
+                                    </SpanBox>
+                                </div>
+                                <div>
+                                    <p className="font-cal text-lg -mb-1">{infoData?.name}</p>
+                                    <p className="font-cal text-base text-gray-500">@{infoData?.login}</p>
+                                </div>
+                                <img src="/assets/images/arrow.svg" alt=""/>
                             </div>
-                            <div>
-                                <p className="font-cal text-lg -mb-1">srdothunter</p>
-                                <p className="font-cal text-base text-gray-500">@srdothunter</p>
+
+                        </Link>
+                        <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add">
+                            <div className="flex items-center space-x-5 justify-between w100Bg">
+                                <div className="lft">
+                                    <img src="/assets/images/add.svg" alt=""/>
+                                    <p className="font-cal text-lg">Add a DAO</p>
+                                </div>
+                                <img src="/assets/images/arrow.svg" alt=""/>
                             </div>
-                            <img src="/assets/images/arrow.svg" alt=""/>
+                        </Link>
+                        <div className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150 logout" >
+                            <div className="flex items-center space-x-5 justify-between" onClick={()=>handleLogout()}>
+                                <div className="lft">
+                                    <img src="/assets/images/logout.svg" alt=""/>
+                                    <p className="font-cal text-lg">logout</p>
+                                </div>
+                                <img src="/assets/images/arrow.svg" alt=""/>
+                            </div>
                         </div>
 
-                    </Link>
-                    <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add">
-                    <div className="flex items-center space-x-5">
-                        <img src="/assets/images/add.svg" alt=""/>
-                        <p className="font-cal text-lg">Add a DAO</p>
-                        <img src="/assets/images/arrow.svg" alt=""/>
                     </div>
-                </Link>
+                }
 
-
-                    {/*<button*/}
-                    {/*    className="flex justify-between items-center px-5 py-3 w-full rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150">*/}
-                    {/*    <div className="flex items-center space-x-5">*/}
-
-                    {/*        <p className="font-cal text-lg">Logout</p></div>*/}
-
-                    {/*</button>*/}
-                </div>
             </div>
         </div>
     </HeaderBox>

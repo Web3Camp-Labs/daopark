@@ -15,7 +15,7 @@ export default function Dao() {
     useEffect(()=>{
         const getDetail = async () =>{
             const list = sessionStorage.getItem('list');
-            const ListArr = JSON.parse(list);
+            const ListArr = list !=null ? JSON.parse(list):[] ;
             const detail = ListArr.filter(item=>item.Slug === id);
             setDetailInfo(detail)
         }

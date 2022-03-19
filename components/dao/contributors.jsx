@@ -11,6 +11,9 @@ const Box = styled.div`
     .boxBg{
       background-color: rgb(217, 175, 217); background-image: linear-gradient(0deg, rgb(217, 175, 217) 0%, rgb(151, 217, 225) 100%); border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;
     }
+  .noTop{
+    border-top-color: transparent;
+  }
 `
 const SpanBox = styled('span')`
  box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0; margin: 0; padding: 0; position: relative; max-width: 100%;

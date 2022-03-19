@@ -36,11 +36,19 @@ const getUserInfo = async(accessToken,user) => {
     });
     return info.data;
 }
+const randomString = (e)=> {
+    e = e || 32;
+    var t = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678",
+        a = t.length,
+        n = "";
+    for (let i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * a));
+    return n
+}
 
 const getListInfo = async () =>{
     const infoList = await axios({
         method: 'get',
-        url: `https://raw.githubusercontent.com/Web3-Camp/test-issue/main/dao.json`,
+        url: `https://raw.githubusercontent.com/Web3-Camp/test-issue/main/dao.json?rd=${randomString()}`,
         headers: {
             accept: 'application/json',
         }
@@ -52,7 +60,7 @@ const getListInfo = async () =>{
 const getTwitterID = async (userName) =>{
     const Twitter = await axios({
         method: 'get',
-        url: `http://${ip}/getTwitterID/${userName}`,
+        url: `${backEnd}/getTwitterID/${userName}`,
         headers: {
             accept: 'application/json'
         }

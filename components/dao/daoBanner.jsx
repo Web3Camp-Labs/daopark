@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import Link from 'next/link'
+import {useDAO} from "../../pages/api/connect";
 
 const BannerBox = styled('div')`
 
@@ -14,6 +15,8 @@ const SpanBox = styled('span')`
 export default function DaoBanner(props) {
     const { body } = props;
     const [ obj, setObj ] = useState(null);
+    const {  state } = useDAO();
+    const { info, accessToken } = state;
 
     useEffect(()=>{
         if(!body)return;
@@ -49,10 +52,13 @@ export default function DaoBanner(props) {
                         }
                         <button className="pl-4 whitespace-nowrap">+others</button>
                     </div>
-                    <button className=" font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black
+                    {
+                        info != null && accessToken != null &&<button className=" font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black
                                      bg-black text-white hover:bg-white hover:text-black
                                     transition-all ease duration-150">Join
-                    </button>
+                        </button>
+                    }
+
                 </div>
             </div>
 

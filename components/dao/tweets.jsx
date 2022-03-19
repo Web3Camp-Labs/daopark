@@ -9,6 +9,9 @@ const Box = styled.div`
     justify-content: center;
     margin-top: 40px;
   }
+  .noTop{
+    border-top-color: transparent;
+  }
 `
 
 const SpanBox = styled('span')`
