@@ -57,8 +57,13 @@ export default function Mine(){
             const userData = await api.getUserInfo(accessToken,user);
             setInfo(userData)
         }
-        getUserData();
 
+        const getRepo = async () =>{
+            const info =await api.getDiscussions(accessToken);
+            // setDiscussionInfo(info?.data?.repository.discussion);
+        }
+        getRepo();
+        getUserData();
     },[user,accessToken])
 
 

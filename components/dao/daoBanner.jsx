@@ -16,7 +16,7 @@ export default function DaoBanner(props) {
     const { body } = props;
     const [ obj, setObj ] = useState(null);
     const {  state } = useDAO();
-    const { info, accessToken } = state;
+
 
     useEffect(()=>{
         if(!body)return;
@@ -40,12 +40,7 @@ export default function DaoBanner(props) {
                 <div
                     className="hidden absolute -bottom-20 right-10 md:flex justify-center items-center space-x-5 mx-10">
                     <Users />
-                    {
-                        info != null && accessToken != null &&<button className=" font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black
-                                     bg-black text-white hover:bg-white hover:text-black
-                                    transition-all ease duration-150">Join
-                        </button>
-                    }
+
 
                 </div>
             </div>

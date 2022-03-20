@@ -79,21 +79,57 @@ const getTwitterList = async (id) =>{
 }
 
 
+const getDiscussion = async (accessToken,discussionNumber) =>{
+    const disc = await axios.post( `https://api.github.com/graphql`,{
+        query:`query {
+                repository(owner: "Web3-Camp", name: "test-issue") {
+                    discussion(number: ${discussionNumber}) {
+                        body
+                        number
+                        createdAt
+                          author{
+                            avatarUrl
+                            login
+                          }
+
+                          comments(first: 5){
+                            totalCount
+                            edges{
+                                node{
+                                    id
+                                    body
+                                    author{
+                                       avatarUrl
+                                       login
+                                    }
+                                } 
+                            }
+                          }
+                        }
+                    }
+                }`
+    },
+     {   headers: {
+            accept: 'application/json',
+            Authorization: `token ${accessToken}`
+        }}
+    )
+
+    return disc.data;
+}
 const getDiscussions = async (accessToken) =>{
 
     const disc = await axios.post( `https://api.github.com/graphql`,{
         query:`query {
                 repository(owner: "Web3-Camp", name: "test-issue") {
-                    discussions(first: 10) {
-                        totalCount
-            
+                    discussions(first: 100) {
+                        totalCount 
                          pageInfo {
                             startCursor
                             endCursor
                             hasNextPage
                             hasPreviousPage
                           }
-                           
                           edges {
                             cursor
                             node {
@@ -108,19 +144,28 @@ const getDiscussions = async (accessToken) =>{
                             title
                             body
                             createdAt
+                            number
                             author{
                                avatarUrl
                                login
                             }
-                           comments(first: 10){
-                                totalCount
-                                nodes{
-                                id
+                           comments(first: 100){
+                            totalCount
+                            edges{
+                            node{
+                            author{
+                               avatarUrl
+                               login
+                            }
+                            } 
+                            }
+                            nodes{
+                               id
                                  body
-                                }
+                               }
+                           
                             }
                           }
-
                     }
                 }
             }`
@@ -131,8 +176,6 @@ const getDiscussions = async (accessToken) =>{
         }}
     )
 
-
-
     return disc.data;
 }
 
@@ -140,7 +183,7 @@ const getDiscussionCategory= async(accessToken) =>{
     const result = await axios.post( `https://api.github.com/graphql`,{
             query:`query {
                 repository(owner: "Web3-Camp", name: "test-issue") {
-                    discussionCategories(first: 10) {
+                    discussionCategories(first: 100) {
                         totalCount
                           edges {
                             cursor
@@ -161,25 +204,15 @@ const getDiscussionCategory= async(accessToken) =>{
     return result.data;
 }
 
-// query:`mutation {
-//                  createDiscussion(input:{body:"111",title:"333",CategoryId:'${Cateid}',repositoryId:'${repoId}'}) {
-//                     discussion{
-//                         id
-//                     }
-//             }`
-
-
-
-
 const addDiscussion = async (accessToken,Cateid,repoId,title,body) =>{
 
     const disc = await axios.post( `https://api.github.com/graphql`,{
         query:`mutation {
-                 createDiscussion(input:{body:"0000000",title:"333",categoryId:"DIC_kwDOG8j77s4CN_3s",repositoryId:"R_kgDOG8j77g"}) {
+                 createDiscussion(input:{body:"${body}",title:"${title}",categoryId:"${Cateid}",repositoryId:"${repoId}"}) {
                     discussion{
                         id
                     }
-            }
+             }
             }`
     },
      {   headers: {
@@ -188,7 +221,23 @@ const addDiscussion = async (accessToken,Cateid,repoId,title,body) =>{
         }}
     )
 
-    console.log("=====addDiscussion========",disc)
+    return disc.data;
+}
+const addComment = async (accessToken,discussionId,body) =>{
+    const disc = await axios.post( `https://api.github.com/graphql`,{
+            query:`mutation {
+                 addDiscussionComment(input:{body:"${body}",discussionId:"${discussionId}"}) {
+                    comment{
+                        id
+                    }
+             }
+            }`
+        },
+        {   headers: {
+                accept: 'application/json',
+                Authorization: `token ${accessToken}`
+            }}
+    )
 
     return disc.data;
 }
@@ -200,9 +249,11 @@ const addDiscussion = async (accessToken,Cateid,repoId,title,body) =>{
 export default {
     GetAccessToken,
     getInfo,
+    getDiscussion,
     getDiscussions,
     getDiscussionCategory,
     addDiscussion,
+    addComment,
     getUserInfo,
     getListInfo,
     getTwitterID,
