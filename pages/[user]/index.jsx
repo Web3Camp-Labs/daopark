@@ -50,6 +50,7 @@ export default function Mine(){
     const { user } = router.query;
 
     const [ info, setInfo ] = useState();
+    const [ list,setList ] = useState([]);
 
     useEffect(()=>{
         if(accessToken ==null || !user) return;
@@ -57,13 +58,15 @@ export default function Mine(){
             const userData = await api.getUserInfo(accessToken,user);
             setInfo(userData)
         }
-
+        const qStr= `commenter:${user}`
         const getRepo = async () =>{
-            const info =await api.getDiscussions(accessToken);
-            // setDiscussionInfo(info?.data?.repository.discussion);
+            const comments =await api.getComments(accessToken,qStr);
+            setList(comments.data.search.nodes)
+            console.log("===comments=====",comments.data.search.nodes)
+
         }
-        getRepo();
         getUserData();
+        getRepo();
     },[user,accessToken])
 
 
@@ -110,42 +113,45 @@ export default function Mine(){
                         </button>
                     </div>
                     <div className="grid gap-8 xl:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-                        <div className="not-prose">
-                            <a href="/dao/developer">
-                            <div
-                                className="hidden sm:block rounded-2xl border-2 border-gray-100 shadow bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
-                                <div className="rounded-t-2xl overflow-hidden">
-                                    <PicBox>
-                                        <span />
-                                        <img alt=""
-                                             src="https://daocentral.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdaojones%2Fimage%2Fupload%2Fv1637755736%2FCleanShot_2021-11-24_at_04.08.33_pxl0kp.png&w=1920&q=75"
-                                    className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"/>
-                                </PicBox>
-                                </div>
-                                <div className="py-6 px-5 h-36">
-                                    <div className="flex justify-end"><p
-                                        className="font-cal text-lg tracking-wide bg-white drop-shadow-lg border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max -mt-12 mb-0">(🧱,
-                                        🚀)</p></div>
-                                    <h3 className="font-cal my-0 text-2xl font-bold tracking-wide truncate">Developer
-                                        DAO</h3><p
-                                    className="mt-3 text-gray-800 italic text-base leading-snug font-normal line-clamp-2">Build
-                                    web3 with frens 🤝</p></div>
-                            </div>
-                            <div
-                                className="sm:hidden overflow-hidden rounded-xl flex items-center md:h-48 h-36 border-2 border-gray-100 focus:border-black active:border-black bg-white transition-all ease duration-200">
-                                <div className="w-2/5 relative h-full">
-                                    <ImgBox><img
-                                    alt=""
-                                    src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdaojones%2Fimage%2Fupload%2Fv1637755736%2FCleanShot_2021-11-24_at_04.08.33_pxl0kp.png&amp;w=3840&amp;q=75"
-                                    className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" /></ImgBox>
-                                </div>
-                                <div className="py-6 px-5 w-3/5 relative"><h3
-                                    className="font-cal my-0 text-xl sm:text-2xl font-bold tracking-wide truncate">Developer
-                                    DAO</h3><p
-                                    className="mt-3 text-gray-800 italic text-sm sm:text-base leading-snug font-normal line-clamp-2">Build
-                                    web3 with frens 🤝</p></div>
-                            </div>
-                        </a></div>
+                        {
+                            list.map((item,index)=>(<div className="not-prose">
+                            <a href="/dao/developer" key={index}>
+                                    <div
+                                        className="hidden sm:block rounded-2xl border-2 border-gray-100 shadow bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
+                                        <div className="rounded-t-2xl overflow-hidden">
+                                            <PicBox>
+                                                <span />
+                                                <img alt=""
+                                                     src="https://daocentral.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdaojones%2Fimage%2Fupload%2Fv1637755736%2FCleanShot_2021-11-24_at_04.08.33_pxl0kp.png&w=1920&q=75"
+                                                     className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"/>
+                                            </PicBox>
+                                        </div>
+                                        <div className="py-6 px-5 h-36">
+                                            <div className="flex justify-end"><p
+                                                className="font-cal text-lg tracking-wide bg-white drop-shadow-lg border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max -mt-12 mb-0">(🧱,
+                                                🚀)</p></div>
+                                            <h3 className="font-cal my-0 text-2xl font-bold tracking-wide truncate">Developer
+                                                DAO</h3><p
+                                            className="mt-3 text-gray-800 italic text-base leading-snug font-normal line-clamp-2">Build
+                                            web3 with frens 🤝</p></div>
+                                    </div>
+                                    <div
+                                        className="sm:hidden overflow-hidden rounded-xl flex items-center md:h-48 h-36 border-2 border-gray-100 focus:border-black active:border-black bg-white transition-all ease duration-200">
+                                        <div className="w-2/5 relative h-full">
+                                            <ImgBox><img
+                                                alt=""
+                                                src="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdaojones%2Fimage%2Fupload%2Fv1637755736%2FCleanShot_2021-11-24_at_04.08.33_pxl0kp.png&amp;w=3840&amp;q=75"
+                                                className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" /></ImgBox>
+                                        </div>
+                                        <div className="py-6 px-5 w-3/5 relative"><h3
+                                            className="font-cal my-0 text-xl sm:text-2xl font-bold tracking-wide truncate">Developer
+                                            DAO</h3><p
+                                            className="mt-3 text-gray-800 italic text-sm sm:text-base leading-snug font-normal line-clamp-2">Build
+                                            web3 with frens 🤝</p></div>
+                                    </div>
+                                </a>
+                            </div>))
+                        }
                     </div>
                 </div>
             </div>

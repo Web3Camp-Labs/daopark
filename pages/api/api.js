@@ -244,7 +244,29 @@ const addComment = async (accessToken,discussionId,body) =>{
 
 
 
-
+const getComments= async(accessToken,qStr) =>{
+    const result = await axios.post( `https://api.github.com/graphql`,{
+            query:`query {
+                search(first: 100,query:"${qStr}",type:DISCUSSION) {
+                    edges {
+                       cursor
+                    }
+                    nodes{
+                        ... on Discussion {
+                        body
+                      }
+                    }
+                    discussionCount
+                }
+            }`
+        },
+        {   headers: {
+                accept: 'application/json',
+                Authorization: `token ${accessToken}`
+            }}
+    )
+    return result.data;
+}
 
 export default {
     GetAccessToken,
@@ -254,6 +276,7 @@ export default {
     getDiscussionCategory,
     addDiscussion,
     addComment,
+    getComments,
     getUserInfo,
     getListInfo,
     getTwitterID,
