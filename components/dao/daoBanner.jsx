@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {useDAO} from "../../pages/api/connect";
-import Users from "./users";
+// import Users from "./users";
 
 const BannerBox = styled('div')`
 
@@ -39,9 +39,7 @@ export default function DaoBanner(props) {
                 </div>
                 <div
                     className="hidden absolute -bottom-20 right-10 md:flex justify-center items-center space-x-5 mx-10">
-                    <Users />
-
-
+                    {/*<Users />*/}
                 </div>
             </div>
 

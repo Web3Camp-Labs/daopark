@@ -207,7 +207,6 @@ function HeaderTop({router}) {
                         </div>
                     }
 
-
                 </div>
                 <div className=" lg:flex gap-4 xl:gap-6 justify-between items-center">
                     {/*<Link href="/add">*/}
@@ -241,23 +240,23 @@ function HeaderTop({router}) {
 
                     showNav && <div className="rounded-lg shadow-xl border border-gray-100 p-3 bg-white navBox ">
 
-                        <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150"
-                              href={`/${infoData?.login}`}>
-                            <div className="flex items-center space-x-5 w100Bg">
-                                <div className="relative shadow-2xl inline-block w-10 h-10 rounded-full overflow-hidden">
-                                    <SpanBox>
-                                        <span />
-                                        <img src={infoData?.avatar_url}/>
-                                    </SpanBox>
-                                </div>
-                                <div>
-                                    <p className="font-cal text-lg -mb-1">{infoData?.name}</p>
-                                    <p className="font-cal text-base text-gray-500">@{infoData?.login}</p>
-                                </div>
-                                <img src="/assets/images/arrow.svg" alt=""/>
-                            </div>
+                        {/*<Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150"*/}
+                        {/*      href={`/${infoData?.login}`}>*/}
+                        {/*    <div className="flex items-center space-x-5 w100Bg">*/}
+                        {/*        <div className="relative shadow-2xl inline-block w-10 h-10 rounded-full overflow-hidden">*/}
+                        {/*            <SpanBox>*/}
+                        {/*                <span />*/}
+                        {/*                <img src={infoData?.avatar_url}/>*/}
+                        {/*            </SpanBox>*/}
+                        {/*        </div>*/}
+                        {/*        <div>*/}
+                        {/*            <p className="font-cal text-lg -mb-1">{infoData?.name}</p>*/}
+                        {/*            <p className="font-cal text-base text-gray-500">@{infoData?.login}</p>*/}
+                        {/*        </div>*/}
+                        {/*        <img src="/assets/images/arrow.svg" alt=""/>*/}
+                        {/*    </div>*/}
 
-                        </Link>
+                        {/*</Link>*/}
                         <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add">
                             <div className="flex items-center space-x-5 justify-between w100Bg">
                                 <div className="lft">

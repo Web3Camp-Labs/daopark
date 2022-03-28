@@ -108,14 +108,14 @@ export default function Mine(){
                         <button className="flex items-center pb-4 border-b-2 border-black"><h2
                             className="text-xl font-medium">Joined</h2>
                             <div
-                                className="flex items-center justify-center w-8 h-8 text-white text-md font-medium ml-2 bg-black rounded-full">1
+                                className="flex items-center justify-center w-8 h-8 text-white text-md font-medium ml-2 bg-black rounded-full">{list.length}
                             </div>
                         </button>
                     </div>
                     <div className="grid gap-8 xl:grid-cols-3 sm:grid-cols-2 grid-cols-1">
                         {
-                            list.map((item,index)=>(<div className="not-prose">
-                            <a href="/dao/developer" key={index}>
+                            list.map((item,index)=>(<div className="not-prose" key={index}>
+                            <a href="/dao/developer">
                                     <div
                                         className="hidden sm:block rounded-2xl border-2 border-gray-100 shadow bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
                                         <div className="rounded-t-2xl overflow-hidden">
