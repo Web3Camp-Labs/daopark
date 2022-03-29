@@ -190,7 +190,7 @@ function HeaderTop({router}) {
             <div className="flex gap-4 xl:gap-6 justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full h-20">
                 <div className="flex justify-start items-center gap-4 xl:gap-6 w-full">
                     <Link href="/">
-                        <Logo>DAO PARK</Logo>
+                        <Logo>DAO Park</Logo>
                     </Link>
                     {
                         showTop && <div className="relative flex-auto">
