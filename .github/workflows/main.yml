@@ -35,7 +35,6 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn export
-      - run: echo "web3camp.us"  > ./out/CNAME
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
@@ -43,3 +42,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+          cname: daopark.xyz
