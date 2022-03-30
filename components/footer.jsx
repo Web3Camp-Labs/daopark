@@ -13,6 +13,9 @@ export default function FooterBtm() {
                 <a href={`https://twitter.com/${obj.Twitter}`} target="_blank" rel="noreferrer">
                     <img src="/assets/images/twitter.svg" alt="" className="text-gray-500 hover:text-black transition-all ease duration-150" />
                 </a>
+                <a href={`https://github.com/${obj.Github}`} target="_blank" rel="noreferrer">
+                    <img src="/assets/images/github.svg" alt="" className="text-gray-500 hover:text-black transition-all ease duration-150" />
+                </a>
             </div>
         </div>
     </footer>
