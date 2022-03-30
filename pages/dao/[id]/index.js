@@ -6,11 +6,25 @@ import DaoMain from "../../../components/dao/daoMain";
 import DaoList from "../../../components/dao/daolist";
 import {useEffect, useState} from "react";
 import aboutUs from "../../../public/aboutus.json";
+import api from "../../api/api";
+import styled from "styled-components";
+
+const Divbox = styled.div`
+padding: 100px;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+`
 
 
-export default function Dao({id}) {
-    // const router = useRouter();
-    // const {id} = router.query;
+export default function Dao() {
+
+    const router = useRouter();
+    const {id} = router.query;
+    console.log("=============",id)
     const [detailInfo, setDetailInfo ] = useState();
     useEffect(()=>{
         const getDetail = async () =>{
@@ -24,10 +38,13 @@ export default function Dao({id}) {
 
     return <div>
         <div className="w-full my-30" >
-            {/*<TopFix  body={id === aboutUs.Slug?aboutUs:detailInfo}/>*/}
-            <DaoBanner body={id === aboutUs[0].Slug?aboutUs:detailInfo}/>
-            <DaoMain body={id === aboutUs[0].Slug?aboutUs:detailInfo} />
-            <DaoList len={8} title="People who joined this DAO also joined" />
+            <Divbox>
+                {id}
+            </Divbox>
+            {/*/!*<TopFix  body={id === aboutUs.Slug?aboutUs:detailInfo}/>*!/*/}
+            {/*<DaoBanner body={id === aboutUs[0].Slug?aboutUs:detailInfo}/>*/}
+            {/*<DaoMain body={id === aboutUs[0].Slug?aboutUs:detailInfo} />*/}
+            {/*<DaoList len={8} title="People who joined this DAO also joined" />*/}
         </div>
         {/*{*/}
         {/*    id === aboutUs.Slug &&<div className="w-full my-30" >*/}
