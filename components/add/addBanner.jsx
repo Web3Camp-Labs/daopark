@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link"
 
 const Box = styled('div')`
   .clipBox{
@@ -19,8 +20,8 @@ export default function AddBanner() {
     return  <Box>
         <div className="flex flex-col-reverse lg:flex-row sm:mx-24 mx-10 lg:space-x-12 space-x-0 lg:space-y-0 space-y-12 space-y-reverse">
             <div className="mt-auto">
-                <a className="bg-gray-100 text-black px-5 py-2 rounded-full max-w-max hover:bg-gray-200 transition-all ease duration-150"
-                href="/introduction">What is a DAO?</a>
+                <Link className="bg-gray-100 text-black px-5 py-2 rounded-full max-w-max hover:bg-gray-200 transition-all ease duration-150"
+                href="/introduction">What is a DAO?</Link>
                 <h1 className="font-cal text-6xl sm:text-7xl md:text-8xl my-5">Add a DAO</h1>
                 <p className="text-gray-800 text-lg w-80 sm:w-96">Have a DAO that you&#x27;d like to add? Fill out
                     the form below and we will get it added to the database.</p>

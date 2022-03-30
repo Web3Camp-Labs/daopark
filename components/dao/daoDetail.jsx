@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {useEffect, useState} from "react";
 import githubObj  from '../../public/githubConfig'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Link from 'next/link'
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -109,7 +110,7 @@ export default function DaoDetail(props) {
             <div className="flex justify-center items-center text-xl -space-x-2 mx-10">
                 {
                     [...Array(3)].map((item,index)=>(
-                        <a href="/BayBayLucky" key={index}>
+                        <Link href="/BayBayLucky" key={index} passHref>
                             <div className="relative shadow-lg inline-block w-12 h-12 border-2 border-white rounded-full overflow-hidden">
                                 <SpanBox>
                                     <span />
@@ -120,7 +121,7 @@ export default function DaoDetail(props) {
                                     />
                                 </SpanBox>
                             </div>
-                        </a>
+                        </Link>
                     ))
                 }
                 <span className="pl-4">+ 202 others</span></div>

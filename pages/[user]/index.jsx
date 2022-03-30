@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import {useDAO} from "../api/connect";
 import api from "../api/api";
+import Link from "next/link";
 
 const Divbox = styled.div`
     .bgLinear{
@@ -76,7 +77,7 @@ export default function Mine(){
                 <div className="w-full h-full md:rounded-3xl bgLinear" />
                 <div className="absolute w-48 h-48 -bottom-20 border-8 border-white rounded-full overflow-hidden">
                 <ImgBox>
-                    <img src={info?.avatar_url}
+                    <img src={info?.avatar_url} alt=""
                    className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"
                  />
                 </ImgBox>
@@ -115,7 +116,7 @@ export default function Mine(){
                     <div className="grid gap-8 xl:grid-cols-3 sm:grid-cols-2 grid-cols-1">
                         {
                             list.map((item,index)=>(<div className="not-prose" key={index}>
-                            <a href="/dao/developer">
+                            <Link href="/dao/developer" passHref>
                                     <div
                                         className="hidden sm:block rounded-2xl border-2 border-gray-100 shadow bg-white hover:shadow-xl hover:-translate-y-1 transition-all ease duration-200">
                                         <div className="rounded-t-2xl overflow-hidden">
@@ -149,7 +150,7 @@ export default function Mine(){
                                             className="mt-3 text-gray-800 italic text-sm sm:text-base leading-snug font-normal line-clamp-2">Build
                                             web3 with frens 🤝</p></div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>))
                         }
                     </div>

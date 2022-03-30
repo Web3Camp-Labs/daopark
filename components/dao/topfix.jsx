@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 // import githubObj from "../../public/githubConfig";
-// import Link from "next/link";
+import Link from "next/link";
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -45,7 +45,7 @@ export default function TopFix(props) {
             <div className="flex justify-between items-center space-x-2">
                 <div className="relative w-14 h-14 border-3 border-white rounded-full overflow-hidden">
                     <SpanBox>
-                        <img src="/assets/images/demo/avatar.jpg" className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
+                        <img src="/assets/images/demo/avatar.jpg" className="duration-700 ease-in-out grayscale blur-2xl scale-110" alt=""/>
                     </SpanBox>
                 </div>
                 <h1 className="font-cal text-2xl tracking-wide">Developer DAO </h1>
@@ -54,9 +54,9 @@ export default function TopFix(props) {
                 </div>
             </div>
             <div className="flex justify-between items-center space-x-2">
-                <a className="bg-gray-100 rounded-lg font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer" rel="noreferrer">overview</a>
-                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/contributors" rel="noreferrer">contributors</a>
-                <a className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/tweets" rel="noreferrer">news</a>
+                <Link className="bg-gray-100 rounded-lg font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer" rel="noreferrer">overview</Link>
+                <Link className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/contributors" rel="noreferrer">contributors</Link>
+                <Link className=" font-cal text-lg capitalize tracking-wide text-black px-3 py-2 transition-all ease-in-out duration-150" href="/dao/developer/tweets" rel="noreferrer">news</Link>
             </div>
             <div>
                 <button className=" font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black bg-black text-white hover:bg-white hover:text-black transition-all ease duration-150">Join

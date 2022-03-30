@@ -268,7 +268,7 @@ const getComments= async(accessToken,qStr) =>{
     return result.data;
 }
 
-export default {
+const exportobj = {
     GetAccessToken,
     getInfo,
     getDiscussion,
@@ -282,3 +282,5 @@ export default {
     getTwitterID,
     getTwitterList
 };
+
+export default exportobj;

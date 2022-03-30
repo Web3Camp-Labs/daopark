@@ -189,7 +189,7 @@ function HeaderTop({router}) {
             {/*</a>*/}
             <div className="flex gap-4 xl:gap-6 justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full h-20">
                 <div className="flex justify-start items-center gap-4 xl:gap-6 w-full">
-                    <Link href="/">
+                    <Link href="/" passHref>
                         <Logo>DAO Park</Logo>
                     </Link>
                     {
@@ -223,7 +223,7 @@ function HeaderTop({router}) {
                     {
                         infoData!= null && <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
                                 <RhtBox onClick={(e)=>handleNav(e)}>
-                                    <img src={infoData?.avatar_url}/>
+                                    <img src={infoData?.avatar_url} alt=""/>
                                 </RhtBox>
                             </div>
 
@@ -257,7 +257,7 @@ function HeaderTop({router}) {
                         {/*    </div>*/}
 
                         {/*</Link>*/}
-                        <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add">
+                        <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add" passHref>
                             <div className="flex items-center space-x-5 justify-between w100Bg">
                                 <div className="lft">
                                     <img src="/assets/images/add.svg" alt=""/>

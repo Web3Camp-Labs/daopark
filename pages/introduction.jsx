@@ -20,7 +20,7 @@ export default function Introduction() {
             </div>
             <div className="relative h-80 md:h-150 w-full max-w-screen-lg lg:2/3 md:w-5/6 m-auto mb-10 md:mb-20 md:rounded-2xl overflow-hidden">
                 <SpanBoxMiddle>
-                    <img src="/assets/images/dao.gif"  className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"
+                    <img src="/assets/images/dao.gif" alt=""  className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"
                     />
                 </SpanBoxMiddle>
             </div>

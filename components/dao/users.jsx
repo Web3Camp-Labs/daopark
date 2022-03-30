@@ -58,7 +58,7 @@ export default function Users(){
     return <Box>
         <div className="flex justify-center items-center -space-x-2">
             {
-                userList.map((item,index)=>(<Link href={`/${item.node.author.login}`} key={`user_${index}`}>
+                userList.map((item,index)=>(<Link href={`/${item.node.author.login}`} key={`user_${index}`} passHref>
                     <div className="relative shadow-lg inline-block w-10 h-10 border-2 border-white rounded-full overflow-hidden">
                         <SpanBox>
                             <span />

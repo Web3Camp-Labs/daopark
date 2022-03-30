@@ -7,6 +7,7 @@ import Tweets from "./tweets";
 import githubObj from "../../public/githubConfig";
 import Contributors from "./contributors";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import Link from 'next/link'
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -92,7 +93,7 @@ export default function DaoMain(props) {
                     <button className="font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black bg-black text-white hover:bg-white hover:text-black transition-all ease duration-150">Join</button>
                     <div className="flex justify-center items-center mt-3 -space-x-2">
                         {
-                            [...Array(3)].map((item,index)=>(<a href="/BayBayLucky" key={index}>
+                            [...Array(3)].map((item,index)=>(<Link href="/BayBayLucky" key={index} passHref>
                                 <div className="relative shadow-lg inline-block w-8 h-8 border-2 border-white rounded-full overflow-hidden">
                                     <SpanBox>
                                         <span />
@@ -102,7 +103,7 @@ export default function DaoMain(props) {
                                         />
                                     </SpanBox>
                                 </div>
-                            </a>))
+                            </Link>))
                         }
                         <button className="text-sm pl-4 whitespace-nowrap">+ 609 others</button>
                     </div>
