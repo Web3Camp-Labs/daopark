@@ -9,6 +9,9 @@ import Router from "next/router";
 
 const HeaderBox = styled('header')`
   position: relative;
+  .noTop{
+    border-top-color: transparent;
+  }
   .h50Top{
   height: 50px; transition: all 0.1s ease 0s;
   }
@@ -213,11 +216,16 @@ function HeaderTop({router}) {
                     {/*    <a className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Add a DAO</a>*/}
                     {/*</Link>*/}
                     {
-                        infoData == null &&<div>
+                        infoData == null && !router.query.code &&<div>
                             <Link href={url}>
                                 <a id="login" className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Login </a>
                             </Link>
 
+                        </div>
+                    }
+                    {
+                        infoData == null && router.query.code &&<div>
+                            <div className="w-10 h-10 border-4 border-black border-solid rounded-full animate-spin noTop" />
                         </div>
                     }
                     {
