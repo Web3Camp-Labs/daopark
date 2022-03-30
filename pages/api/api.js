@@ -48,7 +48,8 @@ const randomString = (e)=> {
 const getListInfo = async () =>{
     const infoList = await axios({
         method: 'get',
-        url: `https://raw.githubusercontent.com/Web3-Camp/test-issue/main/dao.json?rd=${randomString()}`,
+        // url: `https://raw.githubusercontent.com/Web3-Camp/test-issue/main/dao.json?rd=${randomString()}`,
+        url: `https://api.gitrows.com/@github/web3-camp/test-issue/dao.json`,
         headers: {
             accept: 'application/json',
         }
