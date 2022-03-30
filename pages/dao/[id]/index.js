@@ -69,6 +69,9 @@ export async function getStaticPaths() {
     const paths = list.map(post => ({
             params: {id: post.Slug},
         }))
+    paths.push({
+        params: {id:aboutUs[0].Slug },
+    })
 
     return {paths, fallback: false}
 }
