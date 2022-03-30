@@ -13,6 +13,7 @@ export default function Dao() {
     const router = useRouter();
     const {id} = router.query;
     const [detailInfo, setDetailInfo ] = useState();
+
     useEffect(()=>{
         const getDetail = async () =>{
             const list = sessionStorage.getItem('list');
@@ -51,7 +52,26 @@ export default function Dao() {
     </div>
 }
 
+export async function getStaticProps({params}) {
+    // let data = await getFranchises();
+    //
+    // let franchise = data.find(x => x.id === params.id);
 
+    return {
+        props:{}
+    }
+}
+
+export async function getStaticPaths() {
+
+    const list = await api.getListInfo();
+
+    const paths = list.map(post => ({
+            params: {id: post.Slug},
+        }))
+
+    return {paths, fallback: false}
+}
 
 
 Dao.getLayout = function getLayout(page) {
