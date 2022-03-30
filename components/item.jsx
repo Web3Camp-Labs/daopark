@@ -59,11 +59,11 @@ export default function ItemDao(props){
                     <img alt="Developer DAO" src={obj?.CoverPhoto}  className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" />
                 </SpanBoxli>
                 <div className="py-6 px-5 h-36">
-                    <div className="flex justify-end">
-                        <p className="font-cal text-lg tracking-wide bg-white drop-shadow-lg border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max !-mt-12 !mb-0">
-                            {obj?.Emoji}
-                        </p>
-                    </div>
+                    {/*<div className="flex justify-end">*/}
+                    {/*    <p className="font-cal text-lg tracking-wide bg-white drop-shadow-lg border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max !-mt-12 !mb-0">*/}
+                    {/*        /!*{obj?.Emoji}*!/*/}
+                    {/*    </p>*/}
+                    {/*</div>*/}
                     <h3 className="font-cal !my-0 !text-2xl font-bold tracking-wide truncate">{obj?.Name}</h3>
                     <p className="!mt-3 !text-gray-800 italic !text-md !leading-snug !font-normal">{obj?.Tagline} –  {obj?.TokenSymbol}</p></div>
             </div>

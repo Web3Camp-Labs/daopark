@@ -34,9 +34,9 @@ export default function DaoBanner(props) {
                         <img alt="" src={obj?.Logo} className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
                     </SpanBox>
                 </div>
-                <div className="shadow-md border border-gray-100 text-center bg-white pl-4 pr-5 py-2 absolute -bottom-24 md:-bottom-20 md:left-36 rounded-full">
-                    {obj?.Emoji}
-                </div>
+                {/*<div className="shadow-md border border-gray-100 text-center bg-white pl-4 pr-5 py-2 absolute -bottom-24 md:-bottom-20 md:left-36 rounded-full">*/}
+                {/*    {obj?.Emoji}*/}
+                {/*</div>*/}
                 <div
                     className="hidden absolute -bottom-20 right-10 md:flex justify-center items-center space-x-5 mx-10">
                     {/*<Users />*/}

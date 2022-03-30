@@ -60,6 +60,7 @@ export default function DaoList(props) {
             }
 
             <div className="grid grid-cols-1 gap-8 m-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
+
                 {
                     list.map((obj,index)=>(<ItemDao item={obj} key={obj.DAOIndex}/>))
                 }

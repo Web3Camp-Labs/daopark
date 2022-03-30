@@ -67,8 +67,8 @@ export default function Banner() {
             <div className="absolute bottom-0 px-10 sm:px-20 py-5 flex justify-between items-center w-full">
                 <a className="text-gray-400 text-base sm:text-lg hover:text-gray-300 transition-all ease duration-150" href={`/dao/${obj.Slug}`}>{obj.Name} – <i>{obj.Tagline}</i>
                 </a>
-                <a className="text-lg font-cal tracking-wide whitespace-nowrap bg-white border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max hover:scale-105 transition-all ease duration-150" href={`/dao/${obj.Slug}`}>{obj.Emoji}
-                </a>
+                {/*<a className="text-lg font-cal tracking-wide whitespace-nowrap bg-white border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max hover:scale-105 transition-all ease duration-150" href={`/dao/${obj.Slug}`}>{obj.Emoji}*/}
+                {/*</a>*/}
             </div>
         </div>
     </BannerBox>

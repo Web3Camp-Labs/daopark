@@ -43,7 +43,7 @@ export default function AddContent() {
     const [ tagline, setTagline ] = useState('');
     const [ mission, setMission ] = useState('');
     const [ values, setValues ] = useState('');
-    const [ emoji, setEmoji ] = useState('');
+    // const [ emoji, setEmoji ] = useState('');
     const [ tokenSymbol, setTokenSymbol ] = useState('');
     const [ github, setGithub ] = useState('');
 
@@ -71,7 +71,7 @@ export default function AddContent() {
             Tagline: tagline,
             Mission: mission,
             Values: values,
-            Emoji: emoji,
+            // Emoji: emoji,
             TokenSymbol: tokenSymbol,
             TokenContractAddress: tokenAddress,
             Logo: logo,
@@ -120,9 +120,9 @@ export default function AddContent() {
             case 'values':
                 setValues(value);
                 break;
-            case 'emoji':
-                setEmoji(value);
-                break;
+            // case 'emoji':
+            //     setEmoji(value);
+            //     break;
             case 'tokenSymbol':
                 setTokenSymbol(value);
                 break;
@@ -195,7 +195,8 @@ export default function AddContent() {
 
 
     const ReturnDisabled = () =>{
-        return !(daoName.length && slug.length && tagline.length && mission.length && values.length && emoji.length && tokenSymbol.length && tokenAddress.length && logo.length && cover.length && twitter.length && discord.length && mirror.length && website.length && email.length)
+        // return !(daoName.length && slug.length && tagline.length && mission.length && values.length && emoji.length && tokenSymbol.length && tokenAddress.length && logo.length && cover.length && twitter.length && discord.length && mirror.length && website.length && email.length)
+        return !(daoName.length && slug.length && tagline.length && mission.length && values.length && logo.length && tokenSymbol.length && tokenAddress.length && cover.length && discord.length )
     }
 
 
@@ -256,12 +257,12 @@ export default function AddContent() {
                         {/*<div className="flex justify-end">Markdown supported.</div>*/}
                     </div>
                     <div className="grid grid-cols-2 gap-6">
-                        <div className="col-span-1">
-                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Emoji *</label>
-                            <div className="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="emoji" className="font-cal focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder={aboutus[0].Emoji} value={emoji} onChange={e=>handleInput(e,'emoji')}/>
-                            </div>
-                        </div>
+                        {/*<div className="col-span-1">*/}
+                        {/*    <label className="font-cal block text-xl text-gray-700 tracking-wide">Emoji *</label>*/}
+                        {/*    <div className="mt-1 flex rounded-md shadow-sm">*/}
+                        {/*        <input type="text" name="emoji" className="font-cal focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder={aboutus[0].Emoji} value={emoji} onChange={e=>handleInput(e,'emoji')}/>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         <div className="col-span-1">
                             <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Symbol *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
@@ -271,7 +272,7 @@ export default function AddContent() {
                     </div>
                     <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-3">
-                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Contract Address *</label>
+                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Contract Address * </label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <input type="text" name="tokenAddress" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder={aboutus[0].TokenContractAddress} value={tokenAddress} onChange={e=>handleInput(e,'tokenAddress')}/>
 
@@ -320,7 +321,7 @@ export default function AddContent() {
                     </div>
                     <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-3 sm:col-span-2">
-                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Twitter *</label>
+                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Twitter</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">@</span>
                                 <input type="text" name="twitter" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide"
@@ -359,7 +360,7 @@ export default function AddContent() {
                     </div>
                     <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-3 sm:col-span-2">
-                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Website *</label>
+                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Website</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">https://</span>
                                 <input type="text" name="website" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder={aboutus[0].Website} value={website} onChange={e=>handleInput(e,'website')}/>
@@ -368,7 +369,7 @@ export default function AddContent() {
                     </div>
                     <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-3 sm:col-span-2">
-                            <label className="font-cal block text-xl font-medium text-gray-700 tracking-wide">Email (to get notified when your DAO is listed) *</label>
+                            <label className="font-cal block text-xl font-medium text-gray-700 tracking-wide">Email</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <input type="email" name="email" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder={aboutus[0].Email} value={email} onChange={e=>handleInput(e,'email')}/>
                             </div>
