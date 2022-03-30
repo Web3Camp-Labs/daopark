@@ -51,19 +51,6 @@ export default function Dao({id}) {
 }
 
 
-export async function getServerSideProps (context) {
-
-    console.log("==context====",context)
-    const id = context.params.id;
-    if (!id) {
-        return { notFound: true };
-    }
-    return {
-        props: {
-            id
-        }
-    };
-};
 
 Dao.getLayout = function getLayout(page) {
     return (
