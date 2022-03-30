@@ -140,6 +140,7 @@ function HeaderTop({router}) {
             dispatch({type: 'SET_INFO',payload:infoD});
             sessionStorage.setItem("info",JSON.stringify(infoD))
             sessionStorage.setItem("asToken",asToken)
+            Router.push("/")
         }
         getIn()
     },[asToken]);
