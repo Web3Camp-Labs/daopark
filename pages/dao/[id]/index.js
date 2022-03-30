@@ -8,9 +8,9 @@ import {useEffect, useState} from "react";
 import aboutUs from "../../../public/aboutus.json";
 
 
-export default function Dao() {
-    const router = useRouter();
-    const {id} = router.query;
+export default function Dao({id}) {
+    // const router = useRouter();
+    // const {id} = router.query;
     const [detailInfo, setDetailInfo ] = useState();
     useEffect(()=>{
         const getDetail = async () =>{
@@ -49,6 +49,22 @@ export default function Dao() {
 
     </div>
 }
+
+
+export async function getServerSideProps (context) {
+
+    console.log("==context====",context)
+    const id = context.params.id;
+    if (!id) {
+        return { notFound: true };
+    }
+    return {
+        props: {
+            id
+        }
+    };
+};
+
 Dao.getLayout = function getLayout(page) {
     return (
         <Layout>
