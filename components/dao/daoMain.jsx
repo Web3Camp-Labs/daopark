@@ -72,9 +72,13 @@ export default function DaoMain(props) {
                         <img src="/assets/images/globalWhite.svg" alt=""/>
                         <p className="hidden lg:block">Website</p>
                     </a>
-                    <a href={`https://${obj?.Mirror}`} target="_blank"
-                       className="font-cal tracking-wide text-white bg-[#959595] rounded-full flex justify-center items-center space-x-2 px-4 py-2">
-                        <img src="/assets/images/mirror.svg" alt=""/><p className="hidden lg:block">{obj?.Mirror}</p></a>
+                    {
+                        obj?.Mirror &&<a href={`https://${obj?.Mirror}`} target="_blank"
+                                         className="font-cal tracking-wide text-white bg-[#959595] rounded-full flex justify-center items-center space-x-2 px-4 py-2">
+                            <img src="/assets/images/mirror.svg" alt=""/><p className="hidden lg:block">{obj?.Mirror}</p>
+                        </a>
+                    }
+
                     {
                         !showCopy &&<CopyToClipboard text={`${githubObj.baseUrl}/dao/${obj?.Slug}`}
                                                     onCopy={() => copyLink()}>
