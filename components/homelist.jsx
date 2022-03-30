@@ -58,7 +58,9 @@ export default function HomeList() {
             }
             {
                 !showLoading && <div className="grid grid-cols-1 gap-8 m-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
-                    <ItemDao item={aboutus[0]}/>
+                    {
+                        search == null &&<ItemDao item={aboutus[0]}/>
+                    }
                     {
                         !!list.length && list.map((item)=> <ItemDao item={item} key={item.DAOIndex}/>
                         )
