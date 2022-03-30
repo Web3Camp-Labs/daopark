@@ -52,11 +52,16 @@ export default function Tweets(props) {
 
         const getTwitter = async() =>{
             const twitterID = await api.getTwitterID(body.Twitter);
-
             if(!twitterID.data)return;
             SetShowLoading(true);
             const listArr = await api.getTwitterList(twitterID.data[0].id)
+            if(listArr.meta.result_count === 0){
+                SetShowLoading(false);
+                return;
+            }
+            
             const { data, includes} = listArr;
+
             let arr = [];
             for (let i = 0; i < data.length; i++) {
                 arr[i] = false;
