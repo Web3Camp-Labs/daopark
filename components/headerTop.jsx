@@ -89,6 +89,7 @@ function HeaderTop({router}) {
     const [asToken,setAsToken] = useState('');
     const [infoData,setInfoData] = useState(null);
     const [keywords,setKeywords] = useState('');
+    const [showloading,setShowloading] = useState(false);
 
     const handleScroll = () => {
         let scrollY = window.scrollY;
@@ -122,7 +123,7 @@ function HeaderTop({router}) {
 
     useEffect(()=>{
         if(!router.query.code) return;
-
+        setShowloading(true)
         const getAT = async () =>{
             const accessToken =await api.GetAccessToken(router.query.code)
             if(!accessToken) return;
@@ -140,6 +141,7 @@ function HeaderTop({router}) {
             dispatch({type: 'SET_INFO',payload:infoD});
             sessionStorage.setItem("info",JSON.stringify(infoD))
             sessionStorage.setItem("asToken",asToken)
+            setShowloading(false)
             Router.push("/")
         }
         getIn()
@@ -177,6 +179,7 @@ function HeaderTop({router}) {
         sessionStorage.removeItem("asToken")
         Router.push("/")
         window.location.reload()
+        setShowloading(false)
     }
 
     return <HeaderBox>
@@ -217,7 +220,7 @@ function HeaderTop({router}) {
                     {/*    <a className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Add a DAO</a>*/}
                     {/*</Link>*/}
                     {
-                        infoData == null && !router.query.code &&<div>
+                        infoData == null && !showloading &&<div>
                             <Link href={url}>
                                 <a id="login" className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Login </a>
                             </Link>
@@ -225,7 +228,7 @@ function HeaderTop({router}) {
                         </div>
                     }
                     {
-                        infoData == null && router.query.code &&<div>
+                        infoData == null && showloading&&<div>
                             <div className="w-10 h-10 border-4 border-black border-solid rounded-full animate-spin noTop" />
                         </div>
                     }
