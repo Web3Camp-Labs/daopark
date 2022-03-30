@@ -72,6 +72,9 @@ export default function DaoMain(props) {
                         <img src="/assets/images/globalWhite.svg" alt=""/>
                         <p className="hidden lg:block">Website</p>
                     </a>
+                    <a href={`https://${obj?.Mirror}`} target="_blank"
+                       className="font-cal tracking-wide text-white bg-[#959595] rounded-full flex justify-center items-center space-x-2 px-4 py-2">
+                        <img src="/assets/images/mirror.svg" alt=""/><p className="hidden lg:block">{obj?.Mirror}</p></a>
                     {
                         !showCopy &&<CopyToClipboard text={`${githubObj.baseUrl}/dao/${obj?.Slug}`}
                                                     onCopy={() => copyLink()}>
@@ -93,7 +96,7 @@ export default function DaoMain(props) {
                     <button className="font-cal w-36 h-12 whitespace-nowrap tracking-wide text-lg border-2 rounded-full border-black bg-black text-white hover:bg-white hover:text-black transition-all ease duration-150">Join</button>
                     <div className="flex justify-center items-center mt-3 -space-x-2">
                         {
-                            [...Array(3)].map((item,index)=>(<Link href="/BayBayLucky" key={index} passHref>
+                            [...Array(3)].map((item,index)=>(<Link href="/" key={index} passHref>
                                 <div className="relative shadow-lg inline-block w-8 h-8 border-2 border-white rounded-full overflow-hidden">
                                     <SpanBox>
                                         <span />
