@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a96ba40f-a4e0-418a-b063-7673160fa0b5/deploy-status)](https://app.netlify.com/sites/daopark-site/deploys)
+
 # DAO Park
 
 DAO park is a collection of DAOs, that you can submit your DAO's information and get exposure to all the involvers in Web 3.0.
