@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Web3Camp",
+    "Slug": "web3camp",
+    "Tagline": "Tools and resources for all Web 3.0 enthusiasts",
+    "Mission": "Our mission is to provide a platform for developers to learn about the blockchain and to provide a community of developers.",
+    "Values": "",
+    "TokenSymbol": "$W3C",
+    "TokenContractAddress": "0x739674F01Fa0333d8B3D9C2B9D817BE78113DCcA",
+    "Logo": "https://raw.githubusercontent.com/Web3-Camp/graphic-assets/master/v1/SVG/web3logo_web3camp07.svg",
+    "CoverPhoto": "https://raw.githubusercontent.com/Web3-Camp/graphic-assets/master/v1/PNG/web3logo_web3camp07.png",
+    "Twitter": "web3camp",
+    "Discord": "web3camp",
+    "Github": "Web3-Camp/daopark",
+    "Website": "web3camp.us",
+    "Blog": "https://web3camp.us",
+    "Mirror": "web3camp",
+    "Email": "noreply@web3camp.us"
+  }
+]
