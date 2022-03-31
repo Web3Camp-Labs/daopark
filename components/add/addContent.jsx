@@ -86,8 +86,8 @@ export default function AddContent() {
             auth: accessToken,
         });
         const listdata = await octokit.rest.issues.create({
-            owner: aboutus[0].Github.split("/")[0],
-            repo: aboutus[0].Github.split("/")[1],
+            owner: githubObj.org,
+            repo: githubObj.repo,
             title: daoName,
             labels: ["daopark"],
             body: JSON.stringify(bodyStr,null,2)

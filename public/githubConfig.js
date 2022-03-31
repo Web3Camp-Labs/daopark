@@ -3,6 +3,8 @@ const authorizeUri = 'https://github.com/login/oauth/authorize';
 const redirectUri = 'https://daopark.xyz';
 const baseUrl = 'https://daopark.xyz';
 const backEnd = 'https://dp-api.daopark.xyz';
+const org = "Web3-Camp"
+const repo = "test-issue";
 
 
 export default {
@@ -11,4 +13,6 @@ export default {
     redirectUri,
     baseUrl,
     backEnd,
+    org,
+    repo
 }

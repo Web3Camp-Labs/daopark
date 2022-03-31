@@ -1,7 +1,7 @@
 import axios from 'axios';
 import githubConfig from "../../public/githubConfig";
 import  { graphql, buildSchema } from 'graphql';
-const { backEnd } = githubConfig;
+const { backEnd,repo } = githubConfig;
 
 const GetAccessToken = async(requestToken) => {
 
@@ -83,7 +83,7 @@ const getTwitterList = async (id) =>{
 const getDiscussion = async (accessToken,discussionNumber) =>{
     const disc = await axios.post( `https://api.github.com/graphql`,{
         query:`query {
-                repository(owner: "Web3-Camp", name: "test-issue") {
+                repository(owner: "Web3-Camp", name: ${repo}) {
                     discussion(number: ${discussionNumber}) {
                         body
                         number
@@ -122,7 +122,7 @@ const getDiscussions = async (accessToken) =>{
 
     const disc = await axios.post( `https://api.github.com/graphql`,{
         query:`query {
-                repository(owner: "Web3-Camp", name: "test-issue") {
+                repository(owner: "Web3-Camp", name: ${repo}) {
                     discussions(first: 100) {
                         totalCount 
                          pageInfo {
@@ -183,7 +183,7 @@ const getDiscussions = async (accessToken) =>{
 const getDiscussionCategory= async(accessToken) =>{
     const result = await axios.post( `https://api.github.com/graphql`,{
             query:`query {
-                repository(owner: "Web3-Camp", name: "test-issue") {
+                repository(owner: "Web3-Camp", name: ${repo}) {
                     discussionCategories(first: 100) {
                         totalCount
                           edges {
