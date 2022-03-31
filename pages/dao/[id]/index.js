@@ -6,7 +6,7 @@ import DaoMain from "../../../components/dao/daoMain";
 import DaoList from "../../../components/dao/daolist";
 import {useEffect, useState} from "react";
 import aboutUs from "../../../public/aboutus.json";
-import api from "../../api/api";
+// import api from "../../api/api";
 
 
 export default function Dao() {
@@ -52,26 +52,26 @@ export default function Dao() {
     </div>
 }
 
-export async function getStaticProps({params}) {
+// export async function getStaticProps({params}) {
 
-    return {
-        props:{}
-    }
-}
+//     return {
+//         props:{}
+//     }
+// }
 
-export async function getStaticPaths() {
+// export async function getStaticPaths() {
 
-    const list = await api.getListInfo();
+//     const list = await api.getListInfo();
 
-    const paths = list.map(post => ({
-            params: {id: post.Slug},
-        }))
-    paths.push({
-        params: {id:aboutUs[0].Slug },
-    })
+//     const paths = list.map(post => ({
+//             params: {id: post.Slug},
+//         }))
+//     paths.push({
+//         params: {id:aboutUs[0].Slug },
+//     })
 
-    return {paths, fallback: false}
-}
+//     return {paths, fallback: false}
+// }
 
 
 Dao.getLayout = function getLayout(page) {
