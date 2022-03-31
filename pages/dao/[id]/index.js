@@ -53,9 +53,6 @@ export default function Dao() {
 }
 
 export async function getStaticProps({params}) {
-    // let data = await getFranchises();
-    //
-    // let franchise = data.find(x => x.id === params.id);
 
     return {
         props:{}
