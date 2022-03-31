@@ -49,7 +49,12 @@ export default function AddContent() {
 
     const [ tokenAddress, setTokenAddress ] = useState('');
     const [addressValue] = useDebounce(tokenAddress, 1000);
+    const [ website, setWebsite] = useState('');
     const [addressTip, setAddressTips] = useState(false);
+    const [githubTips, setGithubTips] = useState(false);
+    const [websiteTips, setWebsiteTips] = useState(false);
+    const [githubValue] = useDebounce(github, 1000);
+    const [websiteValue] = useDebounce(website, 1000);
 
     const [ logo, setLogo] = useState('');
     const [ cover, setCover] = useState('');
@@ -59,8 +64,9 @@ export default function AddContent() {
     const [ twitter, setTwitter] = useState('');
     const [ discord, setDiscord] = useState('');
     const [ mirror, setMirror] = useState('');
-    const [ website, setWebsite] = useState('');
+
     const [ email, setEmail] = useState('');
+    const [listInfo, setListInfo] = useState([])
 
 
     const handleSubmit = async () =>{
@@ -173,9 +179,16 @@ export default function AddContent() {
         }
     }
     useEffect(()=>{
+        const initInfo = async () =>{
+            const listInfoArr = await api.getListInfo();
+            setListInfo(listInfoArr)
+        }
+        initInfo()
+    },[])
+
+    useEffect(()=>{
         if(!slugValue) return;
         const SearchSlug = async () =>{
-            const listInfo = await api.getListInfo();
             const listArr = listInfo.filter(item=>item.Slug === slugValue);
             setSlugTips(!!listArr.length)
         }
@@ -183,20 +196,38 @@ export default function AddContent() {
     },[slugValue])
 
     useEffect(()=>{
-        if(!addressValue) return;
-        const SearchAddress = async () =>{
-            const listInfo = await api.getListInfo();
-            const listArr = listInfo.filter(item=>item.TokenContractAddress === addressValue);
-            setAddressTips(!!listArr.length)
+        if(!githubValue) return;
+        const SearchGithub = async () =>{
+            const listArr = listInfo.filter(item=>item.Github.toLowerCase() === githubValue.toLowerCase());
+            setGithubTips(!!listArr.length)
         }
-        SearchAddress()
-    },[addressValue])
+        SearchGithub()
+    },[githubValue])
+
+    useEffect(()=>{
+        if(!websiteValue) return;
+        const SearchWebsite = async () =>{
+            const listArr = listInfo.filter(item=>item.Website.toLowerCase() === websiteValue.toLowerCase());
+            setWebsiteTips(!!listArr.length)
+        }
+        SearchWebsite()
+    },[websiteValue])
+
+    // useEffect(()=>{
+    //     if(!addressValue) return;
+    //     const SearchAddress = async () =>{
+    //         const listInfo = await api.getListInfo();
+    //         const listArr = listInfo.filter(item=>item.TokenContractAddress === addressValue);
+    //         setAddressTips(!!listArr.length)
+    //     }
+    //     SearchAddress()
+    // },[addressValue])
 
 
 
     const ReturnDisabled = () =>{
         // return !(daoName.length && slug.length && tagline.length && mission.length && values.length && emoji.length && tokenSymbol.length && tokenAddress.length && logo.length && cover.length && twitter.length && discord.length && mirror.length && website.length && email.length)
-        return !(daoName.length && slug.length && tagline.length && mission.length && values.length && logo.length && tokenSymbol.length && tokenAddress.length && cover.length && discord.length )
+        return !(daoName.length && slug.length && tagline.length && mission.length && values.length && logo.length  && cover.length  && github.length && website.length  )
     }
 
 
@@ -264,7 +295,7 @@ export default function AddContent() {
                         {/*    </div>*/}
                         {/*</div>*/}
                         <div className="col-span-1">
-                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Symbol *</label>
+                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Symbol</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <input type="text" name="tokenSymbol" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder={aboutus[0].TokenSymbol} value={tokenSymbol} onChange={e=>handleInput(e,'tokenSymbol')}/>
                             </div>
@@ -272,14 +303,14 @@ export default function AddContent() {
                     </div>
                     <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-3">
-                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Contract Address * </label>
+                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Token Contract Address </label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <input type="text" name="tokenAddress" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder={aboutus[0].TokenContractAddress} value={tokenAddress} onChange={e=>handleInput(e,'tokenAddress')}/>
 
                             </div>
-                            {
-                                addressTip && <p className="pt-1 text-left text-red-500"><b>{addressValue}</b> is not available. Please choose a different token contract address.</p>
-                            }
+                            {/*{*/}
+                            {/*    addressTip && <p className="pt-1 text-left text-red-500"><b>{addressValue}</b> is not available. Please choose a different token contract address.</p>*/}
+                            {/*}*/}
                         </div>
                     </div>
                     <div>
@@ -345,7 +376,9 @@ export default function AddContent() {
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">https://github.com/</span>
                                 <input type="text" name="slug" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400"
                                        placeholder={aboutus[0].Github} value={github} onChange={e=>handleInput(e,'Github')}/></div>
-
+                            {
+                                githubTips&&<p className="pt-1 text-left text-red-500"><b>{github}</b> is not available. Please choose a different github address.</p>
+                            }
 
                         </div>
                     </div>
@@ -360,11 +393,14 @@ export default function AddContent() {
                     </div>
                     <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-3 sm:col-span-2">
-                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Website</label>
+                            <label className="font-cal block text-xl text-gray-700 tracking-wide">Website *</label>
                             <div className="mt-1 flex rounded-md shadow-sm">
                                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-800 text-lg">https://</span>
                                 <input type="text" name="website" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-gray-300 placeholder-gray-400 tracking-wide" placeholder={aboutus[0].Website} value={website} onChange={e=>handleInput(e,'website')}/>
                             </div>
+                            {
+                                websiteTips&&<p className="pt-1 text-left text-red-500"><b>{website}</b> is not available. Please choose a different website address.</p>
+                            }
                         </div>
                     </div>
                     <div className="grid grid-cols-3 gap-6">
