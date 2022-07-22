@@ -37,6 +37,19 @@ const HeaderBox = styled('header')`
       width: 100%;
     }
   }
+  .loginBox a{
+    display: inline-block;
+    text-align: center;
+    padding-right: 0.5rem;
+    background:url("/assets/images/btnBg.png") no-repeat right;
+    background-size: 100%;
+    line-height: 5.7rem;
+    width: 7.2rem;
+    font-family: "PT-Mono-Bold"!important;
+    height: 6rem;
+    flex-shrink: 0;
+    
+  }
 `
 const RhtBox = styled('span')`
   box-sizing: border-box; 
@@ -64,9 +77,10 @@ const RhtBox = styled('span')`
 `
 
 const Logo = styled.span`
-  font-size: 2rem;
-  font-family: "CalSans-SemiBold";
-  padding-top: 20px;
+  margin: 2rem 0 3.2rem;
+  //font-size: 2rem;
+  //font-family: "CalSans-SemiBold";
+  //padding-top: 20px;
 `
 
 const SpanBox = styled.div`
@@ -194,10 +208,12 @@ function HeaderTop({router}) {
             {/*        </button>*/}
             {/*    </div>*/}
             {/*</a>*/}
-            <div className="flex gap-4 xl:gap-6 justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full h-20">
+            <div className="flex gap-4 xl:gap-6 justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full h-28">
                 <div className="flex justify-start items-center gap-4 xl:gap-6 w-full">
                     <Link href="/" passHref>
-                        <Logo>DAO Park</Logo>
+                        <Logo>
+                            <img src="/assets/images/logo.png" alt=""/>
+                        </Logo>
                     </Link>
                     {
                         showTop && <div className="relative flex-auto">
@@ -207,7 +223,7 @@ function HeaderTop({router}) {
                                     <div className="flex flex-auto items-center">
                                         <input
                                             className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 bg-gray-100  transition ease duration-150"
-                                            placeholder="Search DAOs by name, slogan..." autoComplete="off" value={keywords}  onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/>
+                                            placeholder="Search DAOs..." autoComplete="off" value={keywords}  onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/>
                                     </div>
                                 </div>
                             </div>
@@ -215,14 +231,14 @@ function HeaderTop({router}) {
                     }
 
                 </div>
-                <div className=" lg:flex gap-4 xl:gap-6 justify-between items-center">
+                <div className=" lg:flex gap-4 xl:gap-6 justify-between items-center loginBox">
                     {/*<Link href="/add">*/}
                     {/*    <a className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Add a DAO</a>*/}
                     {/*</Link>*/}
                     {
                         infoData == null && !showloading &&<div>
                             <Link href={url}>
-                                <a id="login" className="whitespace-nowrap font-cal tracking-wide py-2 px-5 text-lg border-2 border-white text-gray-800 hover:text-black transition-all ease duration-150">Login </a>
+                                <a id="login">Sign In </a>
                             </Link>
 
                         </div>

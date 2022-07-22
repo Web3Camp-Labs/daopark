@@ -4,8 +4,19 @@ import {useDAO} from "../pages/api/connect";
 import aboutus from "../public/aboutus.json";
 
 const BannerBox = styled('div')`
+  .h-150{
+    height: 42rem;
+  }
   .h50{
-    height: 50px; transition: all 0.1s ease 0s;
+    height: 62px; transition: all 0.1s ease 0s;
+    background: url("/assets/images/inputBg.png") no-repeat;
+    width: 120%;
+    input{
+      background: none;
+      margin-left: 120px;
+      font-family: "PTM55F"!important;
+      color: rgba(0,0,0,0.9);
+    }
   }
 `
 
@@ -53,23 +64,23 @@ export default function Banner() {
             <SpanBox>
                 <img alt="" src="/assets/images/banner.png" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"/>
             </SpanBox>
-            <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full bg-black bg-opacity-30">
-                <h1 className="text-white -mt-10 mr-auto ml-10 sm:mx-auto w-3/4 sm:w-auto text-5xl font-cal tracking-wider">Find and learn about DAOs</h1>
+            <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full">
+
                 <div className="relative w-11/12 lg:w-2/3 max-w-2xl mt-10">
                     <div className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg bg-white h50" >
                         <div className="flex space-between w-full items-center">
                             <div className="flex flex-auto items-center">
-                                <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs by name, slogan..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
+                                <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="absolute bottom-0 px-10 sm:px-20 py-5 flex justify-between items-center w-full">
-                <a className="text-gray-400 text-base sm:text-lg hover:text-gray-300 transition-all ease duration-150" href={`/dao/${obj.Slug}`}>{obj.Name} – <i>{obj.Tagline}</i>
-                </a>
-                {/*<a className="text-lg font-cal tracking-wide whitespace-nowrap bg-white border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max hover:scale-105 transition-all ease duration-150" href={`/dao/${obj.Slug}`}>{obj.Emoji}*/}
-                {/*</a>*/}
-            </div>
+            {/*<div className="absolute bottom-0 px-10 sm:px-20 py-5 flex justify-between items-center w-full">*/}
+            {/*    <a className="text-gray-400 text-base sm:text-lg hover:text-gray-300 transition-all ease duration-150" href={`/dao/${obj.Slug}`}>{obj.Name} – <i>{obj.Tagline}</i>*/}
+            {/*    </a>*/}
+            {/*    /!*<a className="text-lg font-cal tracking-wide whitespace-nowrap bg-white border-gray-50 border-2 text-black px-5 py-2 rounded-full max-w-max hover:scale-105 transition-all ease duration-150" href={`/dao/${obj.Slug}`}>{obj.Emoji}*!/*/}
+            {/*    /!*</a>*!/*/}
+            {/*</div>*/}
         </div>
     </BannerBox>
 }

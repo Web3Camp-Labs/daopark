@@ -1,11 +1,21 @@
 import aboutus from "../public/aboutus.json";
+import styled from "styled-components";
+
+const LinkBox = styled.a`
+    display: flex;
+  align-items: center;
+  width:40rem;
+  img{
+    margin-left: 30px;
+  }
+`
 
 export default function FooterBtm() {
     const [ obj ] = aboutus;
 
-    return   <footer className="border-t flex justify-between items-center h-20">
+    return   <footer className=" flex justify-between items-center h-20">
         <div className="flex justify-between items-center 2xl:w-1536 m-auto px-10 w-full ">
-            <a className="text-gray-500 text-lg font-cal hover:text-black transition-all ease duration-150" href={`${obj.Blog}`} target="_blank" rel="noreferrer">Blog</a>
+            <LinkBox className="text-gray-500 text-lg font-cal hover:text-black transition-all ease duration-150" href={`${obj.Blog}`} target="_blank" rel="noreferrer">Special Thanks <img src="/assets/images/logoWeb3.png" alt=""/></LinkBox>
             <div className="flex space-x-8">
                 <a href={`https://discord.com/invite/${obj.Discord}`} target="_blank" rel="noreferrer">
                     <img src="/assets/images/discord.svg" alt="" className="text-gray-500 hover:text-black transition-all ease duration-150"/>

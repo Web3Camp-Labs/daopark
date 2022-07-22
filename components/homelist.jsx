@@ -5,8 +5,9 @@ import api from "../pages/api/api";
 import styled from "styled-components";
 import aboutus from "../public/aboutus.json";
 const Box = styled.div`
-  .boxbg{
-    
+  .titleBox{
+    font-family: "PT-Mono-Bold";
+    padding-top: 1.2rem;
   }
   .noTop{
     border-top-color:transparent
@@ -19,6 +20,16 @@ const Box = styled.div`
      margin:2.5rem 1rem 1rem!important ;
    }
   }
+`
+const FirstLine = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top:3rem;
+    padding-left: 3rem;
+    img{
+      line-height: 0;
+      height: 25px;
+    }
 `
 export default function HomeList() {
 
@@ -50,7 +61,12 @@ export default function HomeList() {
 
     return <Box>
         <div className="max-w-screen-2xl mx-auto">
-            <h2 className="font-cal text-4xl mt-32 pb-5 mx-10">Popular DAOs</h2>
+            <FirstLine>
+                <img src="/assets/images/titleLft.png" alt=""/>
+                <h2 className="font-cal text-4xl  pb-5 mx-10 titleBox">Hottest DAOs</h2>
+                <img src="/assets/images/titleRht.png" alt=""/>
+            </FirstLine>
+
             {
                 showLoading&&<div className="boxBg">
                 <div className="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin noTop" />
@@ -59,10 +75,10 @@ export default function HomeList() {
             {
                 !showLoading && <div className="grid grid-cols-1 gap-8 m-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
                     {
-                        search == null &&<ItemDao item={aboutus[0]}/>
+                        search == null &&<ItemDao index={1} item={aboutus[0]}/>
                     }
                     {
-                        !!list.length && list.map((item)=> <ItemDao item={item} key={item.DAOIndex}/>
+                        !!list.length && list.map((item,index)=> <ItemDao index={index+2} item={item} key={item.DAOIndex}/>
                         )
                     }
                 </div>

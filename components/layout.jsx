@@ -5,6 +5,7 @@ import FooterBtm from "./footer";
 
 
 const Maincontent = styled('main')`
+  padding-top: 20px;
   
 `
 
