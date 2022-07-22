@@ -100,7 +100,7 @@ export default function ItemDao(props){
     },[item])
 
     return <Link href={`/dao/${obj?.Slug}`} as={`/dao/${obj?.Slug}`} passHref><div className="!no-underline" >
-            <LiBox className="hidden sm:block rounded-2xl  overflow-hidden" className={`hidden sm:block rounded-2xl  overflow-hidden bg${index % 8}`}>
+            <LiBox  className={`hidden sm:block rounded-2xl  overflow-hidden bg${index % 8}`}>
                 <SpanBoxli>
                     <span />
                     <img alt="Developer DAO" src={obj?.CoverPhoto}  className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" />
