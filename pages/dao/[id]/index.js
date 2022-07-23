@@ -6,7 +6,11 @@ import DaoMain from "../../../components/dao/daoMain";
 import DaoList from "../../../components/dao/daolist";
 import {useEffect, useState} from "react";
 import aboutUs from "../../../public/aboutus.json";
+import styled from "styled-components";
 // import api from "../../api/api";
+
+const BodyBox = styled.div`
+`
 
 
 export default function Dao() {
@@ -24,7 +28,7 @@ export default function Dao() {
         getDetail()
     },[id])
 
-    return <div>
+    return <BodyBox>
         <div className="w-full my-30" >
             {/*<TopFix  body={id === aboutUs.Slug?aboutUs:detailInfo}/>*/}
             <DaoBanner body={id === aboutUs[0].Slug?aboutUs:detailInfo}/>
@@ -49,7 +53,7 @@ export default function Dao() {
         {/*    </div>*/}
         {/*}*/}
 
-    </div>
+    </BodyBox>
 }
 
 // export async function getStaticProps({params}) {

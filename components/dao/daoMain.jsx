@@ -7,7 +7,30 @@ import Tweets from "./tweets";
 import githubObj from "../../public/githubConfig";
 import Contributors from "./contributors";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import Link from 'next/link'
+import Link from 'next/link';
+
+const MainBox = styled.div`
+    .bgGreen{
+      background: #F0FDF2;
+    }
+    .bgFlex{
+      display: flex;
+      align-items: center;
+      img{
+        width: 27px;
+        margin-right: 8px;
+      }
+    }
+  .txtFont{
+    font-family: "PT-Mono-Bold";
+  }
+  .TitleBox{
+    font-family: "PT-Mono-Bold";
+  }
+  .content{
+    font-family: "PTM55F";
+  }
+`
 
 const SpanBox = styled('span')`
   box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0;
@@ -49,16 +72,16 @@ export default function DaoMain(props) {
         },2000)
     }
 
-    return <div>
+    return <MainBox>
         <div className="w-full max-w-screen-2xl mx-auto">
             <div className="mt-24 mx-10 md:text-left text-center">
                 <div className="flex md:justify-start justify-center items-center space-x-3">
-                    <h1 className="font-cal text-3xl sm:text-5xl tracking-wide">{obj?.Name}</h1>
+                    <h1 className="font-cal text-3xl sm:text-5xl  TitleBox">{obj?.Name}</h1>
                     <div className="flex justify-center items-center rounded-full w-8 h-8">
                         <img src="/assets/images/passd.svg" alt="" />
                     </div>
                 </div>
-                <p className="text-base sm:text-lg mt-5">{obj?.Tagline}</p>
+                <p className="text-base sm:text-lg mt-5 content">{obj?.Tagline}</p>
                 <div className="flex md:justify-start justify-center items-center space-x-3 mt-3">
                     <a href={`https://twitter.com/${obj?.Twitter}`} target="_blank" className="font-cal tracking-wide text-white bg-[#1da1f2] rounded-full flex justify-center items-center space-x-2 px-4 py-2" rel="noreferrer">
                         <img src="/assets/images/twitterWhite.svg" alt=""/>
@@ -117,7 +140,10 @@ export default function DaoMain(props) {
                 </div>
                 <div className="hidden md:flex justify-start items-center mt-10">
                     {
-                        list.map((item,index)=>(<span key={`top_${index}`} className={current === index ? "bg-gray-100 rounded-t-lg font-cal text-xl capitalize tracking-wide text-black px-5 py-3 transition-all ease-in-out duration-150" : "font-cal text-xl capitalize tracking-wide text-black px-5 py-3 transition-all ease-in-out duration-150"} href="/dao/developer" onClick={()=>handleSelect(index)}>{item}</span>))
+                        list.map((item,index)=>(<span key={`top_${index}`} className={current === index ? "bgGreen rounded-t-lg font-cal text-xl capitalize tracking-wide text-black px-5 py-3 transition-all ease-in-out duration-150 bgFlex txtFont" : "font-cal text-xl capitalize tracking-wide text-black px-5 py-3 transition-all ease-in-out duration-150 txtFont"} href="/dao/developer" onClick={()=>handleSelect(index)}>
+                            {
+                                current === index && <img src="/assets/images/star.png" alt=""/>
+                            }  {item}</span>))
                     }
 
                 </div>
@@ -130,8 +156,8 @@ export default function DaoMain(props) {
             </div>
         </div>
 
-        <div className="w-full bg-gray-100">
-            <div className="max-w-screen-2xl mx-auto md:px-10 py-5 lg:py-10 grid grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="w-full bgGreen">
+            <div className=" w-full max-w-screen-2xl mx-auto md:px-10 py-5 lg:py-10 ">
                 <div className="col-span-2">
                     {
                         current === 0 && <Main01 body={obj} />
@@ -150,14 +176,14 @@ export default function DaoMain(props) {
                     }
 
                 </div>
-                <div className="hidden lg:block col-span-1">
-                    <div className="bg-white py-10 px-5 text-center w-full flex flex-col justify-center items-center">
-                        <SpanBox2>
-                            <span> <img alt="" src="/assets/images/empty-state.png" /></span>
-                        </SpanBox2>
-                        <p className="font-cal text-gray-600 text-2xl">This DAO does not have a token yet.</p></div>
-                </div>
+                {/*<div className="hidden lg:block col-span-1">*/}
+                {/*    <div className="bg-white py-10 px-5 text-center w-full flex flex-col justify-center items-center">*/}
+                {/*        <SpanBox2>*/}
+                {/*            <span> <img alt="" src="/assets/images/empty-state.png" /></span>*/}
+                {/*        </SpanBox2>*/}
+                {/*        <p className="font-cal text-gray-600 text-2xl">This DAO does not have a token yet.</p></div>*/}
+                {/*</div>*/}
             </div>
         </div>
-    </div>
+    </MainBox>
 }
