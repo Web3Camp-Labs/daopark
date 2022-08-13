@@ -14,7 +14,7 @@ export default function AddDAO() {
     return <DAOBox>
             <div className="w-full my-30">
                 <div className="boxBg"></div>
-                <div className="w-full 2xl:w-1536 mx-auto">
+                <div className="w-full">
                     <AddBanner />
                     <AddContent />
                 </div>
