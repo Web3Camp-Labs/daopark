@@ -29,6 +29,8 @@ const MainBox = styled.div`
   }
   .content{
     font-family: "PTM55F";
+    font-size: 28px!important;
+    margin-bottom: 50px;
   }
 `
 
@@ -48,6 +50,27 @@ const SpanBox2 = styled('span')`
   img{
       display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;
 
+  }
+`
+const ContentBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  img{
+    width: 100%;
+  }
+  .midBox{
+    background: url("/assets/images/contentBg.png") repeat-y;
+    background-size: 100%;
+  }
+  .rhtBg{
+    background: url("/assets/images/bgRht.png") no-repeat 93% 110px;
+  }
+  .rhtDecor{
+    background: url("/assets/images/rhtTop.png") no-repeat 91% top;
+  }
+  .lftBg{
+      background: url("/assets/images/bglft.png") no-repeat 4% bottom;
   }
 `
 export default function DaoMain(props) {
@@ -81,23 +104,23 @@ export default function DaoMain(props) {
                         <img src="/assets/images/passd.svg" alt="" />
                     </div>
                 </div>
-                <p className="text-base sm:text-lg mt-5 content">{obj?.Tagline}</p>
+                <p className="text-base  mt-5 content">{obj?.Tagline}</p>
                 <div className="flex md:justify-start justify-center items-center space-x-3 mt-3">
-                    <a href={`https://twitter.com/${obj?.Twitter}`} target="_blank" className="font-cal tracking-wide text-white bg-[#1da1f2] rounded-full flex justify-center items-center space-x-2 px-4 py-2" rel="noreferrer">
+                    <a href={`https://twitter.com/${obj?.Twitter}`} target="_blank" className="font-cal tracking-wide text-white bg-[#1da1f2] rounded-lg flex justify-center items-center space-x-2 px-4 py-2 border-4 border-black"  rel="noreferrer">
                         <img src="/assets/images/twitterWhite.svg" alt=""/>
-                        <p className="hidden lg:block">@{obj?.Twitter}</p>
+                        <p className="hidden lg:block ">@{obj?.Twitter}</p>
                     </a>
-                    <a href={`https://discord.com/invite/${obj?.Discord}`} target="_blank" className="font-cal tracking-wide text-white bg-[#4A66F7] rounded-full flex justify-center items-center space-x-2 px-4 py-2" rel="noreferrer">
+                    <a href={`https://discord.com/invite/${obj?.Discord}`} target="_blank" className="font-cal tracking-wide text-white bg-[#4A66F7] rounded-lg flex justify-center items-center space-x-2 px-4 py-2 border-4 border-black" rel="noreferrer">
                         <img src="/assets/images/discordWhite.svg" alt=""/>
                         <p className="hidden lg:block">@ {obj?.Discord}</p>
                     </a>
-                    <a href={`https://${obj?.Website}`} target="_blank" className="font-cal tracking-wide text-white bg-black rounded-full flex justify-center items-center space-x-2 px-4 py-2" rel="noreferrer">
+                    <a href={`https://${obj?.Website}`} target="_blank" className="font-cal tracking-wide text-white bg-black rounded-lg flex justify-center items-center space-x-2 px-4 py-2 border-4 border-black" rel="noreferrer">
                         <img src="/assets/images/globalWhite.svg" alt=""/>
                         <p className="hidden lg:block">Website</p>
                     </a>
                     {
                         obj?.Mirror &&<a href={`https://${obj?.Mirror}`} target="_blank"  rel="noreferrer"
-                                         className="font-cal tracking-wide text-white bg-[#959595] rounded-full flex justify-center items-center space-x-2 px-4 py-2">
+                                         className="font-cal tracking-wide text-white bg-[#959595] rounded-lg flex justify-center items-center space-x-2 px-4 py-2 border-4 border-black">
                             <img src="/assets/images/mirror.svg" alt=""/><p className="hidden lg:block">{obj?.Mirror}</p>
                         </a>
                     }
@@ -105,7 +128,7 @@ export default function DaoMain(props) {
                     {
                         !showCopy &&<CopyToClipboard text={`${githubObj.baseUrl}/dao/${obj?.Slug}`}
                                                     onCopy={() => copyLink()}>
-                            <button className="font-cal tracking-wide text-black border-2 border-black rounded-full flex justify-center items-center space-x-2 px-4 py-2 min-w-max">
+                            <button className="font-cal tracking-wide text-black border-4 border-black rounded-xl flex justify-center items-center space-x-2 px-4 py-2 min-w-max">
                                 <img src="/assets/images/link.svg" alt=""/>
                                 <p className="hidden lg:block"> {githubObj.baseUrl.split('//')[1]}/dao/{obj?.Slug}</p>
                             </button>
@@ -159,22 +182,34 @@ export default function DaoMain(props) {
         <div className="w-full bgGreen">
             <div className=" w-full max-w-screen-2xl mx-auto md:px-10 py-5 lg:py-10 ">
                 <div className="col-span-2">
-                    {
-                        current === 0 && <Main01 body={obj} />
-                    }
-                    {
-                        current === 1 && !!obj.Github && <Contributors body={obj} />
-                    }
-                    {
-                        current === 1 && !obj.Github && <Main02 title="Contributors" />
-                    }
-                    {
-                        current === 2 && !!obj.Twitter && <Tweets body={obj}/>
-                    }
-                    {
-                        current === 2 && !obj.Twitter && <Main02 title="News"/>
-                    }
+                    <ContentBox>
+                        <div><img src="/assets/images/contentTop.png" alt=""/></div>
+                        <div className="midBox">
+                            <div className="rhtBg">
+                                <div className="rhtDecor">
+                                    <div className="lftBg">
+                                        {
+                                            current === 0 && <Main01 body={obj} />
+                                        }
+                                        {
+                                            current === 1 && !!obj.Github && <Contributors body={obj} />
+                                        }
+                                        {
+                                            current === 1 && !obj.Github && <Main02 title="Contributors" />
+                                        }
+                                        {
+                                            current === 2 && !!obj.Twitter && <Tweets body={obj}/>
+                                        }
+                                        {
+                                            current === 2 && !obj.Twitter && <Main02 title="News"/>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                         <div><img src="/assets/images/contentbtm.png" alt=""/></div>
+                    </ContentBox>
                 </div>
                 {/*<div className="hidden lg:block col-span-1">*/}
                 {/*    <div className="bg-white py-10 px-5 text-center w-full flex flex-col justify-center items-center">*/}

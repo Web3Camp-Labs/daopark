@@ -18,6 +18,9 @@
 @font-face {
     font-family: "PT-Mono-Bold";
     src: url('./PT-Mono-Bold.ttf');
+}@font-face {
+    font-family: "PingFang-Semibold";
+    src: url('./PingFang-Semibold.ttf');
 }
 
 

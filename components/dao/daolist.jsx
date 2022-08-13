@@ -15,6 +15,21 @@ const Box = styled.div`
   }
 `
 
+const FirstLine = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top:3em;
+    padding-left: 3rem;
+    img{
+      line-height: 0;
+      height: 25px;
+    }
+    h2{
+      margin-top: 25px;
+      font-family: "PingFang-Semibold";
+    }
+`
+
 export default function DaoList(props) {
     const [list, setList] = useState([]);
     const { len, title } = props;
@@ -55,10 +70,13 @@ export default function DaoList(props) {
 
     return <Box>
         <div className="max-w-screen-2xl mx-auto">
+            <FirstLine>
+                <img src="/assets/images/titleLft.png" alt=""/>
             {
                !!title &&<h2 className="font-cal text-4xl mt-32 pb-5 mx-10">{title}</h2>
             }
-
+                <img src="/assets/images/titleRht.png" alt=""/>
+            </FirstLine>
             <div className="grid grid-cols-1 gap-8 m-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
 
                 {

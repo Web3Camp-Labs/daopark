@@ -11,11 +11,17 @@ const BannerBox = styled('div')`
     height: 62px; transition: all 0.1s ease 0s;
     background: url("/assets/images/inputBg.png") no-repeat;
     width: 120%;
+    display: flex;
     input{
       background: none;
       margin-left: 120px;
       font-family: "PTM55F"!important;
       color: rgba(0,0,0,0.9);
+    }
+    .imgPosition{
+      margin: -2px 10px 0 15px;
+      width: 35px;
+      height: 35px;
     }
   }
 `
@@ -68,8 +74,10 @@ export default function Banner() {
 
                 <div className="relative w-11/12 lg:w-2/3 max-w-2xl mt-10">
                     <div className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg bg-white h50" >
+                        <img src="/assets/images/search.png" alt="" className="imgPosition"/>
                         <div className="flex space-between w-full items-center">
                             <div className="flex flex-auto items-center">
+
                                 <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
                         </div>
                     </div>

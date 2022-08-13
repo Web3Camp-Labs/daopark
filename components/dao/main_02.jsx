@@ -13,7 +13,7 @@ const SpanBox = styled('span')`
 `
 
 export default function Main02(props) {
-    return <div className="bg-white md:rounded-lg w-full px-12 py-8 mb-12">
+    return <div className="w-full px-12 py-8 mb-12">
         <h2 className="font-cal text-3xl">{props.title}</h2>
         <div className="flex flex-col items-center justify-center">
             <div className="my-8 flex flex-col justify-center items-center">

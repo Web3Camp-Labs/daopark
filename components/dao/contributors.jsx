@@ -3,28 +3,25 @@ import {useEffect, useState} from "react";
 import {Octokit} from "@octokit/rest";
 
 const Box = styled.div`
+  padding-bottom: 25px;
   .boxBgMiddle{
     display: flex;
     justify-content: center;
     margin-top: 40px;
+  }
+  .mt30{
+    padding-top: 30px;
+    font-size: 40px;
+    font-family: "PT-Mono-Bold";
+    font-weight: bold;
+    color: rgba(0,0,0,0.9000);
+    line-height: 44px;
   }
     .boxBg{
       background-color: rgb(217, 175, 217); background-image: linear-gradient(0deg, rgb(217, 175, 217) 0%, rgb(151, 217, 225) 100%); border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;
     }
   .noTop{
     border-top-color: transparent;
-  }
-`
-const SpanBox = styled('span')`
- box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0; margin: 0; padding: 0; position: relative; max-width: 100%;
- span{
- box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0; margin: 0; padding: 0; max-width: 100%;
- }
-  .img1{
-      display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0; margin: 0; padding: 0;
-  }
-  .img2{
-    position: absolute; inset: 0; box-sizing: border-box; padding: 0; border: none; margin: auto; display: block; width: 0; height: 0; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;
   }
 `
 
@@ -37,6 +34,55 @@ const ImgBox = styled.span`
   .img2{
     position: absolute; inset: 0; box-sizing: border-box; padding: 0; border: none; margin: auto; display: block; width: 0; height: 0; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;
   }
+`
+
+const LineBox = styled.div`
+    display: flex;
+    align-items: center;
+  justify-content: flex-start;
+  margin-top: 8px;
+  img{
+    width: 133px!important;
+    margin: 0;
+  }
+`
+const UlBox = styled.ul`
+  margin:65px 0 0 -75px;
+  &:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+    li{
+      width: 283px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 4px solid #000000;
+      float:left;
+      margin:0 0 50px 75px;
+
+      &>div{
+        border-bottom: 4px solid #000000;
+        text-align: center;
+        &:last-child{
+          margin-bottom:4px;
+        }
+      }
+      
+      img{
+        width: 110px;
+        height: 110px;
+        margin: 50px auto 16px;
+        border-radius: 110px;
+      }
+      .name{
+        font-size: 22px;
+        font-family: "PT-Mono-Bold";
+        font-weight: bold;
+        color: rgba(0,0,0,0.9000);
+        line-height: 24px;
+        margin-bottom: 20px;
+      }
+      .contribution{
+        padding: 9px 0 7px;
+      }
+    }
 `
 
 export default function Contributors(props) {
@@ -65,12 +111,15 @@ export default function Contributors(props) {
             SetShowLoading(false);
             setList(listData.data)
         }
-        getContributors()
+        getContributors();
     },[obj])
 
     return <Box>
-        <div className="bg-white md:rounded-lg w-full px-12 py-8 mb-12">
-            <h2 className="font-cal text-3xl">Contributors</h2>
+        <div className=" w-full px-12 mb-12">
+            <div>
+                <h2 className="font-cal text-3xl">Contributors</h2>
+                <LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>
+            </div>
             {
                 showLoading&&<div className="boxBgMiddle">
                     <div className="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin noTop" />
@@ -81,36 +130,35 @@ export default function Contributors(props) {
                     <div className="my-8 flex flex-col justify-center items-center">
                         <ImgBox>
                     <span>
-                        <img alt="" src="/assets/images/empty-state.png" />
+                        <img alt="" src="/assets/images/noContent.png" />
                         </span>
                         </ImgBox>
-                        <p className="font-cal text-gray-600 text-2xl">No Contributors Yet.</p>
+                        <p className="font-cal text-gray-600 text-2xl mt30">No Contributors Yet.</p>
                     </div>
                 </div>
             }
             {
-                !showLoading&&!!list.length &&<div className="my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+                !showLoading&&!!list.length &&<UlBox>
                     {
-                        list.map(item=>( <a href={item.html_url} target="_blank" rel="noreferrer" key={item.id}>
-                            <div className="relative flex flex-col items-center pb-8 rounded-lg border border-gray-200 group hover:shadow-xl transition-all">
-                                <div className="w-full h-24 -mb-12 boxBg"  />
-                                <div className="rounded-full overflow-hidden w-20 h-20 border-2 border-white bg-white">
-                                    <SpanBox >
-                            <span>
-                                <img src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2780%27%20height=%2780%27/%3e" className="img1" alt=""/>
-                            </span>
-                                        <img src={item.avatar_url} alt=""
-                                             className="duration-700 ease-in-out grayscale-0 blur-0 scale-100 img2"/>
-                                    </SpanBox>
+                        list.map(item=>(<li  key={item.id}>
+                               <div className="topBox">
+                                   <a href={item.html_url} target="_blank" rel="noreferrer">
+                                       <div>
+                                            <img src={item.avatar_url} alt=""/>
+                                       </div>
+                                       <div className="name">{item.login}</div>
+                                   </a>
                                 </div>
-                                <div className="text-center w-5/6 mx-auto">
-                                    <p className="text-2xl font-cal text-black mb-3 truncate">{item.login}</p>
-                                    <p className="text-gray-600"> <span className="text-2xl">{item.contributions}</span> Contributions</p>
+                                <div className="contribution">
+                                    <a href={item.html_url} target="_blank" rel="noreferrer">
+                                        <span className="text-2xl">{item.contributions}</span> Contributions
+                                    </a>
                                 </div>
-                            </div>
-                        </a>))
+                            </li>
+
+                        ))
                     }
-                </div>
+                </UlBox>
             }
 
         </div>

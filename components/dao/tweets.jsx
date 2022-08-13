@@ -112,7 +112,7 @@ export default function Tweets(props) {
         },2000)
     }
 
-    return <Box><div className="bg-white md:rounded-lg w-full p-8 mb-12">
+    return <Box><div className="w-full p-8 mb-12">
         <h2 className="font-cal text-3xl">Latest Tweets</h2>
         {
             showLoading&&<div className="boxBgMiddle">
