@@ -99,7 +99,7 @@ export default function DaoMain(props) {
         <div className="w-full max-w-screen-2xl mx-auto">
             <div className="mt-24 mx-10 md:text-left text-center">
                 <div className="flex md:justify-start justify-center items-center space-x-3">
-                    <h1 className="font-cal text-3xl sm:text-5xl  TitleBox">{obj?.Name}</h1>
+                    <h1 className="font-cal text-3xl sm:text-5xl TitleBox pt-8">{obj?.Name}</h1>
                     <div className="flex justify-center items-center rounded-full w-8 h-8">
                         <img src="/assets/images/passd.svg" alt="" />
                     </div>
