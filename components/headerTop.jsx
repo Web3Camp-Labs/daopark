@@ -93,6 +93,20 @@ const SpanBox = styled.div`
   }
 `
 
+const SearchBox = styled('div')`
+    background: url("/assets/images/searchBg.png");
+    width: 556px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    input{
+      margin-left: 10px;
+    }
+    img{
+      margin-bottom:8px;
+    }
+`
+
 function HeaderTop({router}) {
     const {  dispatch, state } = useDAO();
 
@@ -217,16 +231,17 @@ function HeaderTop({router}) {
                     </Link>
                     {
                         showTop && <div className="relative flex-auto">
-                            <div
-                                className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg -mt-6 bg-gray-100">
+                            <SearchBox
+                                className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg -mt-6 ">
                                 <div className="flex space-between w-full items-center">
                                     <div className="flex flex-auto items-center">
+                                        <img src="/assets/images/searchIcon.png" alt=""/>
                                         <input
-                                            className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 bg-gray-100  transition ease duration-150"
+                                            className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 transition ease duration-150"
                                             placeholder="Search DAOs..." autoComplete="off" value={keywords}  onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/>
                                     </div>
                                 </div>
-                            </div>
+                            </SearchBox>
                         </div>
                     }
 
