@@ -265,9 +265,7 @@ function HeaderTop({router}) {
                 {/*    </div>*/}
                 {/*</div>*/}
                 {
-
-                    // showNav && <div className="rounded-lg shadow-xl border border-gray-100 p-3 bg-white navBox ">
-                <div className="rounded-lg shadow-xl border  p-3 bg-white navBox border-4 border-black">
+                    showNav &&<div className="rounded-lg shadow-xl border  p-3 bg-white navBox border-4 border-black">
 
                         {/*<Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150"*/}
                         {/*      href={`/${infoData?.login}`}>*/}
