@@ -18,7 +18,7 @@ const HeaderBox = styled('header')`
   .navBox{
     position: absolute;
     top: 6.5rem;
-    right: 1rem;
+    right: 2.5rem;
   }
   .w100Bg{
     margin-bottom: 1rem;
@@ -266,7 +266,8 @@ function HeaderTop({router}) {
                 {/*</div>*/}
                 {
 
-                    showNav && <div className="rounded-lg shadow-xl border border-gray-100 p-3 bg-white navBox ">
+                    // showNav && <div className="rounded-lg shadow-xl border border-gray-100 p-3 bg-white navBox ">
+                <div className="rounded-lg shadow-xl border  p-3 bg-white navBox border-4 border-black">
 
                         {/*<Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150"*/}
                         {/*      href={`/${infoData?.login}`}>*/}
@@ -285,19 +286,21 @@ function HeaderTop({router}) {
                         {/*    </div>*/}
 
                         {/*</Link>*/}
-                        <Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add" passHref>
-                            <div className="flex items-center space-x-5 justify-between w100Bg">
+                        <Link className="flex justify-between items-center  rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add" passHref>
+                            <div className="flex items-center space-x-5 justify-between w100Bg px-2 py-4">
+
                                 <div className="lft">
-                                    <img src="/assets/images/add.svg" alt=""/>
+                                    {/*<img src="/assets/images/add.svg" alt=""/>*/}
                                     <p className="font-cal text-lg">Add a DAO</p>
                                 </div>
                                 <img src="/assets/images/arrow.svg" alt=""/>
                             </div>
                         </Link>
+                        <img src="/assets/images/line.png" alt="" width="256" />
                         <div className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150 logout" >
-                            <div className="flex items-center space-x-5 justify-between" onClick={()=>handleLogout()}>
+                            <div className="flex items-center space-x-5 justify-between px-2 py-4" onClick={()=>handleLogout()}>
                                 <div className="lft">
-                                    <img src="/assets/images/logout.svg" alt=""/>
+                                    {/*<img src="/assets/images/logout.svg" alt=""/>*/}
                                     <p className="font-cal text-lg">logout</p>
                                 </div>
                                 <img src="/assets/images/arrow.svg" alt=""/>

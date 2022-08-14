@@ -37,7 +37,7 @@ export default function DaoBanner(props) {
                 </SpanBox>
                 <Decoration><img src="/assets/images/bannerBtm.png" alt=""/></Decoration>
                 <div className="max-w-screen-2xl mx-auto relative mt40 p-5">
-                    <div className="absolute w-40 h-40  border-4 border-black rounded-full overflow-hidden z-10">
+                    <div className="absolute w-40 h-40  border-4 border-black rounded-full overflow-hidden z-10 bg-white">
                         <SpanBox>
                             <img alt="" src={obj?.Logo} className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
                         </SpanBox>
