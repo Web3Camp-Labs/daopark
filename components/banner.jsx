@@ -24,6 +24,9 @@ const BannerBox = styled('div')`
       height: 35px;
     }
   }
+  .mtTop{
+    top: 50%;
+  }
 `
 
 const SpanBox = styled('span')`
@@ -66,11 +69,11 @@ export default function Banner() {
     }
 
     return <BannerBox>
-        <div className="relative h-150">
-            <SpanBox>
+        <div className="relative">
+            {/*<SpanBox>*/}
                 <img alt="" src="/assets/images/banner.png" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"/>
-            </SpanBox>
-            <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full">
+            {/*</SpanBox>*/}
+            <div className="absolute top-0 flex flex-col items-center justify-center w-full mtTop">
 
                 <div className="relative w-11/12 lg:w-2/3 max-w-2xl mt-10">
                     <div className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg bg-white h50" >
