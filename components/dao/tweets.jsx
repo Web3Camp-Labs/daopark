@@ -124,10 +124,10 @@ export default function Tweets(props) {
                 <div className="my-8 flex flex-col justify-center items-center">
                     <ImgBox>
                     <span>
-                        <img alt="" src="/assets/images/empty-state.png" />
+                        <img alt="" src="/assets/images/noContent.png" />
                         </span>
                     </ImgBox>
-                    <p className="font-cal text-gray-600 text-2xl">No News Yet.</p>
+                    <p className="font-cal text-2xl mt-10">No News Yet.</p>
                 </div>
             </div>
         }

@@ -19,7 +19,7 @@ export default function Main02(props) {
             <div className="my-8 flex flex-col justify-center items-center">
                 <SpanBox>
                     <span>
-                        <img alt="" src="/assets/images/empty-state.png" />
+                        <img alt="" src="/assets/images/noContent.png" />
                         </span>
                 </SpanBox>
                 <p className="font-cal text-gray-600 text-2xl">No {props.title} Yet.</p>
