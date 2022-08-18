@@ -51,7 +51,7 @@ const UlBox = styled.ul`
   &:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
     li{
       width: 283px;
-      background: #FFFFFF;
+      background: #FFFFFF url("/assets/images/contributorsBg.png") no-repeat left top;
       border-radius: 8px;
       border: 4px solid #000000;
       float:left;
@@ -81,6 +81,7 @@ const UlBox = styled.ul`
       }
       .contribution{
         padding: 9px 0 7px;
+        background: url("/assets/images/contributorBtm.png") no-repeat center;
       }
     }
 `
