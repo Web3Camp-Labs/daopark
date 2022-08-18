@@ -12,6 +12,23 @@ const Box = styled.div`
   .noTop{
     border-top-color: transparent;
   }
+  h2{
+    margin-bottom: 8px;
+    font-size: 40px;
+    font-family: "PT-Mono-Bold";
+    font-weight: bold;
+    color: rgba(0,0,0,0.9000);
+    line-height: 44px;
+  }
+  .topTitle{
+    margin-bottom: 40px;
+  }
+  .boxBrdr{
+    width: 94%;
+  }
+  .iconSVG{
+    width: 24px;
+  }
 `
 
 const SpanBox = styled('span')`
@@ -33,6 +50,16 @@ const ImgBox = styled.span`
   }
   .img2{
     position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;
+  }
+`
+const LineBox = styled.div`
+    display: flex;
+    align-items: center;
+  justify-content: flex-start;
+  margin-top: 8px;
+  img{
+    width: 133px!important;
+    margin: 0;
   }
 `
 
@@ -112,8 +139,13 @@ export default function Tweets(props) {
         },2000)
     }
 
-    return <Box><div className="w-full p-8 mb-12">
-        <h2 className="font-cal text-3xl">Latest Tweets</h2>
+
+    return <Box><div className="w-full p-8 mb-12 pb-24">
+        <div className="topTitle">
+            <h2 className="font-cal text-3xl">Latest Tweets</h2>
+            <LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>
+        </div>
+
         {
             showLoading&&<div className="boxBgMiddle">
                 <div className="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin noTop" />
@@ -132,7 +164,7 @@ export default function Tweets(props) {
             </div>
         }
         {
-            !showLoading&&!!list.length && list.map((item,index)=>(<div className="undefined tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white px-8 pt-6 pb-2 my-4 w-full" key={item.id}>
+            !showLoading&&!!list.length && list.map((item,index)=>(<div className="undefined tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white px-8 pt-6 pb-2 my-4 w-full boxBrdr" key={item.id}>
                 <div className="flex items-center">
                     <a className="flex h-12 w-12 rounded-full overflow-hidden relative" href="https://twitter.com/FWBtweets" target="_blank" rel="noopener noreferrer">
                         <SpanBox>
@@ -173,7 +205,7 @@ export default function Tweets(props) {
                        rel="noopener noreferrer">
                         <div
                             className="group-hover:!text-red-600 rounded-full w-10 h-10 group-hover:bg-red-100 flex items-center justify-center">
-                            <img src="/assets/images/heart.svg" alt=""/>
+                            <img src="/assets/images/heart.svg" alt="" className="iconSVG"/>
                         </div>
                         <span className="group-hover:!text-red-600 group-hover:!underline">{item?.public_metrics.like_count}</span></a><a
                     className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1"
@@ -181,7 +213,7 @@ export default function Tweets(props) {
                     rel="noopener noreferrer">
                     <div
                         className="group-hover:!text-purple-600 rounded-full w-10 h-10 group-hover:bg-purple-100 flex items-center justify-center">
-                        <img src="/assets/images/refresh.svg" alt=""/>
+                        <img src="/assets/images/refresh.svg" alt="" className="iconSVG"/>
                     </div>
                     <span className="group-hover:!text-purple-600 group-hover:!underline">{item?.public_metrics.retweet_count}</span></a><a
                     className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1"
@@ -189,14 +221,14 @@ export default function Tweets(props) {
                     rel="noopener noreferrer">
                     <div
                         className="group-hover:!text-[#1da1f2] rounded-full w-10 h-10 group-hover:bg-blue-100 flex items-center justify-center">
-                        <img src="/assets/images/chat.svg" alt=""/>
+                        <img src="/assets/images/chat.svg" alt=""  className="iconSVG"/>
                     </div>
                     <span className="group-hover:!text-[#1da1f2] group-hover:!underline">{item?.public_metrics.reply_count}</span></a>
                     {
                         !showCopy[index]&&<button className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1">
                             <div
                                 className="group-hover:!text-green-600 rounded-full w-10 h-10 group-hover:bg-green-100 flex items-center justify-center">
-                                <img src="/assets/images/link2.svg" alt=""/>
+                                <img src="/assets/images/link2.svg" alt=""  className="iconSVG"/>
                             </div>
                             <CopyToClipboard text={`https://twitter.com/${formatUser(item.author_id)?.username}/status/${item.conversation_id}`}
                                              onCopy={() => copyTweet(index)}>

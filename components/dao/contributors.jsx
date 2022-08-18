@@ -9,6 +9,14 @@ const Box = styled.div`
     justify-content: center;
     margin-top: 40px;
   }
+  h2{
+    margin-bottom: 8px;
+    font-size: 40px;
+    font-family: "PT-Mono-Bold";
+    font-weight: bold;
+    color: rgba(0,0,0,0.9000);
+    line-height: 44px;
+  }
   .mt30{
     padding-top: 30px;
     font-size: 40px;
@@ -50,7 +58,7 @@ const UlBox = styled.ul`
   margin:65px 0 0 -75px;
   &:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
     li{
-      width: 283px;
+      width: 18vw;
       background: #FFFFFF url("/assets/images/contributorsBg.png") no-repeat left top;
       border-radius: 8px;
       border: 4px solid #000000;
@@ -141,6 +149,24 @@ export default function Contributors(props) {
             {
                 !showLoading&&!!list.length &&<UlBox>
                     {
+                        list.map(item=>(<li  key={item.id}>
+                               <div className="topBox">
+                                   <a href={item.html_url} target="_blank" rel="noreferrer">
+                                       <div>
+                                            <img src={item.avatar_url} alt=""/>
+                                       </div>
+                                       <div className="name">{item.login}</div>
+                                   </a>
+                                </div>
+                                <div className="contribution">
+                                    <a href={item.html_url} target="_blank" rel="noreferrer">
+                                        <span className="text-2xl">{item.contributions}</span> Contributions
+                                    </a>
+                                </div>
+                            </li>
+
+                        ))
+                    } {
                         list.map(item=>(<li  key={item.id}>
                                <div className="topBox">
                                    <a href={item.html_url} target="_blank" rel="noreferrer">

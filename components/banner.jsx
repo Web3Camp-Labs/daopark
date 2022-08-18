@@ -14,7 +14,7 @@ const BannerBox = styled('div')`
     display: flex;
     input{
       background: none;
-      margin-left: 120px;
+      margin-left: 4rem;
       font-family: "PTM55F"!important;
       color: rgba(0,0,0,0.9);
     }

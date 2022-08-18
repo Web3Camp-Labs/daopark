@@ -93,10 +93,10 @@ const RhtBox = styled('div')`
 
 export default function AddBanner() {
     return  <Box>
-        <div className="max-w-screen-2xl mx-auto relative">
+        <div className="max-w-screen-2xl mx-auto relative mx-10">
             <TitleBox>Add a DAO</TitleBox>
             <Tips>@Have a DAO that you&#x27;d like to add? Fill out the form below and we will get it added to the database.</Tips>
-             <ABox href="/introduction">What is a DAO?</ABox>
+             {/*<ABox href="/introduction">What is a DAO?</ABox>*/}
             <ContentBox>
                 <div><img src="/assets/images/contentTop.png" alt=""/></div>
                 <div className="midBox">
