@@ -5,7 +5,7 @@ import {useDAO} from "../../pages/api/connect";
 
 const BannerBox = styled('div')`
   .mt40{
-    margin-top: -7rem;
+    margin-top: -6.5rem;
   }
 `
 const SpanBox = styled('span')`
@@ -16,7 +16,7 @@ const SpanBox = styled('span')`
 `
 
 const Decoration = styled('div')`
-  padding-top: 21rem;
+  padding-top: 25rem;
 `
 export default function DaoBanner(props) {
     const { body } = props;
@@ -31,7 +31,7 @@ export default function DaoBanner(props) {
 
     return <BannerBox>
         <div className="w-full ">
-            <div className="my-20 flex justify-center md:block relative h-80">
+            <div className="my-20 flex justify-center md:block relative h-96">
                 <SpanBox>
                     <img alt="" src={obj?.CoverPhoto} className="duration-700 ease-in-out grayscale blur-2xl scale-110"/>
                 </SpanBox>

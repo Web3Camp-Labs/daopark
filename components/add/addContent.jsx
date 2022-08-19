@@ -290,7 +290,7 @@ export default function AddContent() {
     return  <Box className="w-full max-w-screen-2xl mx-auto">
         <TipsModal show={showSuccess}/>
         <Modal close={closeImageBox} title={imgTit} show={showBox} handleImg={handleImg}/>
-            <ContentBox>
+            <ContentBox className="mx-10">
                 <div><img src="/assets/images/contentTop.png" alt=""/></div>
 
                 <div className="midBox">

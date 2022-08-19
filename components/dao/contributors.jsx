@@ -60,6 +60,7 @@ const UlBox = styled.ul`
     li{
       width: 18vw;
       background: #FFFFFF url("/assets/images/contributorsBg.png") no-repeat left top;
+      background-size: 100%;
       border-radius: 8px;
       border: 4px solid #000000;
       float:left;
@@ -149,24 +150,6 @@ export default function Contributors(props) {
             {
                 !showLoading&&!!list.length &&<UlBox>
                     {
-                        list.map(item=>(<li  key={item.id}>
-                               <div className="topBox">
-                                   <a href={item.html_url} target="_blank" rel="noreferrer">
-                                       <div>
-                                            <img src={item.avatar_url} alt=""/>
-                                       </div>
-                                       <div className="name">{item.login}</div>
-                                   </a>
-                                </div>
-                                <div className="contribution">
-                                    <a href={item.html_url} target="_blank" rel="noreferrer">
-                                        <span className="text-2xl">{item.contributions}</span> Contributions
-                                    </a>
-                                </div>
-                            </li>
-
-                        ))
-                    } {
                         list.map(item=>(<li  key={item.id}>
                                <div className="topBox">
                                    <a href={item.html_url} target="_blank" rel="noreferrer">
