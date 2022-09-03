@@ -31,7 +31,7 @@ export default function Discussion(){
 
         const repoInfo = await octokit.rest.repos.get({
             owner:'Web3-Camp',
-            repo:'test-issue',
+            repo:'daopark-db',
         });
 
 
