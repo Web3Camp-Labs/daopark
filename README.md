@@ -6,14 +6,14 @@ DAO park is a collection of DAOs, that you can submit your DAO's information and
 
 DAO park is purely based on opensource platfrom - github.com.
 
-All the information are maintained on github, include the auth, database, and submit processing.
+All the information are maintained on github, include the auth, database, and submission processing.
 
 Please feel free to use it as you wish!  
 
 [https://daopark.xyz](https://daopark.xyz)  
 
 
-## Getting Started
+## Build
 
 Run the development server:
 
@@ -22,3 +22,12 @@ npm run dev
 # or
 yarn dev
 ```
+
+## Related projects
+
+[daopark-db](https://github.com/Web3-Camp/daopark-db/) is the database for DAO Park. 
+
+
+## Contact us
+
+Our twitter [Web3Camp](https://twitter/web3camp/)
