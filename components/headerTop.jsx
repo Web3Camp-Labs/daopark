@@ -78,6 +78,9 @@ const RhtBox = styled('span')`
 
 const Logo = styled.span`
   margin: 2rem 0 3.2rem;
+  img{
+    width: 150px;
+  }
   //font-size: 2rem;
   //font-family: "CalSans-SemiBold";
   //padding-top: 20px;
