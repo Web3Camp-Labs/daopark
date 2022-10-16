@@ -41,14 +41,13 @@ const HeaderBox = styled('header')`
     display: inline-block;
     text-align: center;
     padding-right: 0.5rem;
-    background:url("/assets/images/btnBg.png") no-repeat right;
+    background:url("/assets/images/btnBg.png") no-repeat right center;
     background-size: 100%;
-    line-height: 5.7rem;
-    width: 7.2rem;
-    font-family: "PT-Mono-Bold"!important;
-    height: 6rem;
-    flex-shrink: 0;
+    line-height: 4.7rem;
+    width: 100px;
     
+    font-family: "PT-Mono-Bold"!important;
+    flex-shrink: 0;
   }
 `
 const RhtBox = styled('span')`
@@ -77,13 +76,10 @@ const RhtBox = styled('span')`
 `
 
 const Logo = styled.span`
-  margin: 2rem 0 3.2rem;
+  margin: 0 ;
   img{
-    width: 150px;
+    width: 90px;
   }
-  //font-size: 2rem;
-  //font-family: "CalSans-SemiBold";
-  //padding-top: 20px;
 `
 
 const SpanBox = styled.div`
@@ -97,13 +93,16 @@ const SpanBox = styled.div`
 `
 
 const SearchBox = styled('div')`
-    background: url("/assets/images/searchBg.png");
+    background:url("/assets/images/searchBg.png") no-repeat;
+    background-size:auto 100%;
     width: 556px;
-    height: 62px;
+    height: 50px;
     display: flex;
     align-items: center;
     input{
       margin-left: 10px;
+      margin-top: -5px;
+      width: 350px;
     }
     img{
       margin-bottom:8px;
@@ -225,7 +224,7 @@ function HeaderTop({router}) {
             {/*        </button>*/}
             {/*    </div>*/}
             {/*</a>*/}
-            <div className="flex gap-4 xl:gap-6 justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full h-28">
+            <div className="flex gap-4 xl:gap-6 justify-between items-center 2xl:w-1536 m-auto px-5 sm:px-10 w-full">
                 <div className="flex justify-start items-center gap-4 xl:gap-6 w-full">
                     <Link href="/" passHref>
                         <Logo>

@@ -29,7 +29,7 @@ export default function Dao() {
     },[id])
 
     return <BodyBox>
-        <div className="w-full my-30" >
+        <div className="w-full" >
             {/*<TopFix  body={id === aboutUs.Slug?aboutUs:detailInfo}/>*/}
             <DaoBanner body={id === aboutUs[0].Slug?aboutUs:detailInfo}/>
             <DaoMain body={id === aboutUs[0].Slug?aboutUs:detailInfo} />

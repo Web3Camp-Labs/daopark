@@ -5,6 +5,8 @@ import aboutus from "../../public/aboutus.json";
 const Box = styled('div')`
   width: 100%;
   height: 541px;
+  display: flex;
+  justify-content: center;
   background: linear-gradient(90deg, #DAFCFF 0%, #FFE6E6 100%);
   .clipBox{
   clip-path:polygon(10% 0, 100% 0%, 100% 100%, 0 100%);-webkit-clip-path:polygon(10% 0, 100% 0%, 100% 100%, 0 100%)
@@ -22,12 +24,12 @@ const SpanBox = styled('span')`
 `
 
 const TitleBox = styled('h1')`
-    padding-top: 118px;
   font-size: 66px;
   font-family: "PT-Mono-Bold";
   font-weight: bold;
   color: rgba(0,0,0,0.9);
   line-height: 74px;
+  padding: 118px 2rem 0;
 `
 const Tips = styled('p')`
   font-size: 28px;
@@ -35,7 +37,7 @@ const Tips = styled('p')`
   color: rgba(0,0,0,0.9);
   font-family: "PTM55F";
   line-height: 38px;
-  padding:  10px 0 20px;
+  padding:  10px 2rem 20px;
   width: 80%;
 `
 const ABox = styled('a')`
@@ -44,9 +46,10 @@ const ABox = styled('a')`
   font-weight: bold;
   color: #000000;
   line-height: 32px;
+  padding: 0 2rem;
 `
 const ContentBox = styled('div')`
-  margin-top: 62px;
+  margin: 62px 2rem 0;
   .midBox{
     background: url("/assets/images/contentBg.png") repeat-y;
     background-size: 100%;
@@ -93,10 +96,10 @@ const RhtBox = styled('div')`
 
 export default function AddBanner() {
     return  <Box>
-        <div className="max-w-screen-2xl mx-auto relative mx-10">
+        <div className="w-full max-w-screen-2xl mx-auto relative mx-10">
             <TitleBox>Add a DAO</TitleBox>
             <Tips>@Have a DAO that you&#x27;d like to add? Fill out the form below and we will get it added to the database.</Tips>
-             {/*<ABox href="/introduction">What is a DAO?</ABox>*/}
+             <ABox href="/introduction">What is a DAO?</ABox>
             <ContentBox>
                 <div><img src="/assets/images/contentTop.png" alt=""/></div>
                 <div className="midBox">
@@ -107,8 +110,6 @@ export default function AddBanner() {
                     </div>
                     <RhtBox>
                         <Link href={`/dao/${aboutus[0].Slug}`}><div>See example</div></Link>
-
-
                     </RhtBox>
                 </div>
                 <div><img src="/assets/images/contentbtm.png" alt=""/></div>

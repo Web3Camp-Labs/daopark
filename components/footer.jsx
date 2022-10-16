@@ -5,6 +5,7 @@ const LinkBox = styled.a`
     display: flex;
   align-items: center;
   width:40rem;
+  white-space: nowrap;
   img{
     margin-left: 30px;
   }

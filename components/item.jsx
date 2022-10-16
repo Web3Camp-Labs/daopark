@@ -52,7 +52,8 @@ const SpanBoxli = styled('span')`
   padding: 0px; 
   position: relative;
   span{
-  box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 80% 0px 0px;
+  box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; 
+    padding: 53% 0px 0px;
   }
   img{
       position: absolute; 
@@ -103,7 +104,7 @@ export default function ItemDao(props){
             <LiBox  className={`hidden sm:block rounded-2xl  overflow-hidden bg${index % 8}`}>
                 <SpanBoxli>
                     <span />
-                    <img alt="Developer DAO" src={obj?.CoverPhoto}  className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" />
+                    <img src={obj?.CoverPhoto}  className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" />
                 </SpanBoxli>
                 <div className=" h-36">
                     {/*<div className="flex justify-end">*/}
@@ -117,7 +118,7 @@ export default function ItemDao(props){
             <div className="sm:hidden overflow-hidden rounded-xl flex items-center md:h-48 h-36 border-2 border-gray-100 focus:border-black active:border-black bg-white transition-all ease duration-200">
                 <div className="w-2/5 relative h-full">
                     <SpanBoxBtm>
-                        <img alt="Developer DAO" src={obj?.CoverPhoto} className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" />
+                        <img src={obj?.CoverPhoto} className="duration-700 ease-in-out grayscale-0 blur-0 scale-100" />
                     </SpanBoxBtm>
                 </div>
                 <div className="py-6 px-5 w-3/5 !relative">

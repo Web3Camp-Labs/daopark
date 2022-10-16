@@ -12,7 +12,7 @@ const DAOBox = styled('div')`
 
 export default function AddDAO() {
     return <DAOBox >
-            <div className="w-full my-30">
+            <div className="w-full">
                 <div className="boxBg" />
                 <div className="w-full">
                     <AddBanner />

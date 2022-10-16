@@ -6,26 +6,42 @@ import aboutus from "../public/aboutus.json";
 const BannerBox = styled('div')`
   .h-150{
     height: 42rem;
+    
   }
   .h50{
-    height: 62px; transition: all 0.1s ease 0s;
-    background: url("/assets/images/inputBg.png") no-repeat;
-    width: 120%;
+    height: 50px; 
+    transition: all 0.1s ease 0s;
+    background:url("/assets/images/inputBg.png") no-repeat center;
+    background-size: auto 100%;
     display: flex;
     input{
       background: none;
-      margin-left: 4rem;
+      margin-left: 3rem;
       font-family: "PTM55F"!important;
       color: rgba(0,0,0,0.9);
+
+      margin-top: -0.25rem;
     }
     .imgPosition{
-      margin: -2px 10px 0 15px;
+      margin: -8px 0 0 35px;
       width: 35px;
       height: 35px;
     }
   }
   .mtTop{
     top: 50%;
+  }
+  .banner{
+    display: block;
+  }
+  @media (max-width: 560px) {
+    .banner{
+      display: none;
+    }
+    .h50{
+      width: 326px;
+      background-size: 100%;
+    }
   }
 `
 
@@ -71,16 +87,14 @@ export default function Banner() {
     return <BannerBox>
         <div className="relative">
             {/*<SpanBox>*/}
-                <img alt="" src="/assets/images/banner.png" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100"/>
+                <img alt="" src="/assets/images/banner.png" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100 banner"/>
             {/*</SpanBox>*/}
             <div className="absolute top-0 flex flex-col items-center justify-center w-full mtTop">
-
                 <div className="relative w-11/12 lg:w-2/3 max-w-2xl mt-10">
                     <div className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg bg-white h50" >
                         <img src="/assets/images/search.png" alt="" className="imgPosition"/>
                         <div className="flex space-between w-full items-center">
                             <div className="flex flex-auto items-center">
-
                                 <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
                         </div>
                     </div>

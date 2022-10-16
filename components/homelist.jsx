@@ -8,9 +8,13 @@ const Box = styled.div`
   .titleBox{
     font-family: "PT-Mono-Bold";
     padding-top: 1.2rem;
+    font-size: 20px;
   }
   .noTop{
     border-top-color:transparent
+  }
+  .m-10 {
+    margin: 0 2.5rem 2.5rem;
   }
   @media (max-width: 1000px) {
    .m-10{
@@ -24,11 +28,11 @@ const Box = styled.div`
 const FirstLine = styled.div`
     display: flex;
     align-items: center;
-    margin-top:3rem;
+    margin-top:1rem;
     padding-left: 3rem;
     img{
       line-height: 0;
-      height: 25px;
+      height: 14px;
     }
 `
 export default function HomeList() {
