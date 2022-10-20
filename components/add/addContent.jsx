@@ -11,7 +11,7 @@ import api from "../../pages/api/api";
 import aboutus from "../../public/aboutus.json";
 
 const Box = styled('div')`
-    margin-top:200px;
+    margin-top:30px;
   .nameBox{
     font-family: "PT-Mono-Bold";
     padding-bottom: 20px;
@@ -60,11 +60,23 @@ const CoverBox = styled.div`
   }
 `
 const ContentBox = styled('div')`
-  margin-top: 62px;
+margin: 0 2em;
+  background: #CEF3F7;
+  border-radius: 8px;
+  border: 2px solid #000000;
+  padding-bottom: 10px;
   .midBox{
-    background: url("/assets/images/contentBg.png") repeat-y;
-    background-size: 100%;
-    padding: 0 230px 50px;
+    width: 100%;
+    border-radius: 8px;
+    margin:-10px 0 0 -10px;
+    border: 2px solid #000000;
+    background: #fff;
+    padding: 100px 4.5rem 50px;
+  }
+  @media (max-width: 560px) {
+    .midBox{
+      padding: 20px;
+    }
   }
 `
 const FlexLine = styled('div')`
@@ -82,6 +94,27 @@ const FlexLine = styled('div')`
     margin:17px 20px 0;
     line-height: 1em;
   }
+  @media (max-width: 560px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .topLogo{
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+`
+
+const BtmButton = styled.div`
+    button{
+      background: url("/assets/images/submitBtn.png");
+      background-size: 100%;
+      padding-left: 0;
+      font-size: 20px;
+      font-family: "PT-Mono-Bold";
+      width: 180px;
+      height: 60px;
+    }
 `
 
 
@@ -290,8 +323,7 @@ export default function AddContent() {
     return  <Box className="w-full max-w-screen-2xl mx-auto">
         <TipsModal show={showSuccess}/>
         <Modal close={closeImageBox} title={imgTit} show={showBox} handleImg={handleImg}/>
-            <ContentBox className="mx-10">
-                <div><img src="/assets/images/contentTop.png" alt=""/></div>
+            <ContentBox>
 
                 <div className="midBox">
                     <div >
@@ -307,7 +339,7 @@ export default function AddContent() {
                         <div className="col-span-3 sm:col-span-2">
                             <label className="font-cal block text-2xl text-gray-700 tracking-wide nameBox">Slug *</label>
                             <div className="mt-1 flex rounded-md shadow-sm mb-12">
-                                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-black border-2 bg-gray-50 text-gray-800 text-lg">{githubObj.baseUrl}/dao/</span>
+                                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-black border-2 bg-gray-50 text-gray-800 text-lg">{githubObj.domain}/dao/</span>
                                 <input type="text" name="slug" className="focus:ring-black focus:border-black flex-1 block w-full rounded-none rounded-r-md sm:text-lg border-black border-2 placeholder-gray-400"
                                         placeholder={aboutus[0].Slug} value={slug} onChange={e=>handleInput(e,'slug')}/></div>
                             {
@@ -367,7 +399,7 @@ export default function AddContent() {
                         <label className="font-cal block text-2xl text-gray-700 nameBox">Logo *</label>
 
                         <FlexLine>
-                            <button className="mt-1 flex w-60 h-60 justify-cente items-center border-2 border-gray-300 border-dashed rounded-md" onClick={()=>showImageBox('logo')}>
+                            <button className="mt-1 flex w-60 h-60 justify-center items-center border-2 border-gray-300 border-dashed rounded-md topLogo" onClick={()=>showImageBox('logo')}>
                                 {
                                     !!logo &&<ImgBox><img src={logo} alt=""/></ImgBox>
                                 }
@@ -466,15 +498,13 @@ export default function AddContent() {
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button type="submit" disabled={ReturnDisabled()} onClick={()=>handleSubmit()}
-                                className={ReturnDisabled()?"bg-gray-300 cursor-not-allowed font-cal inline-flex tracking-wider justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-md text-white focus:outline-none transition-all ease duration-150 btnFalse":"btnSub"} >
+                    <BtmButton>
+                        <button type="submit" disabled={ReturnDisabled()} onClick={()=>handleSubmit()}>
                             Submit
                         </button>
-                    </div>
+                    </BtmButton>
                 </div>
 
-                <div><img src="/assets/images/contentbtm.png" alt=""/></div>
             </ContentBox>
 
     </Box>

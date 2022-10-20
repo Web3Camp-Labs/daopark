@@ -49,6 +49,9 @@ const HeaderBox = styled('header')`
     font-family: "PT-Mono-Bold"!important;
     flex-shrink: 0;
   }
+  .topSearch{
+    background: #f00;
+  }
 `
 const RhtBox = styled('span')`
   box-sizing: border-box; 
@@ -123,7 +126,7 @@ function HeaderTop({router}) {
 
     const handleScroll = () => {
         let scrollY = window.scrollY;
-        if( scrollY > 100){
+        if( scrollY > 100 && window.screen.width > 1024){
             setShowTop(true)
         }else{
             setShowTop(false)
