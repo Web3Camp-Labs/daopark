@@ -25,7 +25,7 @@ const ContentBox = styled('div')`
       margin: 0 2rem;
     }
     .midBox{
-      background:#fff url("/assets/images/bgRht.png") no-repeat 40vw 4rem ;
+      background:#fff url("/assets/images/bgRht.png") no-repeat 90% 3rem ;
       background-size: 107px ;
       padding: 34px 40px 40px;
     }
