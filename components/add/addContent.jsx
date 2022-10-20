@@ -70,12 +70,15 @@ margin: 0 2em;
     border-radius: 8px;
     margin:-10px 0 0 -10px;
     border: 2px solid #000000;
-    background: #fff;
-    padding: 100px 4.5rem 50px;
+    background:#fff url("/assets/images/bgRht.png") no-repeat 95% 60px ;
+    background-size: 110px;
+    padding: 120px 4.5rem 50px;
   }
   @media (max-width: 560px) {
     .midBox{
-      padding: 20px;
+      background:#fff url("/assets/images/bgRht.png") no-repeat 85% 50px ;
+      background-size: 110px;
+      padding:70px 20px 20px;
     }
   }
 `
@@ -324,7 +327,6 @@ export default function AddContent() {
         <TipsModal show={showSuccess}/>
         <Modal close={closeImageBox} title={imgTit} show={showBox} handleImg={handleImg}/>
             <ContentBox>
-
                 <div className="midBox">
                     <div >
                         <div className="col-span-3 sm:col-span-2">
