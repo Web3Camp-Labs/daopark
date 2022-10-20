@@ -7,8 +7,9 @@ import aboutus from "../public/aboutus.json";
 const Box = styled.div`
   .titleBox{
     font-family: "PT-Mono-Bold";
-    padding-top: 1.2rem;
     font-size: 20px;
+    margin-bottom:2.5rem;
+    padding: 2.5rem 2rem 0;
   }
   .noTop{
     border-top-color:transparent
@@ -17,12 +18,17 @@ const Box = styled.div`
     margin: 0 2.5rem 2.5rem;
   }
   @media (max-width: 1000px) {
-   .m-10{
-     margin: 1rem!important ;
-   }
+    .m-10{
+      margin: 1rem!important ;
+    }
     .mx-10{
-     margin:2.5rem 1rem 1rem!important ;
-   }
+      margin:2.5rem 1rem 1rem!important ;
+    }
+    .titleBox{
+      padding: 0.3rem 1rem 0!important ;
+      margin-bottom: 0;
+    }
+  
   }
 `
 const FirstLine = styled.div`
@@ -34,6 +40,9 @@ const FirstLine = styled.div`
       line-height: 0;
       height: 14px;
     }
+  @media (max-width: 1000px) {
+    padding-left: 1rem;
+  }
 `
 export default function HomeList() {
 
@@ -67,7 +76,7 @@ export default function HomeList() {
         <div className="max-w-screen-2xl mx-auto">
             <FirstLine>
                 <img src="/assets/images/titleLft.png" alt=""/>
-                <h2 className="font-cal text-4xl  pb-5 mx-10 titleBox">Hottest DAOs</h2>
+                <h2 className="font-cal text-4xl titleBox">Hottest DAOs</h2>
                 <img src="/assets/images/titleRht.png" alt=""/>
             </FirstLine>
 

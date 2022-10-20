@@ -6,14 +6,24 @@ import aboutus from "../public/aboutus.json";
 const BannerBox = styled('div')`
   .h-150{
     height: 42rem;
-    
   }
   .h50{
     height: 50px; 
     transition: all 0.1s ease 0s;
-    background:url("/assets/images/inputBg.png") no-repeat center;
-    background-size: auto 100%;
+    border-radius: 8px;
+    border: 2px solid #000000;
+    background: #000;
     display: flex;
+    padding:0 2px 2px 0;
+    .whiteBox{
+      display: flex;
+      height: 100%;
+      background: #fff;
+      width: calc(100% - 112px);
+      margin-left:112px;
+      border-bottom-right-radius: 8px;
+      position: relative;
+    }
     input{
       background: none;
       margin-left: 3rem;
@@ -23,7 +33,9 @@ const BannerBox = styled('div')`
       margin-top: -0.25rem;
     }
     .imgPosition{
-      margin: -8px 0 0 35px;
+      position: absolute;
+      left: -75px;
+      top:5px;
       width: 35px;
       height: 35px;
     }
@@ -34,9 +46,35 @@ const BannerBox = styled('div')`
   .banner{
     display: block;
   }
+  .banner560{
+    display: none;
+  }
   @media (max-width: 560px) {
     .banner{
       display: none;
+    }
+    .h50{
+      .whiteBox{
+        width: calc(100% - 50px);
+        margin-left:50px;
+      }
+      .imgPosition{
+        left: -36px;
+        top:12px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .mtTop{
+      top:65%;
+    }
+    
+    .banner560{
+      display: block;
+      width: 100%;
+      height: 580px;
+      background: url("/assets/images/banner560.png") center;
+      background-size: auto 100%;
     }
     .h50{
       width: 326px;
@@ -44,30 +82,6 @@ const BannerBox = styled('div')`
     }
   }
 `
-
-const SpanBox = styled('span')`
-    box-sizing: border-box;
-    display: block; 
-    overflow:hidden; 
-    width: initial; 
-    height: initial; 
-    background: none; 
-    opacity: 1; 
-    border: 0;
-    margin: 0;
-    padding: 0; 
-    position: absolute; 
-    top:0;left:0;bottom:0;right:0;
-    img{
-      position: absolute;
-      box-sizing: border-box; 
-      padding: 0;
-      border: 0;
-      display: block;
-    inset: 0px;margin: auto; display: block;min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;
-    }
-`
-
 
 export default function Banner() {
     const {  dispatch } = useDAO();
@@ -86,17 +100,19 @@ export default function Banner() {
 
     return <BannerBox>
         <div className="relative">
-            {/*<SpanBox>*/}
                 <img alt="" src="/assets/images/banner.png" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100 banner"/>
-            {/*</SpanBox>*/}
+            <div className="banner560" />
             <div className="absolute top-0 flex flex-col items-center justify-center w-full mtTop">
                 <div className="relative w-11/12 lg:w-2/3 max-w-2xl mt-10">
-                    <div className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg bg-white h50" >
-                        <img src="/assets/images/search.png" alt="" className="imgPosition"/>
-                        <div className="flex space-between w-full items-center">
-                            <div className="flex flex-auto items-center">
-                                <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
+                    <div className="w-full absolute overflow-hidden rounded-md z-20 focus-within:shadow-lg bg-white h50" >
+                        <div className="whiteBox">
+                            <img src="/assets/images/search.png" alt="" className="imgPosition"/>
+                            <div className="flex space-between w-full items-center">
+                                <div className="flex flex-auto items-center">
+                                    <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
+                            </div>
                         </div>
+                      
                     </div>
                 </div>
             </div>
