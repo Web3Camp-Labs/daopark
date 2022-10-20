@@ -46,12 +46,20 @@ const ContentBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  background: #CEF3F7;
+  border-radius: 8px;
+  border: 2px solid #000000;
+  padding-bottom: 10px;
   img{
     width: 100%;
   }
   .midBox{
-    background: url("/assets/images/contentBg.png") repeat-y;
-    background-size: 100%;
+    width: 100%;
+    border-radius: 8px;
+    margin:-10px 0 0 -10px;
+    border: 2px solid #000000;
+    background: #fff;
+    padding-top: 50px;
   }
   .rhtBg{
     background: url("/assets/images/bgRht.png") no-repeat 93% 110px;
@@ -60,7 +68,8 @@ const ContentBox = styled.div`
     background: url("/assets/images/rhtTop.png") no-repeat 91% top;
   }
   .lftBg{
-      background: url("/assets/images/bglft.png") no-repeat 4% bottom;
+      background:url("/assets/images/bglft.png") no-repeat 4% 90%;
+      background-size: 250px;
   }
 `
 export default function DaoMain(props) {
@@ -141,7 +150,6 @@ export default function DaoMain(props) {
                                     <SpanBox>
                                         <span />
                                         <img alt=""
-                                             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                              className="duration-700 ease-in-out grayscale blur-2xl scale-110"
                                         />
                                     </SpanBox>
@@ -173,7 +181,6 @@ export default function DaoMain(props) {
             <div className=" w-full max-w-screen-2xl mx-auto md:px-10 py-5 lg:py-10 ">
                 <div className="col-span-2">
                     <ContentBox>
-                        <div><img src="/assets/images/contentTop.png" alt=""/></div>
                         <div className="midBox">
                             <div className="rhtBg">
                                 <div className="rhtDecor">
@@ -198,7 +205,6 @@ export default function DaoMain(props) {
                             </div>
                         </div>
 
-                         <div><img src="/assets/images/contentbtm.png" alt=""/></div>
                     </ContentBox>
                 </div>
                 {/*<div className="hidden lg:block col-span-1">*/}

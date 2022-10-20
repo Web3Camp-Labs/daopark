@@ -55,23 +55,24 @@ const LineBox = styled.div`
   }
 `
 const UlBox = styled.ul`
-  margin:65px 0 0 -75px;
-  &:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+  display: flex;
+  margin-top: 40px;
+  flex-wrap: wrap;
     li{
-      width: 18vw;
-      background: #FFFFFF url("/assets/images/contributorsBg.png") no-repeat left top;
+      width: calc(25% - 60px);
+      background: #FFf url("/assets/images/contributorsBg.png") no-repeat left top;
       background-size: 100%;
       border-radius: 8px;
-      border: 4px solid #000000;
-      float:left;
-      margin:0 0 50px 75px;
-
+      border: 2px solid #000000;
+      margin: 0 80px 40px 0;
+      &:nth-child(4n){
+        margin-right: 0;
+      }
+      
       &>div{
-        border-bottom: 4px solid #000000;
+        border-bottom: 2px solid #000000;
         text-align: center;
-        &:last-child{
-          margin-bottom:4px;
-        }
+      
       }
       
       img{
@@ -90,9 +91,57 @@ const UlBox = styled.ul`
       }
       .contribution{
         padding: 9px 0 7px;
-        background: url("/assets/images/contributorBtm.png") no-repeat center;
+        //background: url("/assets/images/contributorBtm.png") no-repeat center;
       }
     }
+  @media (max-width: 1280px) {
+    li {
+      width: calc(33.333333% - 60px);
+      background: #FFf url("/assets/images/contributorsBg.png") no-repeat left top;
+      background-size: 100%;
+      border-radius: 8px;
+      border: 2px solid #000000;
+      margin: 0 90px 40px 0;
+      &:nth-child(4n){
+        margin-right: 90px;
+      }
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }  
+  @media (max-width: 1024px) {
+    li {
+      width: calc(50% - 40px);
+      background: #FFf url("/assets/images/contributorsBg.png") no-repeat left top;
+      background-size: 100%;
+      border-radius: 8px;
+      border: 2px solid #000000;
+      margin: 0 80px 40px 0;
+      &:nth-child(2n){
+        margin-right: 0;
+      }
+      &:nth-child(3n) {
+        margin-right: 80px;
+      }
+    }
+  } 
+  @media (max-width: 560px) {
+    li {
+      width: 100%;
+      background: #FFf url("/assets/images/contributorsBg.png") no-repeat left top;
+      background-size: 100%;
+      border-radius: 8px;
+      border: 2px solid #000000;
+      margin: 0 0 40px 0;
+      &:nth-child(2n){
+        margin-right: 0;
+      }
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }
 `
 
 export default function Contributors(props) {
@@ -125,7 +174,7 @@ export default function Contributors(props) {
     },[obj])
 
     return <Box>
-        <div className=" w-full px-12 mb-12">
+        <div className="w-full px-12 mb-12">
             <div>
                 <h2 className="font-cal text-3xl">Contributors</h2>
                 <LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>
@@ -150,6 +199,78 @@ export default function Contributors(props) {
             {
                 !showLoading&&!!list.length &&<UlBox>
                     {
+                        list.map(item=>(<li  key={item.id}>
+                               <div className="topBox">
+                                   <a href={item.html_url} target="_blank" rel="noreferrer">
+                                       <div>
+                                            <img src={item.avatar_url} alt=""/>
+                                       </div>
+                                       <div className="name">{item.login}</div>
+                                   </a>
+                                </div>
+                                <div className="contribution">
+                                    <a href={item.html_url} target="_blank" rel="noreferrer">
+                                        <span className="text-2xl">{item.contributions}</span> Contributions
+                                    </a>
+                                </div>
+                            </li>
+
+                        ))
+                    } {
+                        list.map(item=>(<li  key={item.id}>
+                               <div className="topBox">
+                                   <a href={item.html_url} target="_blank" rel="noreferrer">
+                                       <div>
+                                            <img src={item.avatar_url} alt=""/>
+                                       </div>
+                                       <div className="name">{item.login}</div>
+                                   </a>
+                                </div>
+                                <div className="contribution">
+                                    <a href={item.html_url} target="_blank" rel="noreferrer">
+                                        <span className="text-2xl">{item.contributions}</span> Contributions
+                                    </a>
+                                </div>
+                            </li>
+
+                        ))
+                    }{
+                        list.map(item=>(<li  key={item.id}>
+                               <div className="topBox">
+                                   <a href={item.html_url} target="_blank" rel="noreferrer">
+                                       <div>
+                                            <img src={item.avatar_url} alt=""/>
+                                       </div>
+                                       <div className="name">{item.login}</div>
+                                   </a>
+                                </div>
+                                <div className="contribution">
+                                    <a href={item.html_url} target="_blank" rel="noreferrer">
+                                        <span className="text-2xl">{item.contributions}</span> Contributions
+                                    </a>
+                                </div>
+                            </li>
+
+                        ))
+                    }{
+                        list.map(item=>(<li  key={item.id}>
+                               <div className="topBox">
+                                   <a href={item.html_url} target="_blank" rel="noreferrer">
+                                       <div>
+                                            <img src={item.avatar_url} alt=""/>
+                                       </div>
+                                       <div className="name">{item.login}</div>
+                                   </a>
+                                </div>
+                                <div className="contribution">
+                                    <a href={item.html_url} target="_blank" rel="noreferrer">
+                                        <span className="text-2xl">{item.contributions}</span> Contributions
+                                    </a>
+                                </div>
+                            </li>
+
+                        ))
+                    }{
                         list.map(item=>(<li  key={item.id}>
                                <div className="topBox">
                                    <a href={item.html_url} target="_blank" rel="noreferrer">
