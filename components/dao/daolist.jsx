@@ -22,12 +22,20 @@ const FirstLine = styled.div`
     padding-left: 3rem;
     img{
       line-height: 0;
-      height: 25px;
+      height: 15px;
     }
     h2{
       margin-top: 25px;
       font-family: "PingFang-Semibold";
+      font-size: 20px;
     }
+  @media (max-width: 560px) {
+    padding-left: 1rem;
+    h2{
+      margin-top: 0;
+      padding-bottom: 0;
+    }
+  }
 `
 
 export default function DaoList(props) {

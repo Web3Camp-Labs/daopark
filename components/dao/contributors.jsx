@@ -11,7 +11,7 @@ const Box = styled.div`
   }
   h2{
     margin-bottom: 8px;
-    font-size: 40px;
+    font-size: 35px;
     font-family: "PT-Mono-Bold";
     font-weight: bold;
     color: rgba(0,0,0,0.9000);

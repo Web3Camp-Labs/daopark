@@ -33,7 +33,7 @@ export default function Dao() {
             {/*<TopFix  body={id === aboutUs.Slug?aboutUs:detailInfo}/>*/}
             <DaoBanner body={id === aboutUs[0].Slug?aboutUs:detailInfo}/>
             <DaoMain body={id === aboutUs[0].Slug?aboutUs:detailInfo} />
-            <DaoList len={8} title="People who joined this DAO also joined" />
+            <DaoList len={8} title="People also joined" />
         </div>
         {/*{*/}
         {/*    id === aboutUs.Slug &&<div className="w-full my-30" >*/}

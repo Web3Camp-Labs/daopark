@@ -6,7 +6,7 @@ const Box =  styled.div`
     padding-bottom: 150px;
   h2{
     margin-bottom: 8px;
-    font-size: 40px;
+    font-size: 35px;
     font-family: "PT-Mono-Bold";
     font-weight: bold;
     color: rgba(0,0,0,0.9000);
@@ -25,7 +25,14 @@ const Box =  styled.div`
       }
     }
   }
-
+  @media (max-width: 1280px) {
+    article{
+      width: 90%;
+    }
+    &.px-12{
+      padding: 20px;
+    }
+  }
 `
 const LineBox = styled.div`
     display: flex;
