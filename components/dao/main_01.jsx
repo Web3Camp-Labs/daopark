@@ -39,10 +39,13 @@ const LineBox = styled.div`
     align-items: center;
   justify-content: flex-start;
   margin-top: 8px;
-  img{
-    width: 133px!important;
-    margin: 0;
-  }
+  width: 132px;
+  height: 11px;
+  border: 2px solid #000000;
+  //img{
+  //  width: 133px!important;
+  //  margin: 0;
+  //}
 `
 
 export default function Main01(props) {
@@ -59,12 +62,14 @@ export default function Main01(props) {
         <article>
             <div>
                 <h2>Our Mission</h2>
-                <LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>
+                <LineBox />
+                    {/*<img src="/assets/images/decor.png" alt=""/></LineBox>*/}
                 <p>{obj?.Mission}</p>
             </div>
             <div>
                 <h2>Our Values</h2>
-                <LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>
+                <LineBox />
+                {/*<LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>*/}
                 <p>{obj?.Values}</p>
             </div>
 

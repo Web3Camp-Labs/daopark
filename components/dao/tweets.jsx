@@ -57,10 +57,13 @@ const LineBox = styled.div`
     align-items: center;
   justify-content: flex-start;
   margin-top: 8px;
-  img{
-    width: 133px!important;
-    margin: 0;
-  }
+  width: 132px;
+  height: 11px;
+  border: 2px solid #000000;
+  //img{
+  //  width: 133px!important;
+  //  margin: 0;
+  //}
 `
 
 export default function Tweets(props) {
@@ -143,7 +146,8 @@ export default function Tweets(props) {
     return <Box><div className="w-full p-8 mb-12 pb-24">
         <div className="topTitle">
             <h2 className="font-cal text-3xl">Latest Tweets</h2>
-            <LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>
+            {/*<LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>*/}
+            <LineBox />
         </div>
 
         {

@@ -49,10 +49,13 @@ const LineBox = styled.div`
     align-items: center;
   justify-content: flex-start;
   margin-top: 8px;
-  img{
-    width: 133px!important;
-    margin: 0;
-  }
+  width: 132px;
+  height: 11px;
+  border: 2px solid #000000;
+  //img{
+  //  width: 133px!important;
+  //  margin: 0;
+  //}
 `
 const UlBox = styled.ul`
   display: flex;
@@ -177,7 +180,8 @@ export default function Contributors(props) {
         <div className="w-full px-12 mb-12">
             <div>
                 <h2 className="font-cal text-3xl">Contributors</h2>
-                <LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>
+                {/*<LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>*/}
+                <LineBox />
             </div>
             {
                 showLoading&&<div className="boxBgMiddle">
