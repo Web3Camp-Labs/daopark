@@ -94,10 +94,11 @@ const RhtBox = styled('div')`
   height: 53px;
   background: #FFFFFF;
   border-radius: 8px;
-  border: 4px solid #000000;
+  border: 2px solid #000000;
+  overflow: hidden;
   div{
     margin-left: 20px;
-    border-left: 4px solid #000000;
+    border-left: 2px solid #000000;
     height: 100%;
     background: linear-gradient(180deg, #EBFF7B 0%, #CAFF7C 100%);
     text-align: center;
