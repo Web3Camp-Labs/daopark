@@ -80,8 +80,8 @@ position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: no
 }
 `
 const TitleBox = styled.h3`
-    background: url("/assets/images/bg/titleBg.png") no-repeat;
-    background-size: auto 100%;
+    background: url("/assets/images/bg/titleBg.png")  repeat-x;
+    //background-size: auto 100%;
     padding: 0.4rem 1rem 0.39rem;
    font-family: "PT-Mono-Bold";
 `
