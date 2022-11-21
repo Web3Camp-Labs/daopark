@@ -61,7 +61,7 @@ export default function Modal(props){
                     <div className="col-span-3 sm:col-span-2">
                         <label className="font-cal block text-xl font-medium text-gray-700 tracking-wide mb20">{title} *</label>
                         <div className="mt-1 flex rounded-md shadow-sm">
-                            <input type="text" name="daoName" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400"  value={imgUrl} onChange={e=>handleInput(e)}/>
+                            <input type="text" name="daoName" className="focus:ring-black focus:border-black flex-1 block w-full rounded-md sm:text-lg border-gray-300 placeholder-gray-400" placeholder="fill image url"  value={imgUrl} onChange={e=>handleInput(e)}/>
                         </div>
                     </div>
                     <div className="mt-10 flex">
