@@ -80,6 +80,7 @@ const RhtBox = styled('span')`
 
 const Logo = styled.span`
   margin: 0 ;
+  cursor: pointer;
   img{
     width: 90px;
   }
