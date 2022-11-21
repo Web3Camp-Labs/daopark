@@ -8,7 +8,8 @@ module.exports = {
     styledComponents: true,
 
   },
-  assetPrefix: isProd ?'/':'',
+//   assetPrefix: isProd ?'/':'',
+  assetPrefix: isProd ?'.':'',
   webpack: (config, { webpack }) => {
     config.plugins.push(new webpack.IgnorePlugin({
       resourceRegExp: /^electron$/
