@@ -110,13 +110,13 @@ const FlexLine = styled('div')`
 
 const BtmButton = styled.div`
     button{
-      background: url("/assets/images/submitBtn.png");
-      background-size: 100%;
+      background: url("/assets/images/newBtn.svg");
+      background-size: 100% 100%;
       padding-left: 0;
       font-size: 20px;
       font-family: "PT-Mono-Bold";
-      width: 180px;
-      height: 60px;
+      width: 178px;
+      height: 61px;
     }
 `
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="22px" height="12px" viewBox="0 0 22 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Combined Shape</title>
-    <g id="调整" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="DAO-Park--个人中心-1280-Copy-3" transform="translate(-254.000000, -918.000000)" fill="#181817">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-254.000000, -918.000000)" fill="#181817">
             <path d="M258,911 C258.552285,911 259,911.447715 259,912 L259,925 L272,925 C272.552285,925 273,925.447715 273,926 C273,926.552285 272.552285,927 272,927 L258,927 L258,927 C257.447715,927 257,926.552285 257,926 L257,912 C257,911.447715 257.447715,911 258,911 Z" id="Combined-Shape" transform="translate(265.000000, 919.000000) rotate(-45.000000) translate(-265.000000, -919.000000) "></path>
         </g>
     </g>
