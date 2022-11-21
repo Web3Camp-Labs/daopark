@@ -94,7 +94,8 @@ const UlBox = styled.ul`
       }
       .contribution{
         padding: 9px 0 7px;
-        //background: url("/assets/images/contributorBtm.png") no-repeat center;
+        margin-bottom: 8px;
+        background: url("/assets/images/contributorBtm.png") no-repeat center;
       }
     }
   @media (max-width: 1280px) {
@@ -203,78 +204,6 @@ export default function Contributors(props) {
             {
                 !showLoading&&!!list.length &&<UlBox>
                     {
-                        list.map(item=>(<li  key={item.id}>
-                               <div className="topBox">
-                                   <a href={item.html_url} target="_blank" rel="noreferrer">
-                                       <div>
-                                            <img src={item.avatar_url} alt=""/>
-                                       </div>
-                                       <div className="name">{item.login}</div>
-                                   </a>
-                                </div>
-                                <div className="contribution">
-                                    <a href={item.html_url} target="_blank" rel="noreferrer">
-                                        <span className="text-2xl">{item.contributions}</span> Contributions
-                                    </a>
-                                </div>
-                            </li>
-
-                        ))
-                    } {
-                        list.map(item=>(<li  key={item.id}>
-                               <div className="topBox">
-                                   <a href={item.html_url} target="_blank" rel="noreferrer">
-                                       <div>
-                                            <img src={item.avatar_url} alt=""/>
-                                       </div>
-                                       <div className="name">{item.login}</div>
-                                   </a>
-                                </div>
-                                <div className="contribution">
-                                    <a href={item.html_url} target="_blank" rel="noreferrer">
-                                        <span className="text-2xl">{item.contributions}</span> Contributions
-                                    </a>
-                                </div>
-                            </li>
-
-                        ))
-                    }{
-                        list.map(item=>(<li  key={item.id}>
-                               <div className="topBox">
-                                   <a href={item.html_url} target="_blank" rel="noreferrer">
-                                       <div>
-                                            <img src={item.avatar_url} alt=""/>
-                                       </div>
-                                       <div className="name">{item.login}</div>
-                                   </a>
-                                </div>
-                                <div className="contribution">
-                                    <a href={item.html_url} target="_blank" rel="noreferrer">
-                                        <span className="text-2xl">{item.contributions}</span> Contributions
-                                    </a>
-                                </div>
-                            </li>
-
-                        ))
-                    }{
-                        list.map(item=>(<li  key={item.id}>
-                               <div className="topBox">
-                                   <a href={item.html_url} target="_blank" rel="noreferrer">
-                                       <div>
-                                            <img src={item.avatar_url} alt=""/>
-                                       </div>
-                                       <div className="name">{item.login}</div>
-                                   </a>
-                                </div>
-                                <div className="contribution">
-                                    <a href={item.html_url} target="_blank" rel="noreferrer">
-                                        <span className="text-2xl">{item.contributions}</span> Contributions
-                                    </a>
-                                </div>
-                            </li>
-
-                        ))
-                    }{
                         list.map(item=>(<li  key={item.id}>
                                <div className="topBox">
                                    <a href={item.html_url} target="_blank" rel="noreferrer">
