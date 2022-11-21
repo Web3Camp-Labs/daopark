@@ -124,7 +124,7 @@ function HeaderTop({router}) {
 
     const { accessToken, info } = state;
     const [showTop,setShowTop] = useState(false);
-    const [showNav,setShowNav] = useState(true);
+    const [showNav,setShowNav] = useState(false);
     const [url,setUrl] = useState('/');
     const [asToken,setAsToken] = useState('');
     const [infoData,setInfoData] = useState(null);
