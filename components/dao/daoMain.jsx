@@ -71,14 +71,16 @@ const ContentBox = styled.div`
     padding-top: 50px;
   }
   .rhtBg{
-    background: url("/assets/images/bgRht.png") no-repeat 93% 100px;
+    background: url("/assets/images/bgRht.png") no-repeat 93% 60px;
+    background-size: 150px;
   }
   .rhtDecor{
     background: url("/assets/images/rhtTop.png") no-repeat 91% top;
+    background-size: 50px;
   }
   .lftBg{
       background:url("/assets/images/bglft.png") no-repeat 4% 90%;
-      background-size: 250px;
+      background-size: 150px;
   }
   @media (max-width: 560px) {
     margin: 0 30px;
