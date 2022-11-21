@@ -28,6 +28,9 @@ const HeaderBox = styled('header')`
     img{
       margin-right: 1rem;
     }
+    .text-lg{
+      font-size: 1.3rem;
+    }
   }
   .logout{
     padding: 0;
@@ -50,7 +53,10 @@ const HeaderBox = styled('header')`
     flex-shrink: 0;
   }
   .topSearch{
-    background: #f00;
+  }
+  .lineImg{
+    width: 256px;
+    height: 2px;
   }
 `
 const RhtBox = styled('span')`
@@ -118,7 +124,7 @@ function HeaderTop({router}) {
 
     const { accessToken, info } = state;
     const [showTop,setShowTop] = useState(false);
-    const [showNav,setShowNav] = useState(false);
+    const [showNav,setShowNav] = useState(true);
     const [url,setUrl] = useState('/');
     const [asToken,setAsToken] = useState('');
     const [infoData,setInfoData] = useState(null);
@@ -286,7 +292,7 @@ function HeaderTop({router}) {
                 {/*    </div>*/}
                 {/*</div>*/}
                 {
-                    showNav &&<div className="rounded-lg shadow-xl border  p-3 bg-white navBox border-4 border-black">
+                    showNav &&<div className="rounded-lg shadow-xl border px-3 bg-white navBox border-2 border-black">
 
                         {/*<Link className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150"*/}
                         {/*      href={`/${infoData?.login}`}>*/}
@@ -306,7 +312,7 @@ function HeaderTop({router}) {
 
                         {/*</Link>*/}
                         <Link className="flex justify-between items-center  rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150" href="/add" passHref>
-                            <div className="flex items-center space-x-5 justify-between w100Bg px-2 py-4">
+                            <div className="flex items-center space-x-5 justify-between px-2 py-4">
 
                                 <div className="lft">
                                     {/*<img src="/assets/images/add.svg" alt=""/>*/}
@@ -315,7 +321,7 @@ function HeaderTop({router}) {
                                 <img src="/assets/images/arrow.svg" alt=""/>
                             </div>
                         </Link>
-                        <img src="/assets/images/line.png" alt="" width="256" />
+                        <img src="/assets/images/line.png" alt=""  className="lineImg"/>
                         <div className="flex justify-between items-center px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-all ease-in-out duration-150 logout" >
                             <div className="flex items-center space-x-5 justify-between px-2 py-4" onClick={()=>handleLogout()}>
                                 <div className="lft">
