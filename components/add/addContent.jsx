@@ -431,7 +431,7 @@ export default function AddContent() {
                                 !cover && <div className="space-y-1 text-center px-6 pt-5 pb-6">
                                     <img src="/assets/images/picture.png" alt="" className="mx-auto text-gray-400"/>
                                     <p className="pl-1 text-md">
-                                        <span className="text-black">Click here</span> to upload a file
+                                        <span className="text-black">Click here</span> to fill image url
                                     </p>
                                     <p className="text-md">PNG, JPG, GIF up (recommended size: 1200px x 630px)</p>
                                 </div>
