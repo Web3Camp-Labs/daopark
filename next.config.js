@@ -8,15 +8,15 @@ module.exports = {
     styledComponents: true,
 
   },
-  async redirects() {
-    return [
-      {
-        source: '/add',
-        destination: '/add',
-        permanent: false,
-      },
-    ]
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/add',
+  //       destination: '/add',
+  //       permanent: false,
+  //     },
+  //   ]
+  // },
   assetPrefix: isProd ?'/':'',
   webpack: (config, { webpack }) => {
     config.plugins.push(new webpack.IgnorePlugin({
