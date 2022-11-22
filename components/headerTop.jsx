@@ -276,7 +276,7 @@ function HeaderTop({router}) {
                         </div>
                     }
                     {
-                        infoData!= null && <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150">
+                        infoData!= null && <div className="relative shadow-2xl inline-block w-12 h-12 border-2 border-gray-100 hover:border-black rounded-full overflow-hidden transition-all ease duration-150 mt-4">
                                 <RhtBox onClick={(e)=>handleNav(e)}>
                                     <img src={infoData?.avatar_url} alt=""/>
                                 </RhtBox>
