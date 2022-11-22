@@ -8,15 +8,15 @@ module.exports = {
     styledComponents: true,
 
   },
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        destination: '/:path*/',
-        permanent: false,
-      },
-    ]
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/:path*',
+  //       destination: '/:path*/',
+  //       permanent: false,
+  //     },
+  //   ]
+  // },
   assetPrefix: isProd ?'https://daopark.xyz/':'',
   webpack: (config, { webpack }) => {
     config.plugins.push(new webpack.IgnorePlugin({
