@@ -8,16 +8,16 @@ module.exports = {
     styledComponents: true,
 
   },
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        destination: '/index.html',
-        permanent: false,
-      },
-    ]
-  },
-  assetPrefix: isProd ?'/':'',
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/:path*',
+  //       destination: '/',
+  //       permanent: false,
+  //     },
+  //   ]
+  // },
+  assetPrefix: isProd ?'https://daopark.xyz/':'',
   webpack: (config, { webpack }) => {
     config.plugins.push(new webpack.IgnorePlugin({
       resourceRegExp: /^electron$/
