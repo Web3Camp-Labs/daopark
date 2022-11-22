@@ -8,14 +8,7 @@ module.exports = {
     styledComponents: true,
 
   },
-  async rewrites() {
-    return [
-      {
-        source: '/:path*',
-        destination: '/:path*/'
-      },
-    ]
-  },
+
   assetPrefix: isProd ?'https://daopark.xyz/':'',
   webpack: (config, { webpack }) => {
     config.plugins.push(new webpack.IgnorePlugin({
