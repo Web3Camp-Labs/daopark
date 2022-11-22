@@ -13,7 +13,7 @@ module.exports = {
       {
         source: '/add',
         destination: '/add',
-        permanent: true,
+        permanent: false,
       },
     ]
   },
