@@ -186,7 +186,7 @@ function HeaderTop({router}) {
             sessionStorage.setItem("info",JSON.stringify(infoD))
             sessionStorage.setItem("asToken",asToken)
             setShowloading(false)
-            Router.push("/")
+            // Router.push("/")
         }
         getIn()
     },[asToken]);
