@@ -7,6 +7,10 @@ const BannerBox = styled('div')`
   .h-150{
     height: 42rem;
   }
+  .mWidth{
+    display: flex;
+    justify-content: center;
+  }
   .h50{
     height: 50px; 
     transition: all 0.1s ease 0s;
@@ -15,6 +19,7 @@ const BannerBox = styled('div')`
     background: #000;
     display: flex;
     padding:0 2px 2px 0;
+    width: 85%;
     .whiteBox{
       display: flex;
       height: 100%;
@@ -48,6 +53,9 @@ const BannerBox = styled('div')`
   }
   .banner560{
     display: none;
+  }
+  .inputBr{
+    margin-top: 3px;
   }
   @media (max-width: 560px) {
     .banner{
@@ -103,12 +111,12 @@ export default function Banner() {
                 <img alt="" src="/assets/images/banner.png" className="duration-700 ease-in-out grayscale-0 blur-0 scale-100 banner"/>
             <div className="banner560" />
             <div className="absolute top-0 flex flex-col items-center justify-center w-full mtTop">
-                <div className="relative w-11/12 lg:w-2/3 max-w-2xl mt-10">
+                <div className="relative w-11/12 lg:w-2/3 max-w-2xl mt-10 mWidth">
                     <div className="w-full absolute overflow-hidden rounded-md z-20 focus-within:shadow-lg bg-white h50" >
                         <div className="whiteBox">
                             <img src="/assets/images/search.png" alt="" className="imgPosition"/>
                             <div className="flex space-between w-full items-center">
-                                <div className="flex flex-auto items-center">
+                                <div className="flex flex-auto items-center inputBr">
                                     <input className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 " placeholder="Search DAOs..." autoComplete="off" value={keywords} onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/></div>
                             </div>
                         </div>
