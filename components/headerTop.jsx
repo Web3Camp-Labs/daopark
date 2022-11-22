@@ -58,6 +58,9 @@ const HeaderBox = styled('header')`
     width: 256px;
     height: 2px;
   }
+  .searchImg{
+    width: 24px;
+  }
 `
 const RhtBox = styled('span')`
   box-sizing: border-box; 
@@ -111,8 +114,9 @@ const SearchBox = styled('div')`
     align-items: center;
     input{
       margin-left: 10px;
-      margin-top: -5px;
+      margin-top: -3px;
       width: 350px;
+      font-size: 16px;
     }
     img{
       margin-bottom:8px;
@@ -247,7 +251,7 @@ function HeaderTop({router}) {
                                 className="w-full absolute overflow-hidden rounded-md py-3 px-5 z-20 focus-within:shadow-lg -mt-6 ">
                                 <div className="flex space-between w-full items-center">
                                     <div className="flex flex-auto items-center">
-                                        <img src="/assets/images/searchIcon.png" alt=""/>
+                                        <img src="/assets/images/searchIcon.png" alt="" className="searchImg"/>
                                         <input
                                             className="w-full focus:outline-none text-lg font-cal tracking-wide text-gray-700 transition ease duration-150"
                                             placeholder="Search DAOs..." autoComplete="off" value={keywords}  onChange={e=>handleInput(e)} onKeyDown={(e)=>submitFunc(e)}/>
