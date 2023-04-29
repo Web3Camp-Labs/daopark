@@ -4,6 +4,8 @@ import ItemDao from "./item";
 import api from "../pages/api/api";
 import styled from "styled-components";
 import aboutus from "../public/aboutus.json";
+import localData from "../public/haveGithub.json";
+
 const Box = styled.div`
   .titleBox{
     font-family: "PT-Mono-Bold";
@@ -89,6 +91,9 @@ export default function HomeList() {
                 !showLoading && <div className="grid grid-cols-1 gap-8 m-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
                     {
                         search == null &&<ItemDao index={1} item={aboutus[0]}/>
+                    }
+                    {
+                        localData.map((item,index)=> <ItemDao index={index+2} item={item} key={`local_${index}`}/>)
                     }
                     {
                         !!list.length && list.map((item,index)=> <ItemDao index={index+2} item={item} key={item.DAOIndex}/>
