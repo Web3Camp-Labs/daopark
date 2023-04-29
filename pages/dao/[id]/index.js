@@ -28,13 +28,6 @@ export default function Dao() {
         if(!Arr.length){
             getDetail()
         }else{
-            console.log(Arr[0].Values)
-
-
-            let funcStr = `function test(){${Arr[0].Values}}`;
-            let funcTest = new Function(funcStr);
-            // let aaa = funcTest();
-            console.log(funcTest)
             setDetailInfo(Arr)
         }
 
