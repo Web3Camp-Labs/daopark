@@ -7,6 +7,8 @@ import DaoList from "../../../components/dao/daolist";
 import {useEffect, useState} from "react";
 import aboutUs from "../../../public/aboutus.json";
 import styled from "styled-components";
+
+import localData from "../../../public/haveGithub.json";
 // import api from "../../api/api";
 
 const BodyBox = styled.div`
@@ -19,14 +21,31 @@ export default function Dao() {
     const [detailInfo, setDetailInfo ] = useState();
 
     useEffect(()=>{
-        const getDetail = async () =>{
-            const list = sessionStorage.getItem('list');
-            const ListArr = list !=null ? JSON.parse(list):[] ;
-            const detail = ListArr.filter(item=>item.Slug === id);
-            setDetailInfo(detail)
+
+
+        const Arr = localData.filter(item=>item.Slug === id);
+        console.error(Arr)
+        if(!Arr.length){
+            getDetail()
+        }else{
+            console.log(Arr[0].Values)
+
+
+            let funcStr = `function test(){${Arr[0].Values}}`;
+            let funcTest = new Function(funcStr);
+            // let aaa = funcTest();
+            console.log(funcTest)
+            setDetailInfo(Arr)
         }
-        getDetail()
+
+        // getDetail()
     },[id])
+    const getDetail = async () =>{
+        const list = sessionStorage.getItem('list');
+        const ListArr = list !=null ? JSON.parse(list):[] ;
+        const detail = ListArr.filter(item=>item.Slug === id);
+        setDetailInfo(detail)
+    }
 
     return <BodyBox>
         <div className="w-full" >

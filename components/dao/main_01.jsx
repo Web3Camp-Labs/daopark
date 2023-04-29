@@ -64,13 +64,13 @@ export default function Main01(props) {
                 <h2>Our Mission</h2>
                 <LineBox />
                     {/*<img src="/assets/images/decor.png" alt=""/></LineBox>*/}
-                <p>{obj?.Mission}</p>
+                {/*<p>{obj?.Mission}</p>*/}
             </div>
             <div>
                 <h2>Our Values</h2>
                 <LineBox />
                 {/*<LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>*/}
-                <p>{obj?.Values}</p>
+                {/*<p>{obj?.Values}</p>*/}
             </div>
 
         </article>
