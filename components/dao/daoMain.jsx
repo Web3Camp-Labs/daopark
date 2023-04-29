@@ -99,7 +99,7 @@ const ContentBox = styled.div`
   }
 `
 export default function DaoMain(props) {
-    const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useState(2);
     const [list] = useState(['overview','contributors','news'])
     const [ showCopy,setShowCopy ] = useState(false);
     const { body } = props;
@@ -226,10 +226,10 @@ export default function DaoMain(props) {
                                             current === 1 && !obj.Github && <Main02 title="Contributors" />
                                         }
                                         {
-                                            current === 2 && !!obj.Twitter && <Tweets body={obj}/>
+                                            current === 2 && !!obj?.Twitter && <Tweets body={obj}/>
                                         }
                                         {
-                                            current === 2 && !obj.Twitter && <Main02 title="News"/>
+                                            current === 2 && !obj?.Twitter && <Main02 title="News"/>
                                         }
                                     </div>
                                 </div>
