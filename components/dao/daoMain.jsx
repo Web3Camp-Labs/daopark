@@ -79,7 +79,7 @@ const ContentBox = styled.div`
     background-size: 50px;
   }
   .lftBg{
-      background:url("/assets/images/bglft.png") no-repeat 4% 90%;
+      background:url("/assets/images/bglft.png") no-repeat 4% 99%;
       background-size: 150px;
   }
   @media (max-width: 560px) {

@@ -520,18 +520,6 @@ select {
 
 .prose ul > li {
     position: relative;
-    padding-left: 1.75em
-}
-
-.prose ul > li:before {
-    content: "";
-    position: absolute;
-    background-color: #d1d5db;
-    border-radius: 50%;
-    width: .375em;
-    height: .375em;
-    top: calc(.875em - .1875em);
-    left: .25em
 }
 
 .prose hr {
@@ -3100,9 +3088,6 @@ select {
         left: 0
     }
 
-    .sm\:prose-lg ul > li {
-        padding-left: 1.6666667em
-    }
 
     .sm\:prose-lg ul > li:before {
         width: .3333333em;
