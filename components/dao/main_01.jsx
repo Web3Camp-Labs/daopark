@@ -70,22 +70,29 @@ export default function Main01(props) {
     },[body])
 
     return <Box className="w-full px-12 mb-12 min-h-50" >
-        <div dangerouslySetInnerHTML = {{ __html: obj?.newContent }} />
 
-        {/*<article>*/}
-        {/*    /!*<div>*!/*/}
-        {/*    /!*    <h2>Our Mission</h2>*!/*/}
-        {/*    /!*    <LineBox />*!/*/}
-        {/*    /!*        /!*<img src="/assets/images/decor.png" alt=""/></LineBox>*!/*!/*/}
-        {/*    /!*    <p>{obj?.Mission}</p>*!/*/}
-        {/*    /!*</div>*!/*/}
-        {/*    /!*<div>*!/*/}
-        {/*    /!*    <h2>Our Values</h2>*!/*/}
-        {/*    /!*    <LineBox />*!/*/}
-        {/*    /!*    /!*<LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>*!/*!/*/}
-        {/*    /!*    <p>{obj?.Values}</p>*!/*/}
-        {/*    /!*</div>*!/*/}
+        {
+            !obj?.newContent && <article>
+            <div>
+                <h2>Our Mission</h2>
+                    {/*<img src="/assets/images/decor.png" alt=""/></LineBox>*/}
+                <p>{obj?.Mission}</p>
+            </div>
+                {
+                    !!obj?.Values && <div>
+                        <h2>Our Values</h2>
+                        {/*<LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>*/}
+                        <p>{obj?.Values}</p>
+                    </div>
+                }
 
-        {/*</article>*/}
+        </article>
+        }
+        {
+            !!obj?.newContent &&<div dangerouslySetInnerHTML = {{ __html: obj?.newContent }} />
+        }
+
+
+
     </Box>
 }
