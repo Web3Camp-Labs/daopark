@@ -140,10 +140,13 @@ export default function DaoMain(props) {
                         <img src="/assets/images/twitterWhite.svg" alt=""/>
                         <p className="hidden lg:block ">@{obj?.Twitter}</p>
                     </a>
-                    <a href={`https://discord.com/invite/${obj?.Discord}`} target="_blank" className="font-cal tracking-wide text-white bg-[#4A66F7] rounded-lg flex justify-center items-center space-x-2 px-4 py-2 border-2 border-black min-w-max" rel="noreferrer">
+                    {
+                        !!obj?.Discord &&<a href={`https://discord.com/invite/${obj?.Discord}`} target="_blank" className="font-cal tracking-wide text-white bg-[#4A66F7] rounded-lg flex justify-center items-center space-x-2 px-4 py-2 border-2 border-black min-w-max" rel="noreferrer">
                         <img src="/assets/images/discordWhite.svg" alt=""/>
                         <p className="hidden lg:block">@ {obj?.Discord}</p>
-                    </a>
+                        </a>
+                    }
+
                     <a href={`https://${obj?.Website}`} target="_blank" className="font-cal tracking-wide text-white bg-black rounded-lg flex justify-center items-center space-x-2 px-4 py-2 border-2 border-black min-w-max" rel="noreferrer">
                         <img src="/assets/images/globalWhite.svg" alt=""/>
                         <p className="hidden lg:block">Website</p>
