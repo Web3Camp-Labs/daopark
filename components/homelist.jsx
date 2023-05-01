@@ -69,7 +69,9 @@ export default function HomeList() {
         const GetPrList = async() =>{
             const listInfo = await api.getListInfo();
             const listArr = listInfo.concat(localData);
-           const arr = listArr.filter(item=> item.Name.indexOf(search)>-1 || item.Mission.indexOf(search)>-1 || item.Slug.indexOf(search)>-1 || item.Tagline.indexOf(search)>-1 || item.Values.indexOf(search)>-1)
+           // const arr = listArr.filter(item=> item.Name.indexOf(search)>-1 || item.Mission.indexOf(search)>-1 || item.Slug.indexOf(search)>-1 || item.Tagline.indexOf(search)>-1 || item.Values.indexOf(search)>-1)
+            const arr = listArr.filter(item=> item.Name.toLowerCase().indexOf(search.toLowerCase())>-1 ||  item.Slug.toLowerCase().indexOf(search.toLowerCase())>-1 || item.Tagline.toLowerCase().indexOf(search.toLowerCase())>-1 )
+
             setList([...arr]);
             SetShowLoading(false);
         }

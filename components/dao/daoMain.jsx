@@ -149,7 +149,7 @@ export default function DaoMain(props) {
                         <p className="hidden lg:block">Website</p>
                     </a>
                     {
-                        obj?.Mirror &&<a href={`https://${obj?.Mirror}`} target="_blank"  rel="noreferrer"
+                        obj?.Mirror &&<a href={`https://${obj?.Mirror}.mirror.xyz`} target="_blank"  rel="noreferrer"
                                          className="font-cal tracking-wide text-white bg-[#959595] rounded-lg flex justify-center items-center space-x-2 px-4 py-2 border-2 border-black min-w-max">
                             <img src="/assets/images/mirror.svg" alt=""/><p className="hidden lg:block">{obj?.Mirror}</p>
                         </a>
