@@ -11,6 +11,17 @@ const Box =  styled.div`
     font-weight: bold;
     color: rgba(0,0,0,0.9000);
     line-height: 44px;
+    position: relative;
+    &:after{
+      position: absolute;
+      left:0;
+      bottom: -30px;
+      width: 132px;
+      height: 11px;
+      border: 2px solid #000000;
+      content: '';
+
+    }
   }
   p{
     padding-top: 35px;
@@ -59,20 +70,22 @@ export default function Main01(props) {
     },[body])
 
     return <Box className="w-full px-12 mb-12 min-h-50" >
-        <article>
-            <div>
-                <h2>Our Mission</h2>
-                <LineBox />
-                    {/*<img src="/assets/images/decor.png" alt=""/></LineBox>*/}
-                {/*<p>{obj?.Mission}</p>*/}
-            </div>
-            <div>
-                <h2>Our Values</h2>
-                <LineBox />
-                {/*<LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>*/}
-                {/*<p>{obj?.Values}</p>*/}
-            </div>
+        <div dangerouslySetInnerHTML = {{ __html: obj?.newContent }} />
 
-        </article>
+        {/*<article>*/}
+        {/*    /!*<div>*!/*/}
+        {/*    /!*    <h2>Our Mission</h2>*!/*/}
+        {/*    /!*    <LineBox />*!/*/}
+        {/*    /!*        /!*<img src="/assets/images/decor.png" alt=""/></LineBox>*!/*!/*/}
+        {/*    /!*    <p>{obj?.Mission}</p>*!/*/}
+        {/*    /!*</div>*!/*/}
+        {/*    /!*<div>*!/*/}
+        {/*    /!*    <h2>Our Values</h2>*!/*/}
+        {/*    /!*    <LineBox />*!/*/}
+        {/*    /!*    /!*<LineBox><img src="/assets/images/decor.png" alt=""/></LineBox>*!/*!/*/}
+        {/*    /!*    <p>{obj?.Values}</p>*!/*/}
+        {/*    /!*</div>*!/*/}
+
+        {/*</article>*/}
     </Box>
 }
