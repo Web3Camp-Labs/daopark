@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 import {useEffect,useState} from "react";
 import ItemDao from "../item";
-import api from "../../pages/api/api";
+// import api from "../../pages/api/api";
+import localData from "../../public/haveGithub.json";
 
 const Box = styled.div`
   @media (max-width: 1000px) {
@@ -42,22 +43,25 @@ export default function DaoList(props) {
     const [list, setList] = useState([]);
     const { len, title } = props;
 
-    const getList = async () =>{
-        const listInfo = await api.getListInfo();
-        setList(listInfo)
-        sessionStorage.setItem('list',JSON.stringify(listInfo));
-        window.location.reload()
-    }
+    // const getList = async () =>{
+    //     const listInfo = await api.getListInfo();
+    //     setList(listInfo)
+    //     sessionStorage.setItem('list',JSON.stringify(listInfo));
+    //     window.location.reload()
+    // }
 
     useEffect(()=>{
-        const listBefore = sessionStorage.getItem('list');
-        if(listBefore != null){
-            const ListArr =JSON.parse(listBefore) ;
-            let afterArr = getRandomArrayElements(ListArr, ListArr?.length > len ? len:ListArr.length);
-            setList(afterArr);
-        }else{
-            getList();
-        }
+        // const listBefore = sessionStorage.getItem('list');
+        // if(listBefore != null){
+        //     const ListArr =JSON.parse(listBefore) ;
+        //     let afterArr = getRandomArrayElements(ListArr, ListArr?.length > len ? len:ListArr.length);
+        //     setList(afterArr);
+        // }else{
+        //     getList();
+        // }
+
+        let afterArr = getRandomArrayElements(localData, localData?.length > len ? len:localData.length);
+        setList(afterArr);
 
     },[])
 

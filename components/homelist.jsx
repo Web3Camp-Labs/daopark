@@ -56,7 +56,8 @@ export default function HomeList() {
     useEffect(()=>{
         const getList = async () =>{
             const listInfo = await api.getListInfo();
-            setList(listInfo)
+            const Arr = listInfo.concat(localData);
+            setList(Arr)
             sessionStorage.setItem('list',JSON.stringify(listInfo));
         }
         getList();
@@ -67,7 +68,8 @@ export default function HomeList() {
         SetShowLoading(true);
         const GetPrList = async() =>{
             const listInfo = await api.getListInfo();
-           const arr = listInfo.filter(item=> item.Name.indexOf(search)>-1 || item.Mission.indexOf(search)>-1 || item.Slug.indexOf(search)>-1 || item.Tagline.indexOf(search)>-1 || item.Values.indexOf(search)>-1)
+            const listArr = listInfo.concat(localData);
+           const arr = listArr.filter(item=> item.Name.indexOf(search)>-1 || item.Mission.indexOf(search)>-1 || item.Slug.indexOf(search)>-1 || item.Tagline.indexOf(search)>-1 || item.Values.indexOf(search)>-1)
             setList([...arr]);
             SetShowLoading(false);
         }
@@ -91,9 +93,6 @@ export default function HomeList() {
                 !showLoading && <div className="grid grid-cols-1 gap-8 m-10 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
                     {
                         search == null &&<ItemDao index={1} item={aboutus[0]}/>
-                    }
-                    {
-                        localData.map((item,index)=> <ItemDao index={index+2} item={item} key={`local_${index}`}/>)
                     }
                     {
                         !!list.length && list.map((item,index)=> <ItemDao index={index+2} item={item} key={item.DAOIndex}/>

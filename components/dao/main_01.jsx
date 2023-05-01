@@ -92,7 +92,5 @@ export default function Main01(props) {
             !!obj?.newContent &&<div dangerouslySetInnerHTML = {{ __html: obj?.newContent }} />
         }
 
-
-
     </Box>
 }

@@ -21,10 +21,7 @@ export default function Dao() {
     const [detailInfo, setDetailInfo ] = useState();
 
     useEffect(()=>{
-
-
         const Arr = localData.filter(item=>item.Slug === id);
-        console.error(Arr)
         if(!Arr.length){
             getDetail()
         }else{
