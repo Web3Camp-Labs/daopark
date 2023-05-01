@@ -37,6 +37,15 @@ const LiBox = styled.div`
     background:url("/assets/images/bg/bg8.png");
     background-size: 100% 100%;
   }
+  .innerL3{
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap:break-word;
+    -webkit-line-clamp:3;
+    -webkit-box-orient: vertical
+  }
 `
 
 const SpanBoxli = styled('span')`
@@ -125,6 +134,16 @@ const Li560 = styled.div`
     background:url("/assets/images/bg/bg8.png");
     background-size: 100% 100%;
   }
+  .innerL3{
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap:break-word;
+    -webkit-line-clamp:3;
+    -webkit-box-orient: vertical
+  }
+
 `
 
 export default function ItemDao(props){
@@ -150,7 +169,7 @@ export default function ItemDao(props){
                     {/*    </p>*/}
                     {/*</div>*/}
                     <TitleBox className="font-cal !my-0 !text-2xl font-bold tracking-wide truncate ">{obj?.Name}</TitleBox>
-                    <ContentBox className="!mt-3 !text-gray-800 !text-md !leading-snug !font-normal">{obj?.Tagline} –  {obj?.TokenSymbol}</ContentBox></div>
+                    <ContentBox className="!mt-3 !text-gray-800 !text-md !leading-snug !font-normal innerL3">{obj?.Tagline} –  {obj?.TokenSymbol}</ContentBox></div>
             </LiBox>
             <Li560 className={`sm:hidden overflow-hidden rounded-xl flex items-center md:h-48 h-36 border-2 border-gray-100 focus:border-black active:border-black bg-white transition-all ease duration-200 bg${index % 8}`}>
                 <div className="w-2/5 relative h-full">
@@ -160,7 +179,7 @@ export default function ItemDao(props){
                 </div>
                 <div className="py-6 px-5 w-3/5 !relative">
                     <TitleBox className="font-cal !my-0 !text-xl sm:!text-2xl font-bold tracking-wide truncate">{obj?.Name}</TitleBox>
-                    <p className="!mt-3 !text-gray-800 !text-sm sm:!text-base !leading-snug !font-normal line-clamp-3">{obj?.Tagline} – {obj?.TokenSymbol}</p></div>
+                    <p className="!mt-3 !text-gray-800 !text-sm sm:!text-base !leading-snug !font-normal line-clamp-3 innerL3">{obj?.Tagline} – {obj?.TokenSymbol}</p></div>
             </Li560>
     </div></Link>
 }
